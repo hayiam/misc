@@ -11,7 +11,7 @@ static const char dmenufont[]       = "Jetbrains Mono:size=12:antialias=true:aut
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#49483e";
 static const char col_gray3[]       = "#d0d0ca";
-static const char col_gray4[]       = "#e8e8e2";
+static const char col_gray4[]       = "#282828";
 static const char col_cyan[]        = "#ae81ff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
