@@ -4,10 +4,9 @@ compton --config ~/.config/compton/compton.conf &
 ~/.fehbg &
 unclutter -root &
 
-# run xsetroot to show the date in the bar every 1 second
 while true; do
 
-    xsetroot -name " $(date +%a\ %F\ %R)"
+    xsetroot -name " $(curl -s 'wttr.in/Orenburg?format=%t+%w\n') $(date +%a\ %F\ %R)"
     sleep 60
 
 done &
