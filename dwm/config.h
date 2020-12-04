@@ -1,13 +1,13 @@
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int igappx    = 7;        /* size of inner gaps */
 static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Jetbrains Mono:size=12:antialias=true:autohint=true" };
-static const char dmenufont[]       = "Jetbrains Mono:size=12:antialias=true:autohint=true";
+static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#49483e";
 static const char col_gray3[]       = "#d0d0ca";
@@ -70,9 +70,9 @@ static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dm
 static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-e", "/usr/bin/tmux", NULL };
-static const char *ffox[]  = { "firefox-bin", "-P", "maksim", NULL };
-static const char *ffoxh[]  = { "firefox-bin", "-P", "hayiam", NULL };
-static const char *scrot[]  = {"scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
+static const char *ffox[] = { "firefox", "-P", "maksim", NULL };
+static const char *ffoxh[] = { "firefox", "-P", "hayiam", NULL };
+static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
 
 static Key keys[] = {
 	/* modifier                     key                function        argument */
