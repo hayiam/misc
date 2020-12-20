@@ -5,13 +5,10 @@
  */
 /* difining scratchtag here (was in dwm.c after #include "config.h" */
 
-static unsigned int scratchtag = 1 << LENGTH(tags);
-
 void
 shiftview(const Arg *arg) {
 	Arg shifted;
 	
-	if(selmon->tagset[selmon->seltags] &= ~scratchtag) {
 
 	if(arg->i > 0) // left circular shift
 		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
@@ -22,5 +19,4 @@ shiftview(const Arg *arg) {
 		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
 	view(&shifted);
-}
 }
