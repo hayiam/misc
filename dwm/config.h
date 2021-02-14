@@ -27,8 +27,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title               tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
-	{ NULL,       NULL,       "scratchpad",       0,            1,           -1,        's',             5,0,1593,400 },
+	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
+	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,0,1593,400 },
+	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             150,200,1300,500 },
 };
 
 /* layout(s) */
@@ -68,8 +69,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
-/*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL}; 
+/* first arg only serves to match against key in rules */
+static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL};
+static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
 static const char *ffox[] = { "firefox-bin", "-P", "maksim", NULL };
 static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
@@ -79,6 +81,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,              spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,         spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,          togglescratch,  {.v = scratchpadcmd } },
+	{ 0,                            XK_F12,            togglescratch,  {.v = scratchpadvifm } },
 	{ MODKEY|ShiftMask,             XK_f,              spawn,          {.v = ffox } },
 	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = ffoxh } },
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
@@ -114,10 +117,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,              setdirs,        {.v = (int[]){ DirHor, DirVer, DirVer } } },
 	{ MODKEY|ControlMask,           XK_t,              setdirs,        {.v = (int[]){ DirVer, DirHor, DirHor } } },
 	{ MODKEY|ShiftMask,             XK_space,          togglefloating, {0} },
-	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 30y 0w 0h" } },
-	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -30y 0w 0h" } },
-	{ MODKEY,                       XK_Right,          moveresize,     {.v = "30x 0y 0w 0h" } },
-	{ MODKEY,                       XK_Left,           moveresize,     {.v = "-30x 0y 0w 0h" } },
+	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 20y 0w 0h" } },
+	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -20y 0w 0h" } },
+	{ MODKEY,                       XK_Right,          moveresize,     {.v = "20x 0y 0w 0h" } },
+	{ MODKEY,                       XK_Left,           moveresize,     {.v = "-20x 0y 0w 0h" } },
 	{ MODKEY|ShiftMask,             XK_Down,           moveresize,     {.v = "0x 0y 0w 25h" } },
 	{ MODKEY|ShiftMask,             XK_Up,             moveresize,     {.v = "0x 0y 0w -25h" } },
 	{ MODKEY|ShiftMask,             XK_Right,          moveresize,     {.v = "0x 0y 25w 0h" } },
@@ -166,4 +169,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
