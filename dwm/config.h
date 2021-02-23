@@ -5,7 +5,7 @@ static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
@@ -60,7 +60,7 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "<||",      tile }, /* first is default */
+	{ "<||",      tile },     /* first is default */
 	{ "[M]",      monocle },
 	{ "><>",      NULL },     /* no layout function means floating behavior */
 };
@@ -73,7 +73,8 @@ static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL};
 static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
 static const char *ffox[] = { "firefox-bin", "-P", "maksim", NULL };
-static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };
+static const char *chrome[] = { "google-chrome-stable", "--kiosk", NULL };
+/*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
 
 static Key keys[] = {
@@ -83,10 +84,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,          togglescratch,  {.v = scratchpadcmd } },
 	{ 0,                            XK_F12,            togglescratch,  {.v = scratchpadvifm } },
 	{ MODKEY|ShiftMask,             XK_f,              spawn,          {.v = ffox } },
-	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = ffoxh } },
+	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = chrome } },
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
+	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
+	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
+	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection -clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              focusstack,     {.i = -1 } },
