@@ -1,3 +1,25 @@
 #!/bin/bash
 
-google-chrome-stable --kiosk --new-window "$@"
+while getopts y:e:r flag
+    do
+        case "${flag}" in
+            y) SeachEngine="https://yandex.ru/search/?text=";;
+            e) SeachEngine="https://en.wikipedia.org/wiki/Special:Search?search=";;
+            r) SeachEngine="https://ru.wikipedia.org/wiki/Special:Search?search=";;
+            esac
+    done
+
+AllArgs=$@
+
+if [ -z "$SeachEngine" ]
+    then
+    SeachEngine="https://www.google.com/search?q="
+elif (( $# >= 2 ))
+then
+    shift
+    AllArgs=$@
+fi
+
+Sargs=$SeachEngine$AllArgs
+
+google-chrome-stable --kiosk --new-window "$Sargs"
