@@ -1,4 +1,5 @@
 #!/bin/bash
+# The script allows to use google-chrome from dmenu or cli; usage: g - open site or use google search; g -y - search with yandex; g -e - search in english wikipedia; g -r - search in russian wikipedia.
 
 while getopts y:e:r flag
     do
