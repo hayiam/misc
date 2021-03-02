@@ -6,12 +6,13 @@ while getopts y:e:r flag
             y) SeachEngine="https://yandex.ru/search/?text=";;
             e) SeachEngine="https://en.wikipedia.org/wiki/Special:Search?search=";;
             r) SeachEngine="https://ru.wikipedia.org/wiki/Special:Search?search=";;
-            esac
+        esac
     done
 
 AllArgs=$@
 
-if [ -z "$SeachEngine" ] && [[ "$@" =~ \ |\' ]]
+if [ -z "$SeachEngine" ] && [[ "$@" =~ \ |\' ]] || [[ "$@" != *.* ]]
+
     then
     SeachEngine="https://www.google.com/search?q="
 elif (( $# >= 2 ))
