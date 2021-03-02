@@ -12,7 +12,6 @@ while getopts y:e:r flag
 AllArgs=$@
 
 if [ -z "$SeachEngine" ] && [[ "$@" =~ \ |\' ]] || [[ "$@" != *.* ]]
-
     then
     SeachEngine="https://www.google.com/search?q="
 elif (( $# >= 2 ))
