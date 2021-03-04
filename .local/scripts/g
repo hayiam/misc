@@ -1,17 +1,24 @@
 #!/bin/bash
-# The script allows to use google-chrome from dmenu or cli; usage: g - open site or use google search; g -y - search with yandex; g -e - search in english wikipedia; g -r - search in russian wikipedia.
-while getopts y:e:r flag
+# The script allows to use google-chrome from dmenu or cli; usage: g - open site or use google search; g -y - search with yandex; g -w - search in wikipedia.
+
+if [[ "$@" == *[а-яА-Я]* ]]
+    then
+    LanGu="ru"
+else
+    LanGu="en"
+fi
+
+while getopts y:w flag
     do
         case "${flag}" in
             y) SearchEngine="https://yandex.ru/search/?text=";;
-            e) SearchEngine="https://en.wikipedia.org/wiki/Special:Search?search=";;
-            r) SearchEngine="https://ru.wikipedia.org/wiki/Special:Search?search=";;
+            w) SearchEngine="https://${LanGu}.wikipedia.org/wiki/Special:Search?search=";;
         esac
     done
 
 AllArgs=$@
 
-if [ -z "$SearchEngine" ] && [[ "$@" =~ \ |\' ]] || [[ "$@" != *.* ]]
+if [ -z "$SearchEngine" ] && [[ "$@" != *.* ]]
     then
     SearchEngine="https://www.google.com/search?q="
 elif (( $# >= 2 ))
