@@ -3,23 +3,23 @@
 while getopts y:e:r flag
     do
         case "${flag}" in
-            y) SeachEngine="https://yandex.ru/search/?text=";;
-            e) SeachEngine="https://en.wikipedia.org/wiki/Special:Search?search=";;
-            r) SeachEngine="https://ru.wikipedia.org/wiki/Special:Search?search=";;
+            y) SearchEngine="https://yandex.ru/search/?text=";;
+            e) SearchEngine="https://en.wikipedia.org/wiki/Special:Search?search=";;
+            r) SearchEngine="https://ru.wikipedia.org/wiki/Special:Search?search=";;
         esac
     done
 
 AllArgs=$@
 
-if [ -z "$SeachEngine" ] && [[ "$@" =~ \ |\' ]] || [[ "$@" != *.* ]]
+if [ -z "$SearchEngine" ] && [[ "$@" =~ \ |\' ]] || [[ "$@" != *.* ]]
     then
-    SeachEngine="https://www.google.com/search?q="
+    SearchEngine="https://www.google.com/search?q="
 elif (( $# >= 2 ))
 then
     shift
     AllArgs=$@
 fi
 
-Sargs=$SeachEngine$AllArgs
+Sargs=$SearchEngine$AllArgs
 
 google-chrome-stable --kiosk --new-window "$Sargs"
