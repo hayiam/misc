@@ -20,7 +20,6 @@ set timeoutlen=200 ttimeoutlen=0 "disable change mode timeout
 set nohlsearch "disable highlighting in search mode
 set undofile "enable persistent undo option
 set undodir=$HOME/.vim/undo "set directory to store undo history
-set encoding=utf-8 "encoding in which file is shown
 set fileencodings=utf-8,ru "encodings with which file is written
 colorscheme tasty
 "set up statusline
