@@ -1,0 +1,15 @@
+--- st-0.8.3/config.def.h	2020-04-27 13:58:27.000000000 +0200
++++ config.def.h	2020-05-24 18:27:19.179361165 +0200
+@@ -4,9 +4,11 @@
+  * appearance
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
++ * borderperc: percentage of cell width to use as a border
++ *		0 = no border, 100 = border width is same as cell width
+  */
+ static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+-static int borderpx = 2;
++static int borderperc = 20;
+ 
+ /*
+  * What program is execed by st depends of these precedence rules:
