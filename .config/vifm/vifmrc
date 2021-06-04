@@ -224,8 +224,8 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with firefox}
-        \ firefox-bin %f &,
+        \ {Open with chrome}
+        \ google-chrome-stable %f &,
         \ {Open with dwb}
         \ dwb %f %i &,
         \ {Open with uzbl}
@@ -459,6 +459,8 @@ nnoremap <f5> :copy<cr>
 nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
+nnoremap <C-o> :only<cr>
+nnoremap <C-s> :vsplit<cr>
 
 " GETTING ICONS TO DISPLAY IN VIFM
 
