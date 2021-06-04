@@ -1,5 +1,5 @@
 #!/bin/bash
-# The script allows to use google-chrome from dmenu or cli; usage: g - open site or use google search; g -y - search with yandex; g -w - search in wikipedia.
+# The script allows to use google-chrome from dmenu or cli; usage: g - open site or use google search; g -y - search with yandex; g -w - search in wikipedia; g -t - translate with google translate.rch in wikipedia.
 
 if [[ "$@" == *[а-яА-Я]* ]]
     then
