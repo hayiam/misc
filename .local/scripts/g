@@ -8,11 +8,12 @@ else
     LanGu="en"
 fi
 
-while getopts y:w flag
+while getopts y:w:t flag
     do
         case "${flag}" in
             y) SearchEngine="https://yandex.ru/search/?text=";;
             w) SearchEngine="https://${LanGu}.wikipedia.org/wiki/Special:Search?search=";;
+            t) SearchEngine="https://translate.google.com/?sl=en&tl=ru&text=";;
         esac
     done
 
