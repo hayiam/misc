@@ -93,6 +93,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },*/
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,              togglebarall,   {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,              incnmaster,     {.i = +1 } },

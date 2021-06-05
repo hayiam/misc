@@ -250,6 +250,7 @@ static void tagtoleft(const Arg *arg);
 static void tagtoright(const Arg *arg);
 static void tile(Monitor *);
 static void togglebar(const Arg *arg);
+static void togglebarall(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -2275,6 +2276,21 @@ tile(Monitor *m)
 void
 togglebar(const Arg *arg)
 {
+	selmon->showbar = selmon->pertag->showbars[selmon->pertag->curtag] = !selmon->showbar;
+	updatebarpos(selmon);
+	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
+	arrange(selmon);
+}
+
+void
+togglebarall(const Arg *arg)
+{
+    int i;
+    int tagLength = sizeof(tags)/sizeof(tags[0]);
+
+	for (i = 1; i<=tagLength; i++) {
+        selmon->pertag->showbars[i] = !selmon->showbar;
+		 }
 	selmon->showbar = selmon->pertag->showbars[selmon->pertag->curtag] = !selmon->showbar;
 	updatebarpos(selmon);
 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
