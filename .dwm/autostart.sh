@@ -10,7 +10,7 @@ unclutter -root &
 while true; do
 
 sleep 1
-for i in "nature" "small town" "abstract"
+for i in "nature" "animals" "plants" "small town" "abstract"
     do
 $HOME/misc/myde/styli.sh/styli.sh -b bg-scale -s "$i"
 sleep 1m
