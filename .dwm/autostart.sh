@@ -7,7 +7,6 @@ picom --experimental-backends --config .config/picom/picom.conf &
 unclutter -root &
 
 # setting up dinamic wallpapers which will change every 60 seconds by using styli.sh script (sourse code of it: https://github.com/thevinter/styli.sh)
-
 while true; do
 
 sleep 1
@@ -19,7 +18,7 @@ done
 
 done &
 
-
+# setting up panel
 while true; do
 
 COMMAND=$(xset -q | grep LED | awk '{ print $10 }')
