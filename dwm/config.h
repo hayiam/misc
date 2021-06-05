@@ -4,8 +4,8 @@ static const unsigned int igappx    = 7;        /* size of inner gaps */
 static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int showbar            = 0;        /* 0 means no bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
@@ -89,8 +89,9 @@ static Key keys[] = {
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 /*	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
-	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },*/
-	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection -clipboard)") },
+	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
+	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },*/
+	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              focusstack,     {.i = -1 } },
@@ -100,6 +101,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.20} },
 	{ MODKEY|ShiftMask,             XK_equal,          setcfact,       {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_j,              movestack,      {.i = +1 } },
+	{ MODKEY,                       XK_q,              reorganizetags, {0} },
 	{ MODKEY|ShiftMask,             XK_k,              movestack,      {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_Return,         zoom,           {0} },
     { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
