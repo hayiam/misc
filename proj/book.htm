@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function goForward(a) {
+    var newSpan = document.createElement("span");
+    newSpan.setAttribute("id", "store"+a);
+    newSpan.setAttribute("class", "storage");
+    document.body.appendChild(newSpan);
+    document.getElementById("store"+a).innerHTML = document.getElementById("paragraph").innerHTML;
+    var myText = document.getElementById("myText"+a).innerHTML;
+    document.getElementById("paragraph").innerHTML = myText;
+}
+function goBack(c) {
+    document.getElementById("paragraph").innerHTML = document.getElementById("store"+c).innerHTML;
+}
+// usage: download('test.txt', 'Hello world!'); 
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+function saveToFile() {
+    var paragraph = document.getElementById("paragraph").innerHTML;
+    var store = document.getElementsByClassName("storage");
+    var storage = [];
+    for (i=0; i<store.length; i++) {
+        storage[i] = store[i].innerHTML;
+    }
+    var shelf = [storage, paragraph];
+    var textShelf = shelf.toString();
+    download('bookmark.txt', textShelf);
+}
+</script>
+<style>
+    body { 
+     font-family: Arial, sans-serif;
+    }
+    .link { 
+     color: red;
+     font-size: 110%;
+     font-weight: bold;
+     font-family: serif;
+     cursor: pointer;
+    }
+    .hidden_text {
+     display: none;
+    }
+    .storage {
+     display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h2>The book</h2>
+<span id="paragraph">Комната в старом доме, погруженная в полумрак. Старый, потемневший от времени <span class="link" onclick="goForward(1)">стол</span> посреди нее словно скатертью накрыт мутным пятном света, падаюим из запыленного окна.</span>
+<span id="myText1" class="hidden_text">Старый деревянный стол. Черные сучки, кое-где подточенные гнилью, высохшие пятна плесени на круглых ножках. Когда-то это был по своему красивый предмет интерьера, но теперь, без скатерти и стульев, он похож на след исчезающиго воспоминания о былом уюте. Странно, что хозяева, покидая свое жилище, увезли с собой всю остальную мебель, но оставили посреди комнаты вот этот вот стол. Еще странее и то, что они забыли на нем <span class="link" onclick="goForward(2)">резную шкатулку красного дерева,</span> явно ручной работы.<span class="link" onclick="goBack(1)"> Назад</span></span>
+<span id="myText2" class="hidden_text">Причудливые узоры в виде цветов и каких-то животных покрывают всю поверхность небольшой, размером с ладонь, коробочки, на которой отчего-то совсем нет пыли, будто ее принсели сюда совсем недавно.<span class="link" onclick="goBack(2)"> Назад</span></span>
+<a href="" class="link" onclick="saveToFile()">Save Bookmark</a>
+</body>
+</html>
