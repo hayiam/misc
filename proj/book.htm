@@ -13,6 +13,7 @@ function goForward(a) {
 }
 function goBack(c) {
     document.getElementById("paragraph").innerHTML = document.getElementById("store"+c).innerHTML;
+    document.getElementById("store"+c).remove();
 }
 // usage: download('test.txt', 'Hello world!'); 
 function download(filename, text) {
@@ -24,7 +25,6 @@ function download(filename, text) {
   element.click();
   document.body.removeChild(element);
 }
-
 function saveToFile() {
     let paragraph = document.getElementById("paragraph").innerHTML;
     let store = document.getElementsByClassName("storage");
@@ -52,7 +52,7 @@ function readFromFile (input) {
     newSpan.setAttribute("class", "storage");
     document.body.appendChild(newSpan);
     var store = document.getElementById("store"+i);
-        store.innerText = strg[i-1];
+        store.innerHTML = strg[i-1];
     }
     }
 };
