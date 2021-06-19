@@ -31,7 +31,7 @@ function saveToFile() {
     for (i=0; i<store.length; i++) {
         storage[i] = store[i].innerHTML;
     }
-    var shelf = [storage, paragraph];
+    var shelf = {"storage" : storage, "paragraph" : paragraph};
     var textShelf = JSON.stringify(shelf);
     download('bookmark.json', textShelf);
 }
@@ -47,7 +47,7 @@ function readFromFile (input) {
     var textShelfRet;
 	reader.onload = function () {
     textShelfRet = JSON.parse(reader.result);
-    textSl = textShelfRet[0];
+    textSl = textShelfRet.paragraph;
     alert(textSl);
     }
 };
