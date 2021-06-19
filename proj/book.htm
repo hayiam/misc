@@ -32,9 +32,25 @@ function saveToFile() {
         storage[i] = store[i].innerHTML;
     }
     var shelf = [storage, paragraph];
-    var textShelf = shelf.toString();
-    download('bookmark.txt', textShelf);
+    var textShelf = JSON.stringify(shelf);
+    download('bookmark.json', textShelf);
 }
+function readFromFile (input) {
+	// file selected by user
+	var filetoRead = input.files[0];
+
+	// new FileReader object
+	var reader = new FileReader();
+
+	// read file as text file
+	reader.readAsText(filetoRead);
+    var textShelfRet;
+	reader.onload = function () {
+    textShelfRet = JSON.parse(reader.result);
+    textSl = textShelfRet[0];
+    alert(textSl);
+    }
+};
 </script>
 <style>
     body { 
@@ -62,5 +78,7 @@ function saveToFile() {
 <span id="myText1" class="hidden_text">Старый деревянный стол. Черные сучки, кое-где подточенные гнилью, высохшие пятна плесени на круглых ножках. Когда-то это был по своему красивый предмет интерьера, но теперь, без скатерти и стульев, он похож на след исчезающиго воспоминания о былом уюте. Странно, что хозяева, покидая свое жилище, увезли с собой всю остальную мебель, но оставили посреди комнаты вот этот вот стол. Еще странее и то, что они забыли на нем <span class="link" onclick="goForward(2)">резную шкатулку красного дерева,</span> явно ручной работы.<span class="link" onclick="goBack(1)"> Назад</span></span>
 <span id="myText2" class="hidden_text">Причудливые узоры в виде цветов и каких-то животных покрывают всю поверхность небольшой, размером с ладонь, коробочки, на которой отчего-то совсем нет пыли, будто ее принсели сюда совсем недавно.<span class="link" onclick="goBack(2)"> Назад</span></span>
 <a href="" class="link" onclick="saveToFile()">Save Bookmark</a>
+<!-- allow user to select file -->
+<input type="file" id="file-input" onchange="readFromFile(this)"></input>
 </body>
 </html>
