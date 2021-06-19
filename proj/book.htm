@@ -34,7 +34,16 @@ function saveToFile() {
     }
     let shelf = {"storage" : storage, "paragraph" : paragraph};
     let textShelf = JSON.stringify(shelf);
-    download('bookmark.json', textShelf);
+    let filename = prompt("Enter filename:", "bookmark");
+    if (filename) {
+    download(filename + '.json', textShelf);
+    }
+    else if (filename == "") {
+        alert("No filename, bookmark wasn't saved!");
+    }
+    else {
+        return;
+    }
 }
 function readFromFile (input) {
 	let filetoRead = input.files[0];
