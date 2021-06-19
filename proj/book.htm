@@ -3,12 +3,12 @@
 <head>
 <script>
 function goForward(a) {
-    var newSpan = document.createElement("span");
+    let newSpan = document.createElement("span");
     newSpan.setAttribute("id", "store"+a);
     newSpan.setAttribute("class", "storage");
     document.body.appendChild(newSpan);
     document.getElementById("store"+a).innerHTML = document.getElementById("paragraph").innerHTML;
-    var myText = document.getElementById("myText"+a).innerHTML;
+    let myText = document.getElementById("myText"+a).innerHTML;
     document.getElementById("paragraph").innerHTML = myText;
 }
 function goBack(c) {
@@ -37,25 +37,25 @@ function saveToFile() {
     download('bookmark.json', textShelf);
 }
 function readFromFile (input) {
-	var filetoRead = input.files[0];
-	var reader = new FileReader();
+	let filetoRead = input.files[0];
+	let reader = new FileReader();
 
 	reader.readAsText(filetoRead);
-    var textShelfRet;
+    let textShelfRet;
 	reader.onload = function () {
     textShelfRet = JSON.parse(reader.result);
     document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
-    var strg = textShelfRet.storage;
+    let strg = textShelfRet.storage;
     for (i=1; i<=strg.length; i++) {
-    var newSpan = document.createElement("span");
+    let newSpan = document.createElement("span");
     newSpan.setAttribute("id", "store"+i);
     newSpan.setAttribute("class", "storage");
     document.body.appendChild(newSpan);
-    var store = document.getElementById("store"+i);
+    let store = document.getElementById("store"+i);
         store.innerHTML = strg[i-1];
     }
     }
-};
+}
 </script>
 <style>
     body { 
