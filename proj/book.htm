@@ -2,6 +2,23 @@
 <html>
 <head>
 <script>
+window.addEventListener("load", function() {
+    if (sessionStorage.getItem('shlf')) {
+        let strText = sessionStorage.getItem('shlf');
+        let strr = JSON.parse(strText);
+        document.getElementById("paragraph").innerHTML = strr.paragraph;
+        let strg = strr.storage;
+        for (i=1; i<=strg.length; i++) {
+            let newSpan = document.createElement("span");
+            newSpan.setAttribute("id", "store"+i);
+            newSpan.setAttribute("class", "storage");
+            document.body.appendChild(newSpan);
+            let store = document.getElementById("store"+i);
+            store.innerHTML = strg[i-1];
+            }
+        sessionStorage.clear();
+    }
+});
 function goForward(a) {
     let newSpan = document.createElement("span");
     newSpan.setAttribute("id", "store"+a);
@@ -15,15 +32,14 @@ function goBack(c) {
     document.getElementById("paragraph").innerHTML = document.getElementById("store"+c).innerHTML;
     document.getElementById("store"+c).remove();
 }
-// usage: download('test.txt', 'Hello world!'); 
 function download(filename, text) {
-  let element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }
 function saveToFile() {
     let paragraph = document.getElementById("paragraph").innerHTML;
@@ -34,9 +50,10 @@ function saveToFile() {
     }
     let shelf = {"storage" : storage, "paragraph" : paragraph};
     let textShelf = JSON.stringify(shelf);
+    sessionStorage.setItem('shlf', textShelf);
     let filename = prompt("Enter filename:", "bookmark");
     if (filename) {
-    download(filename + '.json', textShelf);
+        download(filename + '.json', textShelf);
     }
     else if (filename == "") {
         alert("No filename, bookmark wasn't saved!");
@@ -48,22 +65,22 @@ function saveToFile() {
 function readFromFile (input) {
 	let filetoRead = input.files[0];
 	let reader = new FileReader();
-
 	reader.readAsText(filetoRead);
     let textShelfRet;
 	reader.onload = function () {
-    textShelfRet = JSON.parse(reader.result);
-    document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
-    let strg = textShelfRet.storage;
-    for (i=1; i<=strg.length; i++) {
-    let newSpan = document.createElement("span");
-    newSpan.setAttribute("id", "store"+i);
-    newSpan.setAttribute("class", "storage");
-    document.body.appendChild(newSpan);
-    let store = document.getElementById("store"+i);
-        store.innerHTML = strg[i-1];
-    }
-    }
+        textShelfRet = JSON.parse(reader.result);
+        sessionStorage.setItem('shlf', textShelfRet);
+        document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
+        let strg = textShelfRet.storage;
+        for (i=1; i<=strg.length; i++) {
+            let newSpan = document.createElement("span");
+            newSpan.setAttribute("id", "store"+i);
+            newSpan.setAttribute("class", "storage");
+            document.body.appendChild(newSpan);
+            let store = document.getElementById("store"+i);
+            store.innerHTML = strg[i-1];
+            }
+        }
 }
 </script>
 <style>
@@ -77,10 +94,7 @@ function readFromFile (input) {
      font-family: serif;
      cursor: pointer;
     }
-    .hidden_text {
-     display: none;
-    }
-    .storage {
+    .hidden_text, .storage  {
      display: none;
     }
   </style>
