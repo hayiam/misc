@@ -10,7 +10,7 @@ source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
 
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+source /home/maksim/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # setting up history parameters
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
