@@ -183,14 +183,14 @@ exe "hi! ErrorMsg"        .s:fg_background  .s:bg_red         .s:fmt_stnd
 exe "hi! WarningMsg"      .s:fg_red         .s:bg_none        .s:fmt_none
 
 "custom highlights for statusbar
-exe "hi! NormalMode". s:fg_darkcolumn. s:bg_aqua. s:fmt_bold
-exe "hi! InsertMode". s:fg_darkcolumn. s:bg_green. s:fmt_bold
-exe "hi! RPlaceMode". s:fg_addfg. s:error. s:fmt_bold
-exe "hi! VisualMode". s:fg_darkcolumn. s:bg_purple. s:fmt_bold
-exe "hi! Encoding". s:fg_yellow. s:bg_linenr. s:fmt_none
-exe "hi! StatusLine". s:fg_yellow. s:bg_background. s:fmt_none
-exe "hi! StatusLineNC". s:fg_yellow. s:bg_linenr. s:fmt_none
-exe "hi! SeparatorLine". s:none. s:bg_darkcolumn. s:fmt_none
+exe "hi! NormalMode"      .s:fg_darkcolumn  .s:bg_aqua        .s:fmt_bold
+exe "hi! InsertMode"      .s:fg_darkcolumn  .s:bg_green       .s:fmt_bold
+exe "hi! RPlaceMode"      .s:fg_addfg       .s:bg_error       .s:fmt_bold
+exe "hi! VisualMode"      .s:fg_darkcolumn  .s:bg_purple      .s:fmt_bold
+exe "hi! Encoding"        .s:fg_yellow      .s:bg_linenr      .s:fmt_none
+exe "hi! StatusLine"      .s:fg_yellow      .s:bg_background  .s:fmt_none
+exe "hi! StatusLineNC"    .s:fg_yellow      .s:bg_linenr      .s:fmt_none
+exe "hi! SeparatorLine"   .s:none           .s:bg_darkcolumn  .s:fmt_none
 
 
 " misc
