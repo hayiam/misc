@@ -5,9 +5,8 @@ export TERM="xterm-256color"
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 
-# exporting powerlevel9k.zsh-theme and zsh syntax highlighting stuff
+# exporting powerlevel9k.zsh-theme
 source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
-source /home/maksim/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
