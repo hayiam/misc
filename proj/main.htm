@@ -49,8 +49,8 @@ function saveToFile() {
 }
 function readFromFile () {
     let FileInput = document.getElementById("file-input");
-	let filetoRead = FileInput.files[0];
-	let reader = new FileReader();
+    let filetoRead = FileInput.files[0];
+    let reader = new FileReader();
     reader.readAsText(filetoRead);
     reader.onload = function () {
         let textShelfRet = JSON.parse(reader.result);
