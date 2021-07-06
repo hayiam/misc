@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.addEventListener("load", function() {
+    let fileInp = document.getElementById("file-input");
+    fileInp.addEventListener("change", readFromFile); 
+        if (sessionStorage.getItem('shlf')) {
+            let strText = sessionStorage.getItem('shlf');
+            let strr = JSON.parse(strText);
+            document.getElementById("paragraph").innerHTML = strr.paragraph;
+            sessionStorage.clear();
+        }
+});
+var elemArr = document.getElementsByClassName("hidden_text");
+var oldText = [];
+function goForward(a) {
+    oldText[a] = document.getElementById("paragraph").innerHTML;
+    document.getElementById("paragraph").innerHTML = elemArr[a].innerHTML;
+}
+function goBack(b) {
+    document.getElementById("paragraph").innerHTML = oldText[b];
+}
+function download(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+function saveToFile() {
+    let paragraph = document.getElementById("paragraph").innerHTML;
+    let shelf = {"paragraph" : paragraph, "oldtext" : oldText};
+    let textShelf = JSON.stringify(shelf);
+    sessionStorage.setItem('shlf', textShelf);
+    let filename = prompt("Enter filename:", "bookmark");
+    if (filename) {
+        download(filename + '.json', textShelf);
+    }
+    else if (filename == "") {
+        alert("No filename, bookmark wasn't saved!");
+    }
+    else {
+        return;
+    }
+}
+function readFromFile () {
+    let FileInput = document.getElementById("file-input");
+	let filetoRead = FileInput.files[0];
+	let reader = new FileReader();
+	reader.readAsText(filetoRead);
+    let textShelfRet;
+	reader.onload = function () {
+        textShelfRet = JSON.parse(reader.result);
+        sessionStorage.setItem('shlf', textShelfRet);
+        document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
+        oldText = textShelfRet.oldtext;
+        }
+    FileInput.value = "";
+}
+</script>
+<style>
+body { 
+    font-family: Arial, sans-serif;
+}
+.link { 
+    color: red;
+    font-size: 110%;
+    font-weight: bold;
+    font-family: serif;
+    cursor: pointer;
+}
+.hidden_text, .storage  {
+    display: none;
+}
+.labl {
+    border: none;
+    background-color: green;
+    padding: 10px 18px;
+    font-size: 12px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+.labl:hover {
+    background: yellow;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<h2>The book</h2>
+<span id="paragraph">Комната в старом доме, погруженная в полумрак. Старый, потемневший от времени <span class="link" onclick="goForward(0)">стол</span> посреди нее словно скатертью накрыт мутным пятном света, падаюим из запыленного окна.</span>
+<span id="myText0" class="hidden_text">Старый деревянный стол. Черные сучки, кое-где подточенные гнилью, высохшие пятна плесени на круглых ножках. Когда-то это был по своему красивый предмет интерьера, но теперь, без скатерти и стульев, он похож на след исчезающиго воспоминания о былом уюте. Странно, что хозяева, покидая свое жилище, увезли с собой всю остальную мебель, но оставили посреди комнаты вот этот вот стол. Еще странее и то, что они забыли на нем <span class="link" onclick="goForward(1)">резную шкатулку красного дерева,</span> явно ручной работы.<span class="link" onclick="goBack(0)"> Назад</span></span>
+<span id="myText1" class="hidden_text">Причудливые узоры в виде цветов и каких-то животных покрывают всю поверхность небольшой, размером с ладонь, коробочки, на которой отчего-то совсем нет пыли, будто ее принсели сюда совсем недавно.<span class="link" onclick="goBack(1)"> Назад</span></span>
+<a href="" class="link" onclick="saveToFile()">Save Bookmark</a>
+<label class="labl"><input type="file" id="file-input" class="hidden_text"/>Select file</label>
+</body>
+</html>
