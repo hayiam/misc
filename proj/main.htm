@@ -9,6 +9,7 @@ window.addEventListener("load", function() {
             let strText = sessionStorage.getItem('shlf');
             let strr = JSON.parse(strText);
             document.getElementById("paragraph").innerHTML = strr.paragraph;
+            oldText = strr.oldtext;
             sessionStorage.clear();
         }
 });
