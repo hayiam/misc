@@ -50,9 +50,9 @@ function readFromFile () {
     let FileInput = document.getElementById("file-input");
 	let filetoRead = FileInput.files[0];
 	let reader = new FileReader();
-	reader.readAsText(filetoRead);
+    reader.readAsText(filetoRead);
     let textShelfRet;
-	reader.onload = function () {
+    reader.onload = function () {
         textShelfRet = JSON.parse(reader.result);
         sessionStorage.setItem('shlf', textShelfRet);
         document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
