@@ -52,9 +52,8 @@ function readFromFile () {
 	let filetoRead = FileInput.files[0];
 	let reader = new FileReader();
     reader.readAsText(filetoRead);
-    let textShelfRet;
     reader.onload = function () {
-        textShelfRet = JSON.parse(reader.result);
+        let textShelfRet = JSON.parse(reader.result);
         sessionStorage.setItem('shlf', textShelfRet);
         document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
         oldText = textShelfRet.oldtext;
