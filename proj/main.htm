@@ -10,6 +10,8 @@ window.addEventListener("load", function() {
             let strr = JSON.parse(strText);
             document.getElementById("paragraph").innerHTML = strr.paragraph;
             oldText = strr.oldtext;
+            oldTextPrev = strr.oldtextprev;
+            funcCalls = strr.funccalls;
             sessionStorage.clear();
         }
 });
@@ -45,7 +47,7 @@ function download(filename, text) {
 }
 function saveToFile() {
     let paragraph = document.getElementById("paragraph").innerHTML;
-    let shelf = {"paragraph" : paragraph, "oldtext" : oldText};
+    let shelf = {"paragraph" : paragraph, "oldtext" : oldText, "oldtextprev" : oldTextPrev, "funccalls" : funcCalls};
     let textShelf = JSON.stringify(shelf);
     sessionStorage.setItem('shlf', textShelf);
     let filename = prompt("Enter filename:", "bookmark");
@@ -106,10 +108,10 @@ body {
 
 <h2>The book</h2>
 <span id="paragraph">Комната в старом доме, погруженная в полумрак. Старый, потемневший от времени <span class="link" onclick="goForward(0)">стол</span> посреди нее словно скатертью накрыт мутным пятном света, падаюим из запыленного окна.<span class="link" onclick="goNext()"> Далее </span></span>
-<span id="nextText0" class="next_hidden">У стола стоял человек.<span class="link" onclick="goNext()"> Далее </span><span class="link" onclick="goPrev()"> Назад </span></span>
-<span id="nextText1" class="next_hidden">И смотрел вперед.<span class="link" onclick="goPrev()"> Назад </span></span>
 <span id="myText0" class="hidden_text">Старый деревянный стол. Черные сучки, кое-где подточенные гнилью, высохшие пятна плесени на круглых ножках. Когда-то это был по своему красивый предмет интерьера, но теперь, без скатерти и стульев, он похож на след исчезающиго воспоминания о былом уюте. Странно, что хозяева, покидая свое жилище, увезли с собой всю остальную мебель, но оставили посреди комнаты вот этот вот стол. Еще странее и то, что они забыли на нем <span class="link" onclick="goForward(1)">резную шкатулку красного дерева,</span> явно ручной работы.<span class="link" onclick="goBack(0)"> Назад</span></span>
 <span id="myText1" class="hidden_text">Причудливые узоры в виде цветов и каких-то животных покрывают всю поверхность небольшой, размером с ладонь, коробочки, на которой отчего-то совсем нет пыли, будто ее принсели сюда совсем недавно.<span class="link" onclick="goBack(1)"> Назад</span></span>
+<span id="nextText0" class="next_hidden">У стола стоял человек.<span class="link" onclick="goNext()"> Далее </span><span class="link" onclick="goPrev()"> Назад </span></span>
+<span id="nextText1" class="next_hidden">И смотрел вперед.<span class="link" onclick="goPrev()"> Назад </span></span>
 <a href="" class="link" onclick="saveToFile()">Save Bookmark</a>
 <label class="labl"><input type="file" id="file-input" class="hidden_text"/>Select file</label>
 </body>
