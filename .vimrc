@@ -21,7 +21,8 @@ set nohlsearch "disable highlighting in search mode
 set undofile "enable persistent undo option
 set undodir=$HOME/.vim/undo "set directory to store undo history
 set fileencodings=utf-8,ru "encodings with which file is written
-colorscheme tasty
+"colorscheme tasty
+colorscheme dracula
 "set up statusline
 set statusline=
 set statusline+=%#NormalMode#%{(mode()=='n')?'\ \ NORMAL\ ':''}
@@ -67,6 +68,8 @@ noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
+""make html tags autoclose
+inoremap <buffer> > ></<C-x><C-o><C-[>%i
 
 "functions
 
