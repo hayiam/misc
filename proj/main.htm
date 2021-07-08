@@ -3,12 +3,13 @@
 <head>
 <script>
 window.addEventListener("load", function() {
-    let fileInp = document.getElementById("file-input");
+    window.fileInp = document.getElementById("file-input");
+    window.paragr = document.getElementById("paragraph");
     fileInp.addEventListener("change", readFromFile); 
-        if (sessionStorage.getItem('shlf')) {
+        if (sessionStorage.getItem('shlf') !== null) {
             let strText = sessionStorage.getItem('shlf');
             let strr = JSON.parse(strText);
-            document.getElementById("paragraph").innerHTML = strr.paragraph;
+            paragr.innerHTML = strr.paragraph;
             oldText = strr.oldtext;
             funcCalls = strr.funccalls;
             sessionStorage.clear();
@@ -19,17 +20,17 @@ var elemArrNext = document.getElementsByClassName("next_hidden");
 var oldText = [];
 var funcCalls = 0;
 function goNext() {
-    oldText[funcCalls] = document.getElementById("paragraph").innerHTML;
-    document.getElementById("paragraph").innerHTML = elemArrNext[funcCalls].innerHTML;
+    oldText[funcCalls] = paragr.innerHTML;
+    paragr.innerHTML = elemArrNext[funcCalls].innerHTML;
     funcCalls++;
 }
 function goForward(a) {
-    oldText[a] = document.getElementById("paragraph").innerHTML;
-    document.getElementById("paragraph").innerHTML = elemArr[a].innerHTML;
+    oldText[a] = paragr.innerHTML;
+    paragr.innerHTML = elemArr[a].innerHTML;
     funcCalls++;
 }
 function goBack() {
-    document.getElementById("paragraph").innerHTML = oldText[funcCalls-1];
+    paragr.innerHTML = oldText[funcCalls-1];
     funcCalls--;
 }
 function download(filename, text) {
@@ -42,7 +43,7 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 function saveToFile() {
-    let paragraph = document.getElementById("paragraph").innerHTML;
+    let paragraph = paragr.innerHTML;
     let shelf = {"paragraph" : paragraph, "oldtext" : oldText, "funccalls" : funcCalls};
     let textShelf = JSON.stringify(shelf);
     sessionStorage.setItem('shlf', textShelf);
@@ -58,17 +59,17 @@ function saveToFile() {
     }
 }
 function readFromFile () {
-    let FileInput = document.getElementById("file-input");
-    let filetoRead = FileInput.files[0];
+    let filetoRead = fileInp.files[0];
     let reader = new FileReader();
     reader.readAsText(filetoRead);
     reader.onload = function () {
         let textShelfRet = JSON.parse(reader.result);
         sessionStorage.setItem('shlf', textShelfRet);
-        document.getElementById("paragraph").innerHTML = textShelfRet.paragraph;
+        paragr.innerHTML = textShelfRet.paragraph;
         oldText = textShelfRet.oldtext;
+        funcCalls = textShelfRet.funccalls;
         }
-    FileInput.value = "";
+    fileInp.value = "";
 }
 </script>
 <style>
