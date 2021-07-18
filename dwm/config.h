@@ -72,7 +72,7 @@ static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
 /* first arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL};
 static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
-static const char *ffox[] = { "firefox-bin", "-P", "maksim", NULL };
+static const char *ffox[] = { "firefox-bin", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--kiosk", NULL };
 /*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
@@ -91,6 +91,8 @@ static Key keys[] = {
 /*	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },*/
+	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
+	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,              togglebarall,   {0} },
