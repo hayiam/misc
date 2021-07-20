@@ -68,7 +68,7 @@ noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
-""make tags and brackets autoclose
+"make tags and brackets autoclose
 autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 autocmd FileType html inoremap <buffer> < <
 inoremap { {}<C-[>%li
