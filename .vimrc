@@ -73,7 +73,6 @@ autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 autocmd FileType html inoremap <buffer> < <
 inoremap { {}<C-[>%li
 inoremap [ []<C-[>%li
-inoremap ( ()<C-[>%li
 inoremap < <><C-[>i
 
 "functions
