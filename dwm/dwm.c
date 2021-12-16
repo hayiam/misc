@@ -233,8 +233,7 @@ static void setdirs(const Arg *arg);
 static void setfacts(const Arg *arg);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void setigaps(const Arg *arg);
-static void setogaps(const Arg *arg);
+static void setgaps(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setcfact(const Arg *arg);
 static void setup(void);
@@ -1947,22 +1946,15 @@ setfullscreen(Client *c, int fullscreen)
 }
 
 void
-setigaps(const Arg *arg)
+setgaps(const Arg *arg)
 {
-	if ((arg->i == 0) || (selmon->igappx + arg->i < 0))
+	if ((arg->i == 0) || (selmon->igappx + arg->i < 0)) {
 		selmon->igappx = 0;
-	else
-		selmon->igappx += arg->i;
-	arrange(selmon);
-}
-
-void
-setogaps(const Arg *arg)
-{
-	if ((arg->i == 0) || (selmon->ogappx + arg->i < 0))
 		selmon->ogappx = 0;
-	else
+	} else {
+		selmon->igappx += arg->i;
 		selmon->ogappx += arg->i;
+    }
 	arrange(selmon);
 }
 

@@ -12,7 +12,7 @@ static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#49483e";
 static const char col_gray3[]       = "#d0d0ca";
 static const char col_gray4[]       = "#282828";
-static const char col_cyan[]        = "#ae81ff";
+static const char col_cyan[]        = "#BD93F9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -73,7 +73,7 @@ static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL};
 static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
 static const char *ffox[] = { "firefox-bin", NULL };
-static const char *chrome[] = { "google-chrome-stable", "--kiosk", NULL };
+static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
 
@@ -88,23 +88,24 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
+	{ MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },
 /*	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },*/
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask,             XK_1,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask,             XK_2,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask,             XK_3,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=50]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_1,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_2,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_3,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=50]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,              togglebarall,   {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,              incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,              incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_l,              setcfact,       {.f = +0.20} },
-	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.20} },
+	{ MODKEY|ShiftMask,             XK_l,              setcfact,       {.f = +0.10} },
+	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.10} },
 	{ MODKEY|ShiftMask,             XK_equal,          setcfact,       {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_j,              movestack,      {.i = +1 } },
 	{ MODKEY,                       XK_q,              reorganizetags, {0} },
@@ -113,12 +114,9 @@ static Key keys[] = {
     { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
 	{ MODKEY,                       XK_Tab,            view,           {0} },
 	{ MODKEY,                       XK_c,              killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_i,              setigaps,       {.i = +2 } },
-	{ MODKEY|ControlMask,           XK_i,              setigaps,       {.i = -2 } },
-	{ MODKEY|ShiftMask|ControlMask, XK_i,              setigaps,       {.i = 0  } },
-	{ MODKEY|ShiftMask,             XK_o,              setogaps,       {.i = +2 } },
-	{ MODKEY|ControlMask,           XK_o,              setogaps,       {.i = -2 } },
-	{ MODKEY|ShiftMask|ControlMask, XK_o,              setogaps,       {.i = 0  } },
+	{ MODKEY|ShiftMask,             XK_i,              setgaps,       {.i = +7 } },
+	{ MODKEY|ControlMask,           XK_i,              setgaps,       {.i = -7 } },
+	{ MODKEY|ShiftMask|ControlMask, XK_o,              setgaps,       {.i = 0  } },
 	{ MODKEY,                       XK_t,              setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,              setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,              setlayout,      {.v = &layouts[2]} },
