@@ -90,10 +90,13 @@ static Key keys[] = {
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 /*	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
-	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },*/
+	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
-	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },
+	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },*/
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask,             XK_1,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask,             XK_2,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask,             XK_3,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=50]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,              togglebarall,   {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
