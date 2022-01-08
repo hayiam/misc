@@ -5,12 +5,13 @@ export TERM="xterm-256color"
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 
-# exporting powerlevel9k.zsh-theme
+# exporting powerlevel9k.zsh-theme and zsh syntax highlighting stuff
 source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
+#source /home/maksim/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/maksim/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+#source /home/maksim/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # setting up history parameters
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -77,3 +78,6 @@ alias iftop='sudo iftop -i enp0s26u1u4'
 # aliases to search in the zsh and notes history
 alias grephistory='cat ~/.zsh_history | grep'
 alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
+
+#alias for mount cd-rom
+alias cdmount='sudo mount -t iso9660'
