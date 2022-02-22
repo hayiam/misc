@@ -73,7 +73,7 @@ alias mv='mv -i'
 alias radio='mpv --no-ytdl --volume=50 --playlist-start=0 ~/misc/stations.m3u'
 
 # alias for network monitor
-alias iftop='sudo iftop -i enp0s26u1u4'
+alias iftop='sudo iftop -i enp0s26u1u3'
 
 # aliases to search in the zsh and notes history
 alias grephistory='cat ~/.zsh_history | grep'
@@ -81,3 +81,6 @@ alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
 
 #alias for mount cd-rom
 alias cdmount='sudo . mount -t iso9660'
+
+#alias for suspend
+alias suspend='loginctl suspend'
