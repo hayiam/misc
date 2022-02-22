@@ -80,4 +80,4 @@ alias grephistory='cat ~/.zsh_history | grep'
 alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
 
 #alias for mount cd-rom
-alias cdmount='sudo mount -t iso9660'
+alias cdmount='sudo . mount -t iso9660'
