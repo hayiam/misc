@@ -12,11 +12,12 @@ static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#49483e";
 static const char col_gray3[]       = "#d0d0ca";
 static const char col_gray4[]       = "#282828";
+static const char col_blue[]        = "#57c1cf";
 static const char col_cyan[]        = "#BD93F9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_blue  },
 };
 
 /* tagging */
@@ -34,7 +35,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const int dirs[3]      = { DirHor, DirVer, DirVer }; /* tiling dirs */
-static const float facts[3]   = { 1.0,    1.0,    1.0 };    /* tiling facts */
+static const float facts[3]   = { 1.1,    1.1,    1.1 };    /* tiling facts */
 static const int nmaster     = 1;                           /* number of clients in master area */
 static const int resizehints = 0;                           /* 1 means respect size hints in tiled resizals */
 static const int attachdirection = 1;                       /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
@@ -95,28 +96,28 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },*/
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask|ControlMask, XK_1,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask|ControlMask, XK_2,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask|ControlMask, XK_3,              spawn,          SHCMD("mpv --ytdl-format='bestvideo[height<=720][fps<=50]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_1,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_2,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
+	{ MODKEY|ShiftMask|ControlMask, XK_3,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=720][fps<=50]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
 	{ MODKEY,                       XK_b,              togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,              togglebarall,   {0} },
 	{ MODKEY,                       XK_j,              focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,              incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,              incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_l,              setcfact,       {.f = +0.10} },
-	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.10} },
+	{ MODKEY|ShiftMask,             XK_l,              setcfact,       {.f = +0.7} },
+	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.7} },
 	{ MODKEY|ShiftMask,             XK_equal,          setcfact,       {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_j,              movestack,      {.i = +1 } },
 	{ MODKEY,                       XK_q,              reorganizetags, {0} },
 	{ MODKEY|ShiftMask,             XK_k,              movestack,      {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_Return,         zoom,           {0} },
-    	{ MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
+    { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
 	{ MODKEY,                       XK_Tab,            view,           {0} },
 	{ MODKEY,                       XK_c,              killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_i,              setgaps,        {.i = +7 } },
 	{ MODKEY|ControlMask,           XK_i,              setgaps,        {.i = -7 } },
-	{ MODKEY|ControlMask,		XK_o,              setgaps,        {.i = 0  } },
+	{ MODKEY|ControlMask,           XK_o,              setgaps,        {.i = 0  } },
 	{ MODKEY,                       XK_t,              setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,              setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,              setlayout,      {.v = &layouts[2]} },
