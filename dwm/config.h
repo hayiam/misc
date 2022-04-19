@@ -4,8 +4,8 @@ static const unsigned int igappx    = 7;        /* size of inner gaps */
 static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 0;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int showbar            = 1;        /* 0 means no bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
@@ -171,13 +171,15 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button1,        togglefloating, {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
+	{ ClkStatusText,        0,              Button1,        view,           {.ui = ~0 } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = ffox } },
+	{ ClkStatusText,        0,              Button3,        winview,        {0} },
+	{ ClkClientWin,         0,              Button2,        movemouse,      {0} },
+	{ ClkTagBar,            0,              Button2,        toggleview,     {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            0,              Button3,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
