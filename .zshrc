@@ -12,6 +12,7 @@ source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /home/maksim/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+#
 # setting up history parameters
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -73,14 +74,22 @@ alias mv='mv -i'
 alias radio='mpv --no-ytdl --volume=50 --playlist-start=0 ~/misc/stations.m3u'
 
 # alias for network monitor
-alias iftop='sudo iftop -i enp0s26u1u3'
+alias iftop='sudo iftop -i enp0s26u1u5'
 
 # aliases to search in the zsh and notes history
 alias grephistory='cat ~/.zsh_history | grep'
 alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
 
 #alias for mount cd-rom
-alias cdmount='sudo . mount -t iso9660'
+#if [ $2 == '/dev/sr0' ]
+#    then
+#    alias mount='mount'
+#    else
+#    alias mount='sudo mount -t iso9660'
+#    fi
+alias cdmount='sudo mount -t iso9660'
 
-#alias for suspend
+#aliases for suspend, shutdown and reboot
 alias suspend='loginctl suspend'
+alias shutdown='sudo shutdown -h now'
+alias reboot='sudo reboot'
