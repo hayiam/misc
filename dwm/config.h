@@ -6,6 +6,7 @@ static const int gapsforone	        = 0;    	/* 1 enable gaps when only one wind
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
+static const char buttonbar[]       = "[x]";
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
@@ -75,6 +76,7 @@ static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr
 static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
 static const char *ffox[] = { "firefox-bin", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
+static const char *chr[] = { "google-chrome-stable", NULL };
 /*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots" , NULL };
 
@@ -169,14 +171,17 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        reorganizetags, {0} },
-	{ ClkLtSymbol,          0,              Button2,        killclient,     {0} },
-	{ ClkLtSymbol,          0,              Button3,        spawn,          {.v = dmenucmd } },
+	{ ClkButton,	    	0,		        Button1,	    spawn,          {.v = dmenucmd } },
+	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
+	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
+	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
+	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        incnmaster,     {.i = -1 } },
 	{ ClkWinTitle,          0,              Button1,        togglefloating, {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
 	{ ClkStatusText,        0,              Button1,        view,           {.ui = ~0 } },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = ffox } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = chr } },
 	{ ClkStatusText,        0,              Button3,        winview,        {0} },
 	{ ClkClientWin,         0,              Button2,        movemouse,      {0} },
 	{ ClkTagBar,            0,              Button2,        toggleview,     {0} },
