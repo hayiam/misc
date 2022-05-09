@@ -481,6 +481,7 @@ nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 nnoremap <C-o> :only<cr>
 nnoremap <C-s> :vsplit<cr>
+nnoremap <C-v> :view<cr>
 
 " GETTING ICONS TO DISPLAY IN VIFM
 
