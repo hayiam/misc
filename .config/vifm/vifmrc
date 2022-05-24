@@ -247,7 +247,7 @@ fileviewer *.[1-8] man ./%c | col -b
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in feh}
-        \ feh -FZd %f,
+        \ feh -FZd %f &,
 "        \ {View in feh}
 "        \ feh -FZd %d --start-at %d/%c 2>/dev/null %f,
         \ {View in sxiv}
@@ -256,8 +256,8 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ convert -identify %f -verbose /dev/null
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm chafa --clear -c 240 --font-ratio 1/1 --size="76x73" %c
+"         \ convert -identify %f -verbose /dev/null
 
 " OpenRaster
 filextype *.ora
@@ -301,9 +301,9 @@ fileviewer *.torrent dumptorrent -v %c
 " FuseZipMount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Use engrampa}
-       \ engrampa %f &
+       \ engrampa %c %i &,
        \ {Use gnome file-roller}
-       \ file-roller %f &
+       \ file-roller %f &,
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
        \ {View contents}
@@ -315,9 +315,9 @@ fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 " ArchiveMount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Use engrampa}
-       \ engrampa %f &
+       \ engrampa %c %i &,
        \ {Use gnome file-roller}
-       \ file-roller %f &
+       \ file-roller %f &,
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 fileviewer *.tgz,*.tar.gz tar -tzf %c
@@ -328,9 +328,9 @@ fileviewer *.tar tar -tf %c
 " Rar2FsMount and rar archives
 filetype *.rar
        \ {Use engrampa}
-       \ engrampa %f &
+       \ engrampa  %c %i &,
        \ {Use gnome file-roller}
-       \ file-roller %f &
+       \ file-roller %f &,
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
 fileviewer *.rar unrar v %c
