@@ -89,6 +89,9 @@ alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
 #    fi
 alias cdmount='sudo mount -t iso9660'
 
+#alias to show cpu and gpu temperature
+alias temp="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'"
+
 #aliases for suspend, shutdown and reboot
 alias suspend='loginctl suspend'
 alias shutdown='sudo shutdown -h now'
