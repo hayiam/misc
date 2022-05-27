@@ -1,0 +1,52 @@
+{
+  "timeStamp": 1653673407033,
+  "version": "1.42.4",
+  "userSettings": {
+    "externalLists": "https://gitcdn.xyz/repo/NanoMeow/MDLMirror/master/hosts.txt\nhttps://mirror.cedia.org.ec/malwaredomains/justdomains",
+    "importedLists": [
+      "https://gitcdn.xyz/repo/NanoMeow/MDLMirror/master/hosts.txt",
+      "https://mirror.cedia.org.ec/malwaredomains/justdomains"
+    ],
+    "popupPanelSections": 15
+  },
+  "selectedFilterLists": [
+    "ublock-quick-fixes",
+    "https://mirror.cedia.org.ec/malwaredomains/justdomains",
+    "https://gitcdn.xyz/repo/NanoMeow/MDLMirror/master/hosts.txt",
+    "urlhaus-1",
+    "user-filters",
+    "ublock-filters",
+    "ublock-badware",
+    "ublock-privacy",
+    "ublock-abuse",
+    "ublock-unbreak",
+    "easylist",
+    "easyprivacy",
+    "malware-0",
+    "malware-1",
+    "plowe-0",
+    "RUS-0"
+  ],
+  "hiddenSettings": {
+    "autoUpdateAssetFetchPeriod": 120,
+    "autoUpdateDelayAfterLaunch": 180,
+    "autoUpdatePeriod": 7,
+    "blockingProfiles": "11111/#F00 11011/#C0F 11001/#00F 00001",
+    "selfieAfter": 3,
+    "uiPopupConfig": "undocumented"
+  },
+  "whitelist": [
+    "# about-scheme",
+    "# edge-scheme",
+    "# opera-scheme",
+    "# vivaldi-scheme",
+    "# wyciwyg-scheme",
+    "chrome-extension-scheme",
+    "chrome-scheme",
+    "moz-extension-scheme"
+  ],
+  "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
+  "urlFilteringString": "",
+  "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true",
+  "userFilters": "! 4/12/2019 http://kinohoo.ru\n||superfilms.ru/playerjs.html?autoplay=1&nomon=1&v=8a4fa454885bd471520851fae3f1fc4e&cb=f669d51e-15e9-41f6-a845-9603ca2042d1&m=1&c=0&r=http%3A%2F%2Fkinohoo.ru%2F1544-sverhestestvennoe-14-sezon-18-seriya.html&ci=0&testad=no&isc=no&brw=firefox$subdocument\n\n! 4/27/2019 http://hdserial.cc\n||superfilms.ru/playerjs.html?autoplay=1&nomon=1&v=fe1817ca464ee319b40f2468b1831d38&cb=0101ad6f-b47d-4d2a-85a4-7bf37aef0bc3&m=1&c=0&r=http%3A%2F%2Fhdserial.cc%2F255-serial-fljesh-5-sezon-lostfilm-smotret-onlajn-besplatno-hd-1080-09-04.html&ci=0&testad=no&isc=no&brw=firefox$subdocument\n\n! 7/11/2019 http://hdserial.cc\n||superfilms.ru/playerjs.html?autoplay=1&nomon=1&v=fe1817ca464ee319b40f2468b1831d38&cb=c11800c2-f6cb-4480-bdb8-af4263a1006f&m=1&c=0&r=http%3A%2F%2Fhdserial.cc%2F259-serial-kripton-2-sezon-lostfilm-smotret-onlajn-besplatno-hd-1080.html&ci=0&testad=no&isc=no&brw=firefox$subdocument\n\n! 10/6/2019 http://coldfilm.ws\n||vidroll.ru/rollscript.php?wpl=http://coldfilm.ws$subdocument\n\n! 11/4/2019 https://1tv.1hd1080.info\n||vidroll.ru/rollscript.php?wpl=https://1tv.1hd1080.info$subdocument\n\n! 11/13/2019 http://seriahd.net\n||bestmovie.su/playerjs.html?ver=291&autoplay=1&v=96e193b9ddb762594d0d1abe42f5bd1b&testad=no&nomon=1$subdocument\n\n! 11/16/2019 http://seriahd.net\n||bestmovie.su/playerjs.html?ver=292&autoplay=1&v=96e193b9ddb762594d0d1abe42f5bd1b&testad=no&nomon=1$subdocument\n\n! 11/25/2019 http://hdseria.tv\n||bestmovie.su/playerjs.html?ver=293&autoplay=1&v=96e193b9ddb762594d0d1abe42f5bd1b&testad=no&nomon=1$subdocument\nhdseria.tv##body > div:nth-of-type(4)\nhdseria.tv###movie_video\n\n! 11/26/2019 http://www.hdseason.ru\n||vidroll.ru/rollscript.php?wpl=http://www.hdseason.ru$subdocument\n\n! 12/11/2019 http://hdseria.tv\n||bestmovie.su/playerjs.html?ver=297&autoplay=1&v=96e193b9ddb762594d0d1abe42f5bd1b&testad=no&nomon=1$subdocument\n\n! 5/19/2020 http://vse-sezony.video\n||player.filmsland.ru/pjs.php?ver=361&autoplay=1&v=c9a740f59127620b1b2327dceb77105b&testad=no&nomon=1$subdocument\n\n! 7/2/2020 http://k8.lostfilms.work\n||player.moviefilms.ru/ovp.php?ver=370&autoplay=1&v=4569ae60c79b8ce7bf6526d4d3cb955c&testad=no&nomon=1$subdocument\n\n! 7/2/2020 http://kinotan.top\n||player.moviefilms.ru/ovp.php?ver=370&autoplay=1&v=84a2e3270266dcd537e7071797edced2&testad=no&nomon=1$subdocument\n\n! 2020-09-28 https://filmix.co\nfilmix.co###\\31 f9c02ab-c7437bec952551096eb395b6dc7e4beb-0-7736-1 > iframe\nfilmix.co###\\31 f9c02ab-c7437bec952551096eb395b6dc7e4beb-0-1230-1 > iframe\nfilmix.co###\\31 f9c02ab-c7437bec952551096eb395b6dc7e4beb-0-9747-1 > iframe\n\n! 2021-07-17 https://yandex.ru\n||frontend.vh.yandex.ru/player/496c0faee1efa3abb8d87f873e839984?from=ya-weather&tv=0&mute=1&autoplay=1&play_on_visible=true&hidden=sound$subdocument\nyandex.ru##.nojPkgwkHvrYV9IQZ.nojPkgw0RvYwj6JQezw58EWdH-down.nojPk > .lbvbcf\n||frontend.vh.yandex.ru/player/496c0faee1efa3abb8d87f873e839984?from=ya-weather&tv=0&mute=1&autoplay=1&play_on_visible=true&hidden=sound$subdocument\n"
+}
