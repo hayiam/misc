@@ -141,10 +141,10 @@
 # just to show network
 [[row]]
   [[row.child]]
-  ratio=4
+  ratio=5
   type="net"
   [[row.child]]
-  ratio=5
+  ratio=4
   type="cpu"
   [[row.child]]
   ratio=4
