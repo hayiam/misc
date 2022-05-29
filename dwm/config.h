@@ -74,7 +74,7 @@ static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };
 /* first arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "/usr/bin/tmux", NULL};
 static const char *scratchpadvifm[] = {"v", "st", "-t", "vifm_scratch", "-e", "vifm", NULL};
-/*static const char *ffox[] = { "firefox-bin", NULL };*/
+static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
 /*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
@@ -86,7 +86,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,         spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,          togglescratch,  {.v = scratchpadcmd } },
 	{ 0,                            XK_F9,             togglescratch,  {.v = scratchpadvifm } },
-	{ MODKEY|ShiftMask,             XK_f,              spawn,          SHCMD("HFFOX=$(ps -aux | grep 'firefox-bin --headless' | awk 'NR==1{print $2}'); [ ! -z $HFFOX ] && [ $(ps -aux | grep 'firefox-bin --headless' | awk 'NR==1{print $11}') != 'grep' ] && kill $HFFOX; firefox-bin &") },
+	{ MODKEY|ShiftMask,             XK_f,              spawn,          {.v = ffox } },
 	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = chrome } },
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
@@ -181,7 +181,7 @@ static Button buttons[] = {
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
 	{ ClkStatusText,        0,              Button1,        view,           {.ui = ~0 } },
-	{ ClkStatusText,        0,              Button2,        spawn,          SHCMD("HFFOX=$(ps -aux | grep 'firefox-bin --headless' | awk 'NR==1{print $2}'); [ ! -z $HFFOX ] && [ $(ps -aux | grep 'firefox-bin --headless' | awk 'NR==1{print $11}') != 'grep' ] && kill $HFFOX; firefox-bin &") },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = ffox } },
 	{ ClkStatusText,        0,              Button3,        winview,        {0} },
 	{ ClkClientWin,         0,              Button2,        movemouse,      {0} },
 	{ ClkTagBar,            0,              Button2,        toggleview,     {0} },
