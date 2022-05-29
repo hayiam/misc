@@ -6,7 +6,7 @@ xset s off
 picom --config .config/picom/picom.conf &
 ~/.fehbg &
 unclutter -root &
-
+firefox-bin --headless &
 # setting up dinamic wallpapers which will change every 60 seconds by using styli.sh script (sourse code of it: https://github.com/thevinter/styli.sh)
 #while true; do
 #
