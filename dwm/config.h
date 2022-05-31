@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
-	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,1,1585,400 },
+	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,4,1585,400 },
 	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             150,200,1300,500 },
 	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,         NULL,           0,0,1600,900, },
 };
