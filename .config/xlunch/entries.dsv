@@ -1,7 +1,7 @@
 Firefox;/usr/share/icons/hicolor/128x128/apps/firefox-bin.png;firefox-bin
 Google-chrome;/usr/share/icons/hicolor/128x128/apps/google-chrome.png;google-chrome-stable
 Virtualbox;/usr/share/icons/hicolor/128x128/apps/virtualbox.png;virtualbox
-Windows-vb;/home/maksim/.local/share/icons/windows.png;virtualbox --startvm windows
+Windows-vb;/home/maksim/.local/share/icons/windows.png;virtualboxvm --startvm windows
 Gimp;/home/maksim/.local/share/icons/gimp.png;gimp
 Pavucontrol;/home/maksim/.local/share/icons/pavucontrol.png;pavucontrol
 Lowriter;/usr/share/icons/hicolor/128x128/apps/libreoffice-writer.png;lowriter
