@@ -38,7 +38,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-### ARCHIVE EXTRACTION
+## ARCHIVE EXTRACTION
 # usage: unpack <file>
 #unpack ()
 #{
@@ -56,6 +56,7 @@ fi
 #      *.Z)         uncompress $1;;
 #      *.tar.xz)    tar xf $1    ;;
 #      *.tar.zst)   unzstd $1    ;;      
+#      *.7z)        7z x $1      ;;
 #      *)           echo "'$1' cannot be extracted via unpack()" ;;
 #    esac
 #  else
@@ -72,9 +73,6 @@ alias mv='mv -i'
 
 # alias for radio stations
 alias radio='mpv --no-ytdl --volume=50 --playlist-start=0 ~/misc/stations.m3u'
-
-# alias for network monitor
-alias iftop='sudo iftop -i enp0s26u1u5'
 
 # aliases to search in the zsh and notes history
 alias grephistory='cat ~/.zsh_history | grep'
