@@ -46,11 +46,11 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   #padding:
-  #  x: 0
-  #  y: 0
+  #   x: 1
+  #   y: 1
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -664,7 +664,7 @@ schemes:
 
     # Colors the cursor will use if `custom_cursor_colors` is true
     cursor:
-      text: '#ffffff'
+      text: '#000000'
       cursor: '#ffffff'
 
     # Normal colors
@@ -754,7 +754,7 @@ colors: *Monokai-like
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.85
+background_opacity: 0.8
 
 #selection:
   # This string contains all characters that are used as separators for
