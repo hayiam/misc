@@ -90,6 +90,9 @@ alias cdmount='sudo mount -t iso9660'
 #alias to show cpu and gpu temperature
 alias temp="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'"
 
+#alias to see emerge progress
+alias emprog='watch -n 1 sudo qlop -r -H'
+
 #aliases for suspend, shutdown and reboot
 alias suspend='loginctl suspend'
 alias shutdown='sudo shutdown -h now'
