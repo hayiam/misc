@@ -1,4 +1,4 @@
-Firefox;/usr/share/icons/hicolor/128x128/apps/firefox-bin.png;firefox-bin
+Firefox;/usr/share/icons/hicolor/128x128/apps/firefox-bin.png;ffox.sh
 Google-chrome;/usr/share/icons/hicolor/128x128/apps/google-chrome.png;google-chrome-stable
 Virtualbox;/usr/share/icons/hicolor/128x128/apps/virtualbox.png;virtualbox
 Windows-vb;/home/maksim/.local/share/icons/windows.png;virtualboxvm --startvm windows
@@ -7,3 +7,6 @@ Pavucontrol;/home/maksim/.local/share/icons/pavucontrol.png;pavucontrol
 Lowriter;/usr/share/icons/hicolor/128x128/apps/libreoffice-writer.png;lowriter
 Localc;/usr/share/icons/hicolor/128x128/apps/libreoffice-calc.png;localc
 Telegram;/home/maksim/.local/share/icons/telegram.png;/home/maksim/misc/Telegram/Telegram
+Suspend;/home/maksim/.local/share/icons/hybernate.png;loginctl suspend
+Reboot;/home/maksim/.local/share/icons/reboot.png;sudo reboot
+Shutdown;/home/maksim/.local/share/icons/shutdown.png;sudo shutdown -h now
