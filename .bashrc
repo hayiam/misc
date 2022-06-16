@@ -16,5 +16,11 @@ fi
 export PATH=/home/maksim/.local/scripts:$PATH
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
+# export CCACHE_DIR=/var/cache/ccache
+
+#aliases for suspend, shutdown and reboot
+alias suspend='loginctl suspend'
+alias shutdown='sudo shutdown -h now'
+alias reboot='sudo reboot'
 
 startx
