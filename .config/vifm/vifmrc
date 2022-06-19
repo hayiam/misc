@@ -300,6 +300,8 @@ fileviewer *.torrent dumptorrent -v %c
 
 " FuseZipMount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
+       \ {Use unpack}
+       \ unpack &,
        \ {Use engrampa}
        \ engrampa %c %i &,
        \ {Use gnome file-roller}
@@ -314,6 +316,8 @@ fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " ArchiveMount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+       \ {Use unpack}
+       \ unpack &,
        \ {Use engrampa}
        \ engrampa %c %i &,
        \ {Use gnome file-roller}
@@ -327,6 +331,8 @@ fileviewer *.tar tar -tf %c
 
 " Rar2FsMount and rar archives
 filetype *.rar
+       \ {Use unpack}
+       \ unpack &,
        \ {Use engrampa}
        \ engrampa  %c %i &,
        \ {Use gnome file-roller}
@@ -352,6 +358,8 @@ filetype *.ftp
 
 " Fuse7z and 7z archives
 filetype *.7z
+       \ {Use unpack}
+       \ unpack &,
        \ {Use engrampa}
        \ engrampa %f &
        \ {Use gnome file-roller}
