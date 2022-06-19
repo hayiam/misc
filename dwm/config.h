@@ -2,7 +2,7 @@
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int igappx    = 7;        /* size of inner gaps */
 static const unsigned int ogappx    = 7;        /* size of outer gaps */
-static const int gapsforone	   = 0;    	/* 1 enable gaps when only one window is open */
+static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -52,7 +52,7 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 #define TILEKEYS(MOD,G,M,S) \
 	{ MOD, XK_r, setdirs,  {.v = (int[])  { INC(G * +1),   INC(M * +1),   INC(S * +1) } } }, \
 	{ MOD, XK_h, setfacts, {.v = (float[]){ INC(G * -0.1), INC(M * -0.1), INC(S * -0.1) } } }, \
-	{ MOD, XK_l, setfacts, {.v = (float[]){ INC(G * +0.1), INC(M * +0.1), INC(S * +0.1) } } },
+	{ MOD, XK_l, setfacts, {.v = (float[]){ INC(G * +0.1), INC(M * +0.1), INC(S * +0.1) } } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -72,7 +72,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 /*static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };*/
-static const char *termcmd[] = { "alacritty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 /* first arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL};
 static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-e", "vifm", NULL};
@@ -118,7 +118,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,              reorganizetags, {0} },
 	{ MODKEY|ShiftMask,             XK_k,              movestack,      {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_Return,         zoom,           {0} },
-    	{ MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
+    { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
 	{ MODKEY,                       XK_Tab,            view,           {0} },
 	{ MODKEY,                       XK_c,              killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_i,              setgaps,        {.i = +7 } },
@@ -181,12 +181,18 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
 	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        incnmaster,     {.i = -1 } },
+	{ ClkLtSymbol,          0,              Button4,        setfacts,       {.v = (float[]) {INC(-0.1), INC(-0.1), INC(-0.1)} } },
+	{ ClkLtSymbol,          0,              Button5,        setfacts,       {.v = (float[]) {INC(+0.1), INC(+0.1), INC(+0.1)} } },
 	{ ClkWinTitle,          0,              Button1,        togglefloating, {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
+	{ ClkWinTitle,          0,              Button4,        setcfact,       {.f = +0.1} },
+	{ ClkWinTitle,          0,              Button5,        setcfact,       {.f = -0.1} },
 	{ ClkStatusText,        0,              Button1,        view,           {.ui = ~0 } },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = ffox } },
 	{ ClkStatusText,        0,              Button3,        winview,        {0} },
+	{ ClkStatusText,        0,              Button4,        focusstack,     {.i = +1 } },
+	{ ClkStatusText,        0,              Button5,        focusstack,     {.i = -1 } },
 	{ ClkClientWin,         0,              Button2,        movemouse,      {0} },
 	{ ClkTagBar,            0,              Button2,        toggleview,     {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
