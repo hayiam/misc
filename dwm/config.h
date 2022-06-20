@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
 	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,4,1585,400 },
 	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             150,200,1300,500 },
-	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,         NULL,           0,0,1600,900, },
+	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,        ' ',             0,0,1600,900, },
 };
 
 /* layout(s) */
@@ -181,13 +181,13 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
 	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        incnmaster,     {.i = -1 } },
-	{ ClkLtSymbol,          0,              Button4,        setfacts,       {.v = (float[]) {INC(-0.1), INC(-0.1), INC(-0.1)} } },
-	{ ClkLtSymbol,          0,              Button5,        setfacts,       {.v = (float[]) {INC(+0.1), INC(+0.1), INC(+0.1)} } },
+	{ ClkLtSymbol,          0,              Button4,        setcfact,       {.f = +0.1} },
+	{ ClkLtSymbol,          0,              Button5,        setcfact,       {.f = -0.1} },
 	{ ClkWinTitle,          0,              Button1,        togglefloating, {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
-	{ ClkWinTitle,          0,              Button4,        setcfact,       {.f = +0.1} },
-	{ ClkWinTitle,          0,              Button5,        setcfact,       {.f = -0.1} },
+	{ ClkWinTitle,          0,              Button4,        setfacts,       {.v = (float[]) {INC(-0.1), INC(-0.1), INC(-0.1)} } },
+	{ ClkWinTitle,          0,              Button5,        setfacts,       {.v = (float[]) {INC(+0.1), INC(+0.1), INC(+0.1)} } },
 	{ ClkStatusText,        0,              Button1,        view,           {.ui = ~0 } },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = ffox } },
 	{ ClkStatusText,        0,              Button3,        winview,        {0} },
