@@ -680,7 +680,7 @@ schemes:
 
     # Bright colors
     bright:
-      black:   '#282828'
+      black:   '#b9b7ac'
       red:     '#f92672'
       green:   '#a6e22e'
       yellow:  '#e6db74'
