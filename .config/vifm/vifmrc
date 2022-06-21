@@ -346,6 +346,7 @@ fileviewer *.tgz,*.tar.gz tar -tzf %c
 fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer *.tar.txz,*.txz xz --list %c
 fileviewer *.tar tar -tf %c
+fileviewer *.xz tar -tJf %c
 
 " Rar2FsMount and rar archives
 filetype *.rar
