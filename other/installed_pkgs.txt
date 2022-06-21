@@ -673,7 +673,6 @@ Calculating dependencies  ... done!
 [ebuild   R    ] net-print/cups-filters-1.28.15 
 [ebuild   R    ] media-video/mpv-0.34.1-r1 
 [ebuild   R    ] x11-libs/pango-1.50.7 
-[ebuild   R    ] x11-wm/dwm-6.2 
 [ebuild   R    ] gnome-base/librsvg-2.54.3 
 [ebuild   R    ] media-libs/gegl-0.4.34 
 [ebuild   R    ] dev-libs/appstream-glib-0.7.18-r1 
