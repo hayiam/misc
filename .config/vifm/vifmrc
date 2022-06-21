@@ -404,6 +404,8 @@ filextype *.pro qtcreator %f &
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
+        
+fileviewer *.iso,*.bin file %c
 
 " Syntax highlighting in preview
 "
