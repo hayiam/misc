@@ -60,6 +60,7 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 /* includes  */
 #include "movestack.c" /* ability to move windows in nonfloating layouts */
 #include "shiftview.c" /* ability to switch tags to the left or right */
+#include "shifttag.c" /* ability to tag tags to the left or right */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -95,7 +96,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
-	{ MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },
+/*  { MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },*/
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
 /*	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },
@@ -157,6 +158,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,         tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_p,              shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_n,              shiftview,      {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_minus,          shifttag,       {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_equal,          shifttag,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_p,              tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,              tagtoright,     {0} },
 	TAGKEYS(                        XK_1,                              0)
