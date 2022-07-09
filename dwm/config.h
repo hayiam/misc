@@ -73,7 +73,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 /*static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };*/
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "alacritty", "-t", "normalal", NULL };
 /* first arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-o", "background_opacity=0.8", NULL};
 static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-o", "background_opacity=0.8","-e", "vifmrun", NULL};
