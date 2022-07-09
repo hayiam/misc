@@ -59,6 +59,7 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 
 /* includes  */
 #include "movestack.c" /* ability to move windows in nonfloating layouts */
+#include "shifttag.c" /* ability to tag tags to the left or right */
 #include "shiftview.c" /* ability to switch tags to the left or right */
 
 static const Layout layouts[] = {
@@ -157,6 +158,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,         tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_p,              shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_n,              shiftview,      {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_minus,          shifttag,       {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_equal,          shifttag,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_p,              tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,              tagtoright,     {0} },
 	TAGKEYS(                        XK_1,                              0)

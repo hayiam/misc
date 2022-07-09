@@ -5,11 +5,11 @@
  */
 /* difining scratchtag here (was in dwm.c after #include "config.h" */
 
-void
-shiftview(const Arg *arg) {
-	Arg shifted;
-	
+bool funcBC = false;
 
+void
+shifttag(const Arg *arg) {
+	Arg shifted;
 	if(arg->i > 0) // left circular shift
 		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
 		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
@@ -17,7 +17,7 @@ shiftview(const Arg *arg) {
 	else // right circular shift
 		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
 		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
-
-	view(&shifted);
-	funcBC = true;
+    if(funcBC == false)
+	toggleview(&shifted);
+    funcBC = true;
 }

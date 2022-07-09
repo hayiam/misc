@@ -24,6 +24,7 @@
 #include <locale.h>
 #include <signal.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1600,8 +1601,8 @@ reorganizetags(const Arg *arg) {
 			occ |= 1 << unocc;
 		}
 	}
-
-	for (c = selmon->clients; c; c = c->next)
+// to avoid problems with scratchpads added '&& (c->scratchkey == '\0')'
+	for (c = selmon->clients; c && (c->scratchkey == '\0'); c = c->next)
 		c->tags = 1 << tagdest[ffs(c->tags)-1];
 	if (selmon->sel)
 		selmon->tagset[selmon->seltags] = selmon->sel->tags;
@@ -2708,6 +2709,7 @@ view(const Arg *arg)
 	int i;
 	unsigned int tmptag;
 
+	funcBC = false;
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
 	selmon->seltags ^= 1; /* toggle sel tagset */
