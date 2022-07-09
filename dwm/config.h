@@ -75,8 +75,8 @@ static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dm
 /*static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };*/
 static const char *termcmd[]  = { "alacritty", NULL };
 /* first arg only serves to match against key in rules */
-static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL};
-static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-e", "vifmrun", NULL};
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-o", "background_opacity=0.8", NULL};
+static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-o", "background_opacity=0.8","-e", "vifmrun", NULL};
 static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
