@@ -18,6 +18,5 @@ shiftview(const Arg *arg) {
 		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
 		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
-	view(&shifted);
-	funcBC = true;
+	views(&shifted);
 }
