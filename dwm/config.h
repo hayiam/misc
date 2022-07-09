@@ -158,8 +158,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,         tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_p,              shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_n,              shiftview,      {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_minus,          shifttag,       {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_equal,          shifttag,       {.i = +1 } },
+	{ MODKEY,                       XK_minus,          shifttag,       {.i = -1 } },
+	{ MODKEY,                       XK_equal,          shifttag,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_p,              tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,              tagtoright,     {0} },
 	TAGKEYS(                        XK_1,                              0)
