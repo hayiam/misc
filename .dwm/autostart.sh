@@ -3,7 +3,7 @@
 xset -dpms
 xset s off
 #compton --config .config/compton/compton.conf &
-picom --config .config/picom/picom.conf &
+picom --experimental-backends --config .config/picom/picom.conf &
 ~/.fehbg &
 unclutter -root &
 firefox-bin --headless &
