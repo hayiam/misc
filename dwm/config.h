@@ -5,7 +5,7 @@ static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char buttonbar[]       = "[x]";
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
@@ -75,8 +75,8 @@ static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dm
 /*static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };*/
 static const char *termcmd[]  = { "alacritty", "-t", "normalal", NULL };
 /* first arg only serves to match against key in rules */
-static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-o", "background_opacity=0.8", NULL};
-static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-o", "background_opacity=0.8","-e", "vifmrun", NULL};
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-o", "background_opacity=0.9", NULL};
+static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-o", "background_opacity=0.9","-e", "vifmrun", NULL};
 static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
@@ -97,7 +97,7 @@ static Key keys[] = {
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 /*  { MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },*/
-	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --config .config/picom/picom.conf") },
+	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
 /*	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
