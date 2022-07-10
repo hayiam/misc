@@ -1588,7 +1588,15 @@ reorganizetags(const Arg *arg) {
 	Client *c;
 	unsigned int occ, unocc, i;
 	unsigned int tagdest[LENGTH(tags)];
+// to avoid problems with scratchpads added this lines 
+	unsigned int found = 0;
 
+	for (c = selmon->clients; c && !(found = c->scratchkey != '\0'); c = c->next)
+		if (found && ISVISIBLE(c)) {
+		    focus(NULL);
+		    arrange(selmon);
+		}
+// end of added lines
 	occ = 0;
 	for (c = selmon->clients; c; c = c->next)
 		occ |= (1 << (ffs(c->tags)-1));
@@ -1602,8 +1610,7 @@ reorganizetags(const Arg *arg) {
 			occ |= 1 << unocc;
 		}
 	}
-// to avoid problems with scratchpads added '&& (c->scratchkey == '\0')'
-	for (c = selmon->clients; c && (c->scratchkey == '\0'); c = c->next)
+	for (c = selmon->clients; c ; c = c->next)
 		c->tags = 1 << tagdest[ffs(c->tags)-1];
 	if (selmon->sel)
 		selmon->tagset[selmon->seltags] = selmon->sel->tags;
