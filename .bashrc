@@ -17,6 +17,7 @@ export PATH=/home/maksim/.local/scripts:$PATH
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 # export CCACHE_DIR=/var/cache/ccache
+export MOZ_CRASHREPORTER_DISABLE=1
 
 #aliases for suspend, shutdown and reboot
 alias suspend='loginctl suspend'
