@@ -3,10 +3,11 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int igappx    = 7;        /* size of inner gaps */
 static const unsigned int ogappx    = 7;        /* size of outer gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 30;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char buttonbar[]       = "[x]";
+static const int user_bh            = 25;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const char buttonbar[]       = "[ x ]";
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#282828";
@@ -15,10 +16,19 @@ static const char col_gray3[]       = "#d0d0ca";
 static const char col_gray4[]       = "#282828";
 static const char col_blue[]        = "#57c1cf";
 static const char col_cyan[]        = "#BD93F9";
+static const char col_green[]       = "#a6e22e";
+static const char col_yellow[]      = "#e6db74";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_blue  },
+	[SchemeSel]  = { col_blue, col_gray1, col_gray3 },
+	[SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  },    // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeButton]  = { col_blue, col_gray1,  "#000000"  },     // Button left {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_yellow, col_gray2,  "#000000"  },  // Tagbar left selected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm]  = { col_green, col_gray1,  "#000000"  },  // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  = { col_yellow, col_gray1,  "#000000"  },  // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  },  // infobar middle  unselected {text,background,not used but cannot be empty}
+
 };
 
 /* tagging */
@@ -136,8 +146,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,              setdirs,        {.v = (int[]){ DirHor, DirVer, DirVer } } },
 	{ MODKEY|ControlMask,           XK_t,              setdirs,        {.v = (int[]){ DirVer, DirHor, DirHor } } },
 	{ MODKEY|ShiftMask,             XK_space,          togglefloating, {0} },
-	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 19y 0w 0h" } },
-	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -19y 0w 0h" } },
+	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -25y 0w 0h" } },
 	{ MODKEY,                       XK_Right,          moveresize,     {.v = "19x 0y 0w 0h" } },
 	{ MODKEY,                       XK_Left,           moveresize,     {.v = "-19x 0y 0w 0h" } },
 	{ MODKEY|ShiftMask,             XK_Down,           moveresize,     {.v = "0x 0y 0w 25h" } },
