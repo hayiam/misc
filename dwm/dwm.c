@@ -1594,8 +1594,7 @@ reorganizetags(const Arg *arg) {
 
 	for (c = selmon->clients; c && !(found = c->scratchkey != '\0'); c = c->next)
 		if (found && ISVISIBLE(c)) {
-		    focus(NULL);
-		    arrange(selmon);
+		    togglescratch(&(Arg){.v = scratchpadcmd});
 		}
 // end of added lines
 	occ = 0;
