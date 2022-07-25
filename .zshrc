@@ -6,7 +6,7 @@ export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 
 # exporting powerlevel9k.zsh-theme and zsh syntax highlighting stuff
-source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
+#source /home/maksim/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
 #source /home/maksim/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # exporting autosuggestions script
@@ -24,7 +24,7 @@ export PATH=/home/maksim/.local/scripts:$PATH
 
 # prevent duplicates in history
 export HISTCONTROL=ignoreboth
-
+export PS1=$'%F{yellow}\  \ %F{yellow}%~/\ %F{green}➤\ '
 # export ccache directory path to avoid doubling the cache directory 
 # export CCACHE_DIR=/var/cache/ccache
 
@@ -64,8 +64,8 @@ fi
 #  fi
 #}
 
-POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context vcs dir dir_writable)
+#POWERLEVEL9K_DISABLE_RPROMPT=true
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context vcs dir dir_writable)
 
 # adding alias for rm and mv for safety prompt
 alias rm='rm -I'
