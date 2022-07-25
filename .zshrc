@@ -38,6 +38,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+#enable zsh-completion
+autoload -U compinit
+compinit
+
 ## ARCHIVE EXTRACTION
 # usage: unpack <file>
 #unpack ()
