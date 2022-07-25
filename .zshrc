@@ -23,7 +23,7 @@ export HISTCONTROL=ignoreboth
 # export ccache directory path to avoid doubling the cache directory 
 # export CCACHE_DIR=/var/cache/ccache
 
-# setup prompt enable zsh-completion
+# setup prompt and enable zsh-completion
 autoload -U compinit
 autoload -Uz vcs_info
 precmd() { vcs_info }
