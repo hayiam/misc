@@ -2526,6 +2526,21 @@ int main(int argc, char **argv){
     }
     XSetClassHint(disp, win, classHint);
     XFree(classHint);
+    
+    /* set window type */
+    Atom type;
+    
+    type = XInternAtom(disp, "_NET_WM_WINDOW_TYPE_DOCK", False);
+    XChangeProperty(
+				disp,
+				win,
+				XInternAtom(disp, "_NET_WM_WINDOW_TYPE", False), 
+				XInternAtom(disp, "ATOM", False),
+				32,
+				PropModeAppend,
+				(char *)&type,
+				1
+				);
     /* show the window */
     XMapRaised(disp, win);
     /* Force window reposition, can make effect only when windowed is enabled, depending on WM */
