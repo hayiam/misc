@@ -219,7 +219,6 @@ static void pop(Client *);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
-static void reorganizetags(const Arg *arg);
 static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizemouse(const Arg *arg);
@@ -554,7 +553,7 @@ attachstack(Client *c)
 void
 buttonpress(XEvent *e)
 {
-	unsigned int i, x, click;
+	unsigned int i, x, click, occ = 0;
 	Arg arg = {0};
 	Client *c;
 	Monitor *m;
@@ -573,9 +572,15 @@ buttonpress(XEvent *e)
 		if(ev->x < x) {
 			click = ClkButton;
 		} else {
-			do
+		for (c = m->clients; c; c = c->next)
+			occ |= c->tags == 255 ? 0 : c->tags;
+		do {
+			/* do not reserve space for vacant tags */
+			if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i)) {
+				continue;
+            }
 				x += TEXTW(tags[i]);
-			while (ev->x >= x && ++i < LENGTH(tags));
+		} while (ev->x >= x && ++i < LENGTH(tags));
 			if (i < LENGTH(tags)) {
 				click = ClkTagBar;
 				arg.ui = 1 << i;
@@ -874,7 +879,7 @@ drawbar(Monitor *m)
 	}
 
 	for (c = m->clients; c; c = c->next) {
-		occ |= c->tags;
+		occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
 	}
@@ -883,14 +888,17 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeButton]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, buttonbar, 0);
 	for (i = 0; i < LENGTH(tags); i++) {
+		/* do not draw vacant tags */
+		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+		continue;
+
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
 		if (occ & 1 << i)
-			drw_rect(drw, x + boxw, 0, w - ( 2 * boxw + 1), boxw,
-			    m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-			    urg & 1 << i);
-
+			drw_rect(drw, x + boxw, 1, w - ( 2 * boxw + 1), boxw,
+				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
+				urg & 1 << i);
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);
@@ -1582,39 +1590,6 @@ recttomon(int x, int y, int w, int h)
 			r = m;
 		}
 	return r;
-}
-
-void
-reorganizetags(const Arg *arg) {
-	Client *c;
-	unsigned int occ, unocc, i;
-	unsigned int tagdest[LENGTH(tags)];
-// to avoid problems with scratchpads added this lines 
-	unsigned int found = 0;
-
-	for (c = selmon->clients; c && !(found = c->scratchkey != '\0'); c = c->next)
-		if (found && ISVISIBLE(c)) {
-		    togglescratch(&(Arg){.v = 0});
-		}
-// end of added lines
-	occ = 0;
-	for (c = selmon->clients; c; c = c->next)
-		occ |= (1 << (ffs(c->tags)-1));
-	unocc = 0;
-	for (i = 0; i < LENGTH(tags); ++i) {
-		while (unocc < i && (occ & (1 << unocc)))
-			unocc++;
-		if (occ & (1 << i)) {
-			tagdest[i] = unocc;
-			occ &= ~(1 << i);
-			occ |= 1 << unocc;
-		}
-	}
-	for (c = selmon->clients; c ; c = c->next)
-		c->tags = 1 << tagdest[ffs(c->tags)-1];
-	if (selmon->sel)
-		selmon->tagset[selmon->seltags] = selmon->sel->tags;
-	arrange(selmon);
 }
 
 void

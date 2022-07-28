@@ -6,7 +6,7 @@ static const int gapsforone	        = 0;    	/* 1 enable gaps when only one wind
 static const unsigned int snap      = 30;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 25;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 26;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char buttonbar[]       = "[ x ]";
 static const char *fonts[]          = { "Jetbrains Mono:size=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Jetbrains Mono:size=10:antialias=true:autohint=true";
@@ -81,7 +81,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_green, "-sb", col_gray2, "-sf", col_yellow, NULL };
+static const char *dmenucmd[] = { "dmenu_run_history", "-f", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_green, "-sb", col_gray2, "-sf", col_yellow, NULL };
 /*static const char *termcmd[]  = { "st", "-e", "/usr/bin/tmux", NULL };*/
 static const char *termcmd[]  = { "alacritty", "-t", "normalal", NULL };
 /* first arg only serves to match against key in rules */
@@ -126,7 +126,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,              setcfact,       {.f = -0.7} },
 	{ MODKEY|ShiftMask,             XK_equal,          setcfact,       {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_j,              movestack,      {.i = +1 } },
-	{ MODKEY,                       XK_q,              reorganizetags, {0} },
 	{ MODKEY|ShiftMask,             XK_k,              movestack,      {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_Return,         zoom,           {0} },
     { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
@@ -146,14 +145,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,              setdirs,        {.v = (int[]){ DirHor, DirVer, DirVer } } },
 	{ MODKEY|ControlMask,           XK_t,              setdirs,        {.v = (int[]){ DirVer, DirHor, DirHor } } },
 	{ MODKEY|ShiftMask,             XK_space,          togglefloating, {0} },
-	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 25y 0w 0h" } },
-	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY,                       XK_Down,           moveresize,     {.v = "0x 24y 0w 0h" } },
+	{ MODKEY,                       XK_Up,             moveresize,     {.v = "0x -24y 0w 0h" } },
 	{ MODKEY,                       XK_Right,          moveresize,     {.v = "19x 0y 0w 0h" } },
 	{ MODKEY,                       XK_Left,           moveresize,     {.v = "-19x 0y 0w 0h" } },
-	{ MODKEY|ShiftMask,             XK_Down,           moveresize,     {.v = "0x 0y 0w 25h" } },
-	{ MODKEY|ShiftMask,             XK_Up,             moveresize,     {.v = "0x 0y 0w -25h" } },
-	{ MODKEY|ShiftMask,             XK_Right,          moveresize,     {.v = "0x 0y 25w 0h" } },
-	{ MODKEY|ShiftMask,             XK_Left,           moveresize,     {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Down,           moveresize,     {.v = "0x 0y 0w 26h" } },
+	{ MODKEY|ShiftMask,             XK_Up,             moveresize,     {.v = "0x 0y 0w -26h" } },
+	{ MODKEY|ShiftMask,             XK_Right,          moveresize,     {.v = "0x 0y 26w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Left,           moveresize,     {.v = "0x 0y -26w 0h" } },
 	{ MODKEY|ControlMask,           XK_Up,             moveresizeedge, {.v = "t"} },
 	{ MODKEY|ControlMask,           XK_Down,           moveresizeedge, {.v = "b"} },
 	{ MODKEY|ControlMask,           XK_Left,           moveresizeedge, {.v = "l"} },
@@ -190,7 +189,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkButton,	    	0,		        Button1,	    spawn,          {.v = xlunch } },
 	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
-	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
+	{ ClkButton,	    	0,		        Button3,	    togglescratch,  {.v = scratchpadcmd} },
 	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
 	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        incnmaster,     {.i = -1 } },
