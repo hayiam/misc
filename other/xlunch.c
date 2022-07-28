@@ -2260,17 +2260,17 @@ void handleKeyPress(XEvent ev) {
         else if (select_only && first!=NULL) run_command(first->cmd);
     }
 
-    if (keycode==XK_Tab || keycode==XK_Up || keycode==XK_Down || keycode==XK_Left || keycode==XK_Right
+    if (keycode==XK_Tab || keycode==XK_k || keycode==XK_j || keycode==XK_h || keycode==XK_l
             || keycode==XK_KP_Up || keycode==XK_KP_Down || keycode==XK_KP_Left || keycode==XK_KP_Right
-            || keycode==XK_Page_Down || keycode==XK_Page_Up || keycode==XK_Home || keycode==XK_End)
+            || keycode==XK_d || keycode==XK_u || keycode==XK_Home || keycode==XK_End)
     {
         int i=0;
-        if (keycode==XK_KP_Left || keycode==XK_Left) i=-1;
-        if (keycode==XK_Up || keycode==XK_KP_Up) i=-columns;
-        if (keycode==XK_Down || keycode==XK_KP_Down) i=columns;
-        if (keycode==XK_Tab || keycode==XK_Right || keycode==XK_KP_Right) i=1;
-        if (keycode==XK_Page_Up) i=-columns*rows;
-        if (keycode==XK_Page_Down) i=columns*rows;
+        if (keycode==XK_KP_Left || keycode==XK_h) i=-1;
+        if (keycode==XK_k || keycode==XK_KP_Up) i=-columns;
+        if (keycode==XK_j || keycode==XK_KP_Down) i=columns;
+        if (keycode==XK_Tab || keycode==XK_l || keycode==XK_KP_Right) i=1;
+        if (keycode==XK_u) i=-columns*rows;
+        if (keycode==XK_d) i=columns*rows;
         if (keycode==XK_End) i = entries_count;//(scroll ? scrolled_past*columns+n : n);
         if (keycode==XK_Home) i = -entries_count;//(scroll ? scrolled_past*columns+1 : 1);
         if (hovered_entry == 0) {
