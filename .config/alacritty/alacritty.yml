@@ -816,11 +816,11 @@ background_opacity: 1
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
+
 shell:
-  program: /bin/bash
+  program: /usr/bin/tmux
   args:
-    - -c
-    - "tmux"
+    - new-session
 
 # Startup directory
 #
