@@ -1190,7 +1190,6 @@ buttonpress(XEvent *e)
             XSetErrorHandler(xerror);
             XUngrabServer(dpy);
         }
-        reorganizetags(&(Arg){.v = 0});
     }
 
     void
@@ -2760,6 +2759,8 @@ view(const Arg *arg)
 	focus(NULL);
 	arrange(selmon);
 	funcBC = false;
+    reorganizetags(&(Arg){.v = 0});
+
 }
 
 void
@@ -2797,6 +2798,7 @@ views(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
+    reorganizetags(&(Arg){.v = 0});
 }
 
 Client *
