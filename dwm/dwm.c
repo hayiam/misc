@@ -2797,7 +2797,7 @@ views(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-    reorganizetags(&(Arg){.v = 0});
+//    reorganizetags(&(Arg){.v = 0});
 }
 
 Client *
