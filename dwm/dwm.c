@@ -24,7 +24,7 @@
 #include <locale.h>
 #include <signal.h>
 #include <stdarg.h>
-#include <stdbool.h>
+// #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2759,7 +2759,7 @@ view(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-	funcBC = false;
+	// funcBC = false;
 }
 
 void
@@ -2797,7 +2797,7 @@ views(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-//    reorganizetags(&(Arg){.v = 0});
+    reorganizetags(&(Arg){.v = 0});
 }
 
 Client *

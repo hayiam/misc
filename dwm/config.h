@@ -69,7 +69,7 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 
 /* includes  */
 #include "movestack.c" /* ability to move windows in nonfloating layouts */
-#include "shifttag.c" /* ability to tag tags to the left or right */
+// #include "shifttag.c" /* ability to tag tags to the left or right */
 #include "shiftview.c" /* ability to switch tags to the left or right */
 
 static const Layout layouts[] = {
@@ -90,7 +90,6 @@ static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "
 static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
-/*static const char *ffoxh[] = { "firefox-bin", "-P", "hayiam", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots", NULL };
 static const char *xlunch[] = { "xlunch", "-c", "~/.config/xlunch/xlunch.conf", "-i", ".config/xlunch/entries.dsv", NULL };
 
@@ -109,9 +108,6 @@ static Key keys[] = {
 /*  { MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },*/
 	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
-/*	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("google-chrome-stable --kiosk --new-window $(xclip -o -selection clipboard)") },
-	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid compton --config .config/compton/compton.conf") },
-	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall compton") },*/
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask|ControlMask, XK_1,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask|ControlMask, XK_2,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=720][fps<=30]+bestaudio/best[height<=720]' $(xclip -o -selection clipboard)") },
@@ -168,8 +164,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,         tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_p,              shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_n,              shiftview,      {.i = +1 } },
-	{ MODKEY,                       XK_minus,          shifttag,       {.i = -1 } },
-	{ MODKEY,                       XK_equal,          shifttag,       {.i = +1 } },
+/*  { MODKEY,                       XK_minus,          shifttag,       {.i = -1 } },
+	{ MODKEY,                       XK_equal,          shifttag,       {.i = +1 } },*/
 	{ MODKEY|ShiftMask,             XK_p,              tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,              tagtoright,     {0} },
 	TAGKEYS(                        XK_1,                              0)
@@ -190,7 +186,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkButton,	    	0,		        Button1,	    spawn,          {.v = xlunch } },
 	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
-	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
+	{ ClkButton,	    	0,		        Button3,	    togglescratch,  {.v = scratchpadcmd } },
     { ClkButton,	    	0,		        Button4,        setcfact,       {.f = +0.1} },
     { ClkButton,	    	0,		        Button5,        setcfact,       {.f = -0.1} },
 	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
