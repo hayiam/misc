@@ -190,7 +190,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkButton,	    	0,		        Button1,	    spawn,          {.v = xlunch } },
 	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
-	{ ClkButton,	    	0,		        Button3,	    togglescratch,  {.v = scratchpadcmd} },
+	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
     { ClkButton,	    	0,		        Button4,        setcfact,       {.f = +0.1} },
     { ClkButton,	    	0,		        Button5,        setcfact,       {.f = -0.1} },
 	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },

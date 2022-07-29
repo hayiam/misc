@@ -1623,6 +1623,7 @@ reorganizetags(const Arg *arg) {
 // end of added lines
 	if (selmon->sel)
 		selmon->tagset[selmon->seltags] = selmon->sel->tags;
+	focus(NULL);
 	arrange(selmon);
 }
 
@@ -2759,8 +2760,6 @@ view(const Arg *arg)
 	focus(NULL);
 	arrange(selmon);
 	funcBC = false;
-    reorganizetags(&(Arg){.v = 0});
-
 }
 
 void
