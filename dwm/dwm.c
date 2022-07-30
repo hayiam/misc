@@ -104,7 +104,8 @@ struct Client {
 	float cfact;
 	int x, y, w, h;
 	int oldx, oldy, oldw, oldh;
-	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+// added hintsvalid as part of "manage: propertynotify: Reduce cost of unused size hints" dwm 6.3 patch
+	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
@@ -215,7 +216,7 @@ static void moveresizeedge(const Arg *arg);
 static void movemouse(const Arg *arg);
 static Client *nexttagged(Client *c);
 static Client *nexttiled(Client *c);
-static void pop(Client *);
+static void pop(Client *c);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
@@ -248,7 +249,7 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tagtoleft(const Arg *arg);
 static void tagtoright(const Arg *arg);
-static void tile(Monitor *);
+static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
 static void togglebarall(const Arg *arg);
 static void togglefloating(const Arg *arg);
@@ -415,6 +416,9 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
 	if (*w < bh)
 		*w = bh;
 	if (resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
+// added two rows as part of "manage: propertynotify: Reduce cost of unused size hints" dwm 6.3 patch
+		if (!c->hintsvalid)
+			updatesizehints(c);
 		/* see last two sentences in ICCCM 4.1.2.3 */
 		baseismin = c->basew == c->minw && c->baseh == c->minh;
 		if (!baseismin) { /* temporarily remove base dimensions */
@@ -587,7 +591,7 @@ buttonpress(XEvent *e)
                     arg.ui = 1 << i;
                 } else if (ev->x < x + blw)
                     click = ClkLtSymbol;
-                else if (ev->x > selmon->ww - TEXTW(stext))
+                else if (ev->x > selmon->ww - (int)TEXTW(stext))
                     click = ClkStatusText;
                 else
                     click = ClkWinTitle;
@@ -635,6 +639,8 @@ buttonpress(XEvent *e)
             drw_cur_free(drw, cursor[i]);
         for (i = 0; i < LENGTH(colors); i++)
             free(scheme[i]);
+// added "free(scheme)" as part of "fix mem leak in cleanup()" dwm 6.3 patch
+            free(scheme);
         XDestroyWindow(dpy, wmcheckwin);
         drw_free(drw);
         XSync(dpy, False);
@@ -871,6 +877,10 @@ buttonpress(XEvent *e)
         int boxw = drw->fonts->h / 6 + 2;
         unsigned int i, occ = 0, urg = 0;
         Client *c;
+
+// added "drawbar: Don't expend effort drawing bar if it is occluded" patch from dwm 6.3 (right two lines below)
+    	if (!m->showbar)
+    		return;
 
         /* draw status first so it can be overdrawn by tags later */
         if (m == selmon) { /* status is only drawn on selected monitor */
@@ -1238,7 +1248,7 @@ buttonpress(XEvent *e)
         XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
         grabbuttons(c, 0);
         if (!c->isfloating)
-            c->isfloating = c->oldstate = trans != None || c->isfixed;
+		    c->isfloating = c->oldstate = trans != None || c->isfixed;
         if (c->isfloating)
             XRaiseWindow(dpy, c->win);
         switch(attachdirection){
@@ -1556,7 +1566,8 @@ propertynotify(XEvent *e)
 				arrange(c->mon);
 			break;
 		case XA_WM_NORMAL_HINTS:
-			updatesizehints(c);
+// removed	updatesizehints(c); and added one row below ap part of "manage: propertynotify: Reduce cost of unused size hints" dwm 6.3 patch 
+			c->hintsvalid = 0;
 			break;
 		case XA_WM_HINTS:
 			updatewmhints(c);
@@ -2261,10 +2272,21 @@ tile(Monitor *m)
 
 	/* calculate number of clients */
 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++) {
+/* changed for the bug fix "dwm crashes when opening 50+ clients (tile layout)" 
+ original:
 		if (n < m->nmaster)
-			mfacts += c->cfact;
-		else
-			sfacts += c->cfact;
+		    mfacts += c->cfact;
+        else 
+		    sfacts += c->cfact;
+ 
+ * */
+		if (n < m->nmaster){
+			if (mfacts + c->cfact < m->wh)
+			    mfacts += c->cfact;
+        } else {
+			if (sfacts + c->cfact < m->wh)
+			    sfacts += c->cfact;
+        }
 	}
 	if (n == 0)
 		return;
@@ -2673,6 +2695,8 @@ updatesizehints(Client *c)
 	} else
 		c->maxa = c->mina = 0.0;
 	c->isfixed = (c->maxw && c->maxh && c->maxw == c->minw && c->maxh == c->minh);
+// added one row as part of "manage: propertynotify: Reduce cost of unused size hints" dwm 6.3 patch
+	c->hintsvalid = 1;
 }
 
 void
