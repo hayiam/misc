@@ -3,20 +3,20 @@
  * @param: "arg->i" stores the number of tags to shift right (positive value)
  *          or left (negative value)
  */
-/* difining scratchtag here (was in dwm.c after #include "config.h" */
 
 void
 shiftview(const Arg *arg) {
 	Arg shifted;
-	
 
 	if(arg->i > 0) // left circular shift
 		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
 		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
-
 	else // right circular shift
 		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
 		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
 	views(&shifted);
+
+//	if (funcBC == false)
+//    reorganizetags(&(Arg){.v = 0});
 }

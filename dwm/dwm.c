@@ -24,7 +24,7 @@
 #include <locale.h>
 #include <signal.h>
 #include <stdarg.h>
-// #include <stdbool.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1623,7 +1623,6 @@ reorganizetags(const Arg *arg) {
 // end of added lines
 	if (selmon->sel)
 		selmon->tagset[selmon->seltags] = selmon->sel->tags;
-	focus(NULL);
 	arrange(selmon);
 }
 
@@ -2759,7 +2758,7 @@ view(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-	// funcBC = false;
+	funcBC = false;
 }
 
 void
@@ -2797,7 +2796,6 @@ views(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-    reorganizetags(&(Arg){.v = 0});
 }
 
 Client *
