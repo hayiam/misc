@@ -33,7 +33,7 @@ zstyle ':vcs_info:git:*' formats ' %b'
 
 setopt PROMPT_SUBST
 
-PROMPT=$'\ $(if [ -w ${PWD} ]; then echo "%F{yellow}"; else echo "%F{magenta}"; fi) \ %F{yellow}%~$(if [ ${PWD} = "/home/maksim" ]; then echo "/"; fi)\ $(if [ "${vcs_info_msg_0_}" = " main" ]; then echo "%F{blue}"; else echo "%F{cyan}"; fi)${vcs_info_msg_0_}\ %F{green}➤\ '
+PROMPT=$'\ $(if [ -w ${PWD} ]; then echo "%F{yellow}"; else echo "%F{magenta}"; fi) \ %F{yellow}%~$(if [ ${PWD} = "/home/maksim" ]; then echo "/"; fi)\ $(if [[ "${vcs_info_msg_0_}" = " main" || "${vcs_info_msg_0_}" =  " master" ]]; then echo "%F{blue}"; else echo "%F{cyan}"; fi)${vcs_info_msg_0_}\ %F{green}➤\ '
 
 # enabling color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
