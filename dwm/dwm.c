@@ -1623,15 +1623,9 @@ reorganizetags(const Arg *arg) {
 			occ |= 1 << unocc;
 		}
 	}
+// added "&& !(found = c->scratchkey != '\0'" to avoid problems with scratchpads
 	for (c = selmon->clients; c && !(found = c->scratchkey != '\0'); c = c->next)
 		c->tags = 1 << tagdest[ffs(c->tags)-1];
-// to avoid problems with scratchpads added this lines 
-//	for (c = selmon->clients; c && !(found = c->scratchkey != '\0'); c = c->next)
-//		if (found && ISVISIBLE(c)) {
-//		    togglescratch(&(Arg){.v = scratchpadcmd});
-//		    togglescratch(&(Arg){.v = scratchpadvifm});
-//		}
-// end of added lines
 	if (selmon->sel)
 		selmon->tagset[selmon->seltags] = selmon->sel->tags;
 	arrange(selmon);
