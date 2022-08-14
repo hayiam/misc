@@ -68,7 +68,6 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 
 /* includes  */
 #include "movestack.c" /* ability to move windows in nonfloating layouts */
-#include "shifttag.c" /* ability to tag tags to the left or right */
 #include "shiftview.c" /* ability to switch tags to the left or right */
 
 static const Layout layouts[] = {

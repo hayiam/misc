@@ -241,6 +241,7 @@ static void setlayout(const Arg *arg);
 static void setcfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
+static void shifttag(const Arg *arg);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
@@ -2160,6 +2161,39 @@ seturgent(Client *c, int urg)
 }
 
 void
+shifttag(const Arg *arg) {
+	Arg shifted;
+	int i;
+
+	if(arg->i > 0) // left circular shift
+		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
+		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
+
+	else // right circular shift
+		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
+		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
+
+	unsigned int newtagset = selmon->tagset[selmon->seltags] | (shifted.ui & TAGMASK);
+	if (newtagset) {
+		selmon->tagset[selmon->seltags] = newtagset;
+
+		/* test if the user did not select the same tag */
+			for (i = 0; !(newtagset & 1 << i); i++) ;
+			selmon->pertag->curtag = i + 1;
+
+		/* apply settings for this view */
+		selmon->nmaster = selmon->pertag->nmasters[selmon->pertag->curtag];
+		selmon->sellt = selmon->pertag->sellts[selmon->pertag->curtag];
+		selmon->lt[selmon->sellt] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt];
+		selmon->lt[selmon->sellt^1] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt^1];
+
+		focus(NULL);
+		arrange(selmon);
+	}
+}
+
+
+void
 showhide(Client *c)
 {
 	if (!c)
@@ -2817,7 +2851,6 @@ view(const Arg *arg)
 
 	focus(NULL);
 	arrange(selmon);
-	funcBC = false;
 }
 
 void
