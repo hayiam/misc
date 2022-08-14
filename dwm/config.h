@@ -76,7 +76,7 @@ static const Layout layouts[] = {
 	{ "<||",      tile },     /* first is default */
 	{ "[M]",      monocle },
 	{ "><>",      NULL },     /* no layout function means floating behavior */
-	{ "<G>",      gaplessgrid },
+	{ "(G)",      gaplessgrid },
 };
 
 /* commands */
