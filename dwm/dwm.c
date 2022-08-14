@@ -2793,7 +2793,9 @@ view(const Arg *arg)
 
 		if (arg->ui == ~0) {
 			selmon->pertag->curtag = 0;
-            setlayout(&(Arg){.v = &layouts[3]});
+// set greed layout by default (same as setlayout(&(Arg){.v = &layouts[3]});)
+            if (selmon->lt[selmon->sellt] != (Layout*)&layouts[3])
+		    selmon->lt[selmon->sellt] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt] = (Layout *)&layouts[3];
         }
 		else {
 			for (i = 0; !(arg->ui & 1 << i); i++) ;
