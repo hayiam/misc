@@ -197,6 +197,7 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
+static void gaplessgrid(Monitor *m);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
 static long getstate(Window w);
@@ -1016,6 +1017,42 @@ buttonpress(XEvent *e)
         selmon = m;
         focus(NULL);
     }
+
+void
+gaplessgrid(Monitor *m) {
+	unsigned int n, cols, rows, cn, rn, i, cx, cy, cw, ch;
+	Client *c;
+
+	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++) ;
+	if(n == 0)
+		return;
+
+	/* grid dimensions */
+	for(cols = 0; cols <= n/2; cols++)
+		if(cols*cols >= n)
+			break;
+	if(n == 5) /* set layout against the general calculation: not 1:2:2, but 2:3 */
+		cols = 2;
+	rows = n/cols;
+
+	/* window geometries */
+	cw = cols && n > 1 ? (m->ww - selmon->ogappx) / cols : m->ww;
+	cn = 0; /* current column number */
+	rn = 0; /* current row number */
+	for(i = 0, c = nexttiled(m->clients); c; i++, c = nexttiled(c->next)) {
+		if(i/rows + 1 > cols - n%cols)
+			rows = n/cols + 1;
+		ch = rows && n > 1 ? (m->wh - selmon->ogappx) / rows : m->wh;
+		cx = n > 1 ? m->wx + cn*cw + selmon->ogappx : m->wx + cn*cw;
+		cy = n > 1 ? m->wy + rn*ch + selmon->ogappx : m->wy + rn*ch;
+		resize(c, cx, cy, cw - 2 * c->bw - (n > 1 ? selmon->ogappx : 0), ch - 2 * c->bw - (n > 1 ? selmon->ogappx : 0), False);
+		rn++;
+		if(rn >= rows) {
+			rn = 0;
+			cn++;
+		}
+	}
+}
 
     void
     focusstack(const Arg *arg)
@@ -2296,12 +2333,12 @@ tile(Monitor *m)
 	g = ma->n == 0 || sa->n == 0 ? 0 : m->igappx;
 	if(ga->dir == DirHor || ga->dir == DirRotHor)
 		ms = f * (m->ww - g), ss = m->ww - ms - g,
-		ma->x = ga->dir == DirHor ? m->ogappx : ss + g + m->ogappx, ma->y = m->ogappx, ma->fx = ma->x + ms - 2*m->ogappx, ma->fy = m->wh - m->ogappx,
-		sa->x = ga->dir == DirHor ? ms - g + m->ogappx : m->ogappx, sa->y = m->ogappx, sa->fx = sa->x + ss - 2*(m->ogappx - g), sa->fy = m->wh - m->ogappx;
+		ma->x = ga->dir == DirHor ? m->ogappx : ss + g + m->ogappx, ma->y = m->ogappx, ma->fx = ma->x + ms - (m->igappx + m->ogappx), ma->fy = m->wh - m->ogappx,
+		sa->x = ga->dir == DirHor ? ms - g + m->ogappx : m->ogappx, sa->y = m->ogappx, sa->fx = sa->x + ss - (m->igappx + (m->ogappx - g)), sa->fy = m->wh - m->ogappx;
 	else
 		ms = f * (m->wh - g), ss = m->wh - ms - g,
-		ma->x = m->ogappx, ma->y = ga->dir == DirVer ? m->ogappx : ss + g + m->ogappx, ma->fx = m->ww - m->ogappx, ma->fy = ma->y + ms - 2*m->ogappx,
-		sa->x = m->ogappx, sa->y = ga->dir == DirVer ? ms - g + m->ogappx : m->ogappx, sa->fx = m->ww - m->ogappx, sa->fy = sa->y + ss - 2*(m->ogappx - g);/*  ms + g - m->ogappx -- func that I needed; sa->fy = sa->y + ss (window height)*/
+		ma->x = m->ogappx, ma->y = ga->dir == DirVer ? m->ogappx : ss + g + m->ogappx, ma->fx = m->ww - m->ogappx, ma->fy = ma->y + ms - (m->igappx + m->ogappx),
+		sa->x = m->ogappx, sa->y = ga->dir == DirVer ? ms - g + m->ogappx : m->ogappx, sa->fx = m->ww - m->ogappx, sa->fy = sa->y + ss - (m->igappx + (m->ogappx - g));/*  ms + g - m->ogappx -- func that I needed; sa->fy = sa->y + ss (window height)*/
 	/* tile clients */
     /* "(c->cfact / mfacts) *" - applies cfacts from patch */
 	for(c = nexttiled(m->clients), i = 0; i < n; c = nexttiled(c->next), i++) {

@@ -77,6 +77,7 @@ static const Layout layouts[] = {
 	{ "<||",      tile },     /* first is default */
 	{ "[M]",      monocle },
 	{ "><>",      NULL },     /* no layout function means floating behavior */
+	{ "<G>",      gaplessgrid },
 };
 
 /* commands */
@@ -134,6 +135,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,              setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,              setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,              setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_g,              setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,          setlayout,      {0} },
 	TILEKEYS(MODKEY,                                                   1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                         0, 1, 0)
