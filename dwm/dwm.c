@@ -136,7 +136,7 @@ struct Monitor {
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
 	int wx, wy, ww, wh;   /* window area  */
-	int igappx, ogappx;   /* inner and outer gaps */
+	int gappx;   /* gaps */
 	unsigned int seltags;
 	unsigned int sellt;
 	unsigned int tagset[2];
@@ -190,7 +190,7 @@ static void detachstack(Client *c);
 static Monitor *dirtomon(int dir);
 static void drawbar(Monitor *m);
 static void drawbars(void);
-static void enternotify(XEvent *e);
+//static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
 static void focusin(XEvent *e);
@@ -214,6 +214,7 @@ static void motionnotify(XEvent *e);
 static void moveresize(const Arg *arg);
 static void moveresizeedge(const Arg *arg);
 static void movemouse(const Arg *arg);
+static void movestack(const Arg *arg);
 static Client *nexttagged(Client *c);
 static Client *nexttiled(Client *c);
 static void pop(Client *c);
@@ -241,6 +242,7 @@ static void setcfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void shifttag(const Arg *arg);
+static void shiftview(const Arg *arg);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
@@ -794,8 +796,7 @@ buttonpress(XEvent *e)
         m->nmaster = nmaster;
         m->showbar = showbar;
         m->topbar = topbar;
-        m->igappx = igappx;
-        m->ogappx = ogappx;
+        m->gappx = gappx;
         m->lt[0] = &layouts[0];
         m->lt[1] = &layouts[1 % LENGTH(layouts)];
         strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
@@ -939,7 +940,7 @@ buttonpress(XEvent *e)
             drawbar(m);
     }
 
-    void
+/*    void
     enternotify(XEvent *e)
     {
         Client *c;
@@ -957,7 +958,7 @@ buttonpress(XEvent *e)
             return;
         focus(c);
     }
-
+*/
     void
     expose(XEvent *e)
     {
@@ -1035,16 +1036,16 @@ gaplessgrid(Monitor *m) {
 	rows = n/cols;
 
 	/* window geometries */
-	cw = cols && n > 1 ? (m->ww - selmon->ogappx) / cols : m->ww;
+	cw = cols && n > 1 ? (m->ww - selmon->gappx) / cols : m->ww;
 	cn = 0; /* current column number */
 	rn = 0; /* current row number */
 	for(i = 0, c = nexttiled(m->clients); c; i++, c = nexttiled(c->next)) {
 		if(i/rows + 1 > cols - n%cols)
 			rows = n/cols + 1;
-		ch = rows && n > 1 ? (m->wh - selmon->ogappx) / rows : m->wh;
-		cx = n > 1 ? m->wx + cn*cw + selmon->ogappx : m->wx + cn*cw;
-		cy = n > 1 ? m->wy + rn*ch + selmon->ogappx : m->wy + rn*ch;
-		resize(c, cx, cy, cw - 2 * c->bw - (n > 1 ? selmon->ogappx : 0), ch - 2 * c->bw - (n > 1 ? selmon->ogappx : 0), False);
+		ch = rows && n > 1 ? (m->wh - selmon->gappx) / rows : m->wh;
+		cx = n > 1 ? m->wx + cn*cw + selmon->gappx : m->wx + cn*cw;
+		cy = n > 1 ? m->wy + rn*ch + selmon->gappx : m->wy + rn*ch;
+		resize(c, cx, cy, cw - 2 * c->bw - (n > 1 ? selmon->gappx : 0), ch - 2 * c->bw - (n > 1 ? selmon->gappx : 0), False);
 		rn++;
 		if(rn >= rows) {
 			rn = 0;
@@ -1432,6 +1433,56 @@ gaplessgrid(Monitor *m) {
             focus(NULL);
         }
     }
+
+    void
+    movestack(const Arg *arg) {
+    	Client *c = NULL, *p = NULL, *pc = NULL, *i;
+    
+    	if(arg->i > 0) {
+    		/* find the client after selmon->sel */
+    		for(c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+    		if(!c)
+    			for(c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+    
+    	}
+    	else {
+    		/* find the client before selmon->sel */
+    		for(i = selmon->clients; i != selmon->sel; i = i->next)
+    			if(ISVISIBLE(i) && !i->isfloating)
+    				c = i;
+    		if(!c)
+    			for(; i; i = i->next)
+    				if(ISVISIBLE(i) && !i->isfloating)
+    					c = i;
+    	}
+    	/* find the client before selmon->sel and c */
+    	for(i = selmon->clients; i && (!p || !pc); i = i->next) {
+    		if(i->next == selmon->sel)
+    			p = i;
+    		if(i->next == c)
+    			pc = i;
+    	}
+    
+    	/* swap c and selmon->sel selmon->clients in the selmon->clients list */
+    	if(c && c != selmon->sel) {
+    		Client *temp = selmon->sel->next==c?selmon->sel:selmon->sel->next;
+    		selmon->sel->next = c->next==selmon->sel?c:c->next;
+    		c->next = temp;
+    
+    		if(p && p != c)
+    			p->next = c;
+    		if(pc && pc != selmon->sel)
+    			pc->next = selmon->sel;
+    
+    		if(selmon->sel == selmon->clients)
+    			selmon->clients = c;
+    		else if(c == selmon->clients)
+    			selmon->clients = selmon->sel;
+    
+    		arrange(selmon);
+    	}
+    }
+
 
     void
     moveresize(const Arg *arg) {
@@ -2032,12 +2083,10 @@ setfullscreen(Client *c, int fullscreen)
 void
 setgaps(const Arg *arg)
 {
-	if ((arg->i == 0) || (selmon->igappx + arg->i < 0)) {
-		selmon->igappx = 0;
-		selmon->ogappx = 0;
+	if ((arg->i == 0) || (selmon->gappx + arg->i < 0)) {
+		selmon->gappx = 0;
 	} else {
-		selmon->igappx += arg->i;
-		selmon->ogappx += arg->i;
+		selmon->gappx += arg->i;
     }
 	arrange(selmon);
 }
@@ -2190,6 +2239,19 @@ shifttag(const Arg *arg) {
 	}
 }
 
+void
+shiftview(const Arg *arg) {
+	Arg shifted;
+
+	if(arg->i > 0) // left circular shift
+		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
+		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
+	else // right circular shift
+		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
+		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
+
+	view(&shifted);
+}
 
 void
 showhide(Client *c)
@@ -2362,35 +2424,35 @@ tile(Monitor *m)
 	ma->n = MIN(n, m->nmaster), sa->n = n - ma->n;
 	/* calculate area rectangles */
 	f = ma->n == 0 ? 0 : (sa->n == 0 ? 1 : ga->fact / 2);
-	g = ma->n == 0 || sa->n == 0 ? 0 : m->igappx;
+	g = ma->n == 0 || sa->n == 0 ? 0 : m->gappx;
 	if(ga->dir == DirHor || ga->dir == DirRotHor)
 		ms = f * (m->ww - g), ss = m->ww - ms - g,
-		ma->x = ga->dir == DirHor ? m->ogappx : ss + g + m->ogappx, ma->y = m->ogappx, ma->fx = ma->x + ms - (m->igappx + m->ogappx), ma->fy = m->wh - m->ogappx,
-		sa->x = ga->dir == DirHor ? ms - g + m->ogappx : m->ogappx, sa->y = m->ogappx, sa->fx = sa->x + ss - (m->ogappx - g), sa->fy = m->wh - m->ogappx;
+		ma->x = ga->dir == DirHor ? m->gappx : ss + g + m->gappx, ma->y = m->gappx, ma->fx = ma->x + ms - (m->gappx + m->gappx), ma->fy = m->wh - m->gappx,
+		sa->x = ga->dir == DirHor ? ms - g + m->gappx : m->gappx, sa->y = m->gappx, sa->fx = sa->x + ss - (m->gappx - g), sa->fy = m->wh - m->gappx;
 	else
 		ms = f * (m->wh - g), ss = m->wh - ms - g,
-		ma->x = m->ogappx, ma->y = ga->dir == DirVer ? m->ogappx : ss + g + m->ogappx, ma->fx = m->ww - m->ogappx, ma->fy = ma->y + ms - (m->igappx + m->ogappx),
-		sa->x = m->ogappx, sa->y = ga->dir == DirVer ? ms - g + m->ogappx : m->ogappx, sa->fx = m->ww - m->ogappx, sa->fy = sa->y + ss - (m->ogappx - g);/*  ms + g - m->ogappx -- func that I needed; sa->fy = sa->y + ss (window height)*/
+		ma->x = m->gappx, ma->y = ga->dir == DirVer ? m->gappx : ss + g + m->gappx, ma->fx = m->ww - m->gappx, ma->fy = ma->y + ms - (m->gappx + m->gappx),
+		sa->x = m->gappx, sa->y = ga->dir == DirVer ? ms - g + m->gappx : m->gappx, sa->fx = m->ww - m->gappx, sa->fy = sa->y + ss - (m->gappx - g);/*  ms + g - m->gappx -- func that I needed; sa->fy = sa->y + ss (window height)*/
 	/* tile clients */
     /* "(c->cfact / mfacts) *" - applies cfacts from patch */
 	for(c = nexttiled(m->clients), i = 0; i < n; c = nexttiled(c->next), i++) {
         if (i < m->nmaster) {
 		a = ma->n > 0 ? ma : sa;
 		f = i == 0 || ma->n == 0 ? a->fact : 1, f /= --a->n + f;
-		w = a->dir == DirVer ? (a->fx - a->x) : (c->cfact / mfacts) * (a->fx - a->x - a->n * m->igappx);
-		h = a->dir == DirHor ? (a->fy - a->y) : (c->cfact / mfacts) * (a->fy - a->y - a->n * m->igappx);;
+		w = a->dir == DirVer ? (a->fx - a->x) : (c->cfact / mfacts) * (a->fx - a->x - a->n * m->gappx);
+		h = a->dir == DirHor ? (a->fy - a->y) : (c->cfact / mfacts) * (a->fy - a->y - a->n * m->gappx);;
 		resize(c, m->wx + a->x, m->wy + a->y, w - 2 * c->bw, h - 2 * c->bw, 0);
-		a->x += a->dir == DirHor ? w + m->igappx : 0;
-		a->y += a->dir == DirVer ? h + m->igappx : 0;
+		a->x += a->dir == DirHor ? w + m->gappx : 0;
+		a->y += a->dir == DirVer ? h + m->gappx : 0;
 		mfacts -= c->cfact;
         } else {
 		a = ma->n > 0 ? ma : sa;
 		f = i == 0 || ma->n == 0 ? a->fact : 1, f /= --a->n + f;
-		w = a->dir == DirVer ? (a->fx - a->x) : (c->cfact / sfacts) * (a->fx - a->x - a->n * m->igappx);
-		h = a->dir == DirHor ? (a->fy - a->y) : (c->cfact / sfacts) * (a->fy - a->y - a->n * m->igappx);;
+		w = a->dir == DirVer ? (a->fx - a->x) : (c->cfact / sfacts) * (a->fx - a->x - a->n * m->gappx);
+		h = a->dir == DirHor ? (a->fy - a->y) : (c->cfact / sfacts) * (a->fy - a->y - a->n * m->gappx);;
 		resize(c, m->wx + a->x, m->wy + a->y, w - 2 * c->bw, h - 2 * c->bw, 0);
-		a->x += a->dir == DirHor ? w + m->igappx : 0;
-		a->y += a->dir == DirVer ? h + m->igappx : 0;
+		a->x += a->dir == DirHor ? w + m->gappx : 0;
+		a->y += a->dir == DirVer ? h + m->gappx : 0;
 		sfacts -= c->cfact;
         }
 	}

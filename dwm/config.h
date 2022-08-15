@@ -1,7 +1,6 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int igappx    = 7;        /* size of inner gaps */
-static const unsigned int ogappx    = 7;        /* size of outer gaps */
+static const unsigned int gappx     = 7;        /* size of gaps */
 static const int gapsforone	        = 0;    	/* 1 enable gaps when only one window is open */
 static const unsigned int snap      = 30;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -65,10 +64,6 @@ static const int attachdirection = 1;                       /* 0 default, 1 abov
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
-/* includes  */
-#include "movestack.c" /* ability to move windows in nonfloating layouts */
-#include "shiftview.c" /* ability to switch tags to the left or right */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
