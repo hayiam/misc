@@ -1,0 +1,13 @@
+set zoom-step 5
+set font "hack 12"
+set guioptions "" 
+set default-bg \#b3b3b3
+set recolor-lightcolor \#f2e9d9
+set recolor-darkcolor  \#1a0000
+unmap s
+unmap a
+unmap F11
+map s zoom in
+map a zoom out
+map <C-f> follow
+map f adjust_window best-fit
