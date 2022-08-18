@@ -2277,7 +2277,7 @@ void handleKeyPress(XEvent ev) {
 
 
         if (keycode==XK_KP_Left || keycode==XK_h) i=-1;
-        if (keycode==XK_k || keycode==XK_KP_Up) i=-movecount;
+        if (keycode==XK_k || keycode==XK_KP_Up) i=entries_count % columns !=0 && hovered_entry <= entries_count - entries_count % columns ? -columns : -movecount;
         if (keycode==XK_j || keycode==XK_KP_Down) i=columns-hovered_entry+f;
         if (keycode==XK_Tab || keycode==XK_l || keycode==XK_KP_Right) i=1;
         if (keycode==XK_Up) i=-movecount;
