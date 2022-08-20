@@ -2269,13 +2269,15 @@ void handleKeyPress(XEvent ev) {
         int f=0;
         int wleft = entries_count % columns;
 
+        if (hovered_entry <= entries_count - wleft) {
+
         if (hovered_entry <= columns/3)
             f = wleft / 3;
             else if (hovered_entry <= 2*columns/3+1)
                 f = 2*(wleft / 3);
                 else
                     f = 3*(wleft / 3);
-
+        }
 
         if (keycode==XK_KP_Left || keycode==XK_h) i=-1;
         if (keycode==XK_k || keycode==XK_KP_Up) i=hovered_entry <= entries_count - wleft ? -columns : -movecount;
@@ -2288,8 +2290,8 @@ void handleKeyPress(XEvent ev) {
         if (keycode==XK_u) i = -entries_count;//(scroll ? scrolled_past*columns+1 : 1);
         if (hovered_entry <= entries_count - wleft)
             movecount = i;
-           else
-               movecount = entries_count;
+                else
+                    movecount = entries_count*2;
         
         if (hovered_entry == 0) {
             if (keycode != XK_End && keycode != XK_Page_Down) {
