@@ -119,7 +119,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_j,              movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,              movestack,      {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_Return,         zoom,           {0} },
-    { MODKEY|ControlMask,           XK_space,          switchcol,      {0} },
+    { MODKEY,                       XK_space,          switchcol,      {0} },
 	{ MODKEY,                       XK_Tab,            view,           {0} },
 	{ MODKEY,                       XK_c,              killclient,     {0} },
 	{ MODKEY,                       XK_q,              reorganizetags, {0} },
@@ -130,7 +130,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,              setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,              setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_g,              setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_space,          setlayout,      {0} },
+	{ MODKEY|ControlMask,           XK_space,          setlayout,      {0} },
 	TILEKEYS(MODKEY,                                                   1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                         0, 1, 0)
 	TILEKEYS(MODKEY|ControlMask,                                       0, 0, 1)
