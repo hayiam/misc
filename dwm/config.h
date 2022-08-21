@@ -180,14 +180,15 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkButton,	    	0,		        Button1,	    spawn,          {.v = xlunch } },
+	{ ClkButton,	    	0,		        Button1,	    spawn,          SHCMD("xdotool windowactivate --sync $(xdotool getactivewindow) key F11") },
 	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
-	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
+	{ ClkButton,	    	0,		        Button3,	    spawn,          {.v = xlunch } },
     { ClkButton,	    	0,		        Button4,        setcfact,       {.f = +0.1} },
     { ClkButton,	    	0,		        Button5,        setcfact,       {.f = -0.1} },
-	{ ClkLtSymbol,          0,              Button1,        incnmaster,     {.i = +1 } },
+	{ ClkLtSymbol,          0,              Button1,        reorganizetags, {0} },
 	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        incnmaster,     {.i = -1 } },
+	{ ClkLtSymbol,          0,              Button4,        incnmaster,     {.i = +1 } },
+	{ ClkLtSymbol,          0,              Button5,        incnmaster,     {.i = -1 } },
 	{ ClkWinTitle,          0,              Button1,        togglefloating, {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button3,        resizemouse,    {0} },
