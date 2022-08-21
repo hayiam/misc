@@ -2271,8 +2271,8 @@ void handleKeyPress(XEvent ev) {
         if (keycode==XK_KP_Left || keycode==XK_h) i=-1;
         if (keycode==XK_k || keycode==XK_KP_Up) i= -columns;
         if (keycode==XK_j || keycode==XK_KP_Down) i=columns;
-        if (keycode==XK_Tab || keycode==XK_l || keycode==XK_KP_Right) i=1;
-        if (keycode==XK_Tab) i=columns-1;
+        if (keycode==XK_l || keycode==XK_KP_Right) i=1;
+        if (keycode==XK_Tab) i=rows/2;
         if (keycode==XK_Up) i=-columns*rows;
         if (keycode==XK_Down) i=columns*rows;
         if (keycode==XK_d) i = entries_count;//(scroll ? scrolled_past*columns+n : n);
