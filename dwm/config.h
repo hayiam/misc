@@ -40,7 +40,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
 	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,0,1585,400 },
-	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             150,200,1300,500 },
+	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             5,0,1585,400 }, /*150,200,1300,500*/
 	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,        '\0',            0,0,107,873 },
 };
 
@@ -81,7 +81,7 @@ static const char *dmenucmd[] = { "dmenu_run_history", "-f", "-m", dmenumon, "-f
 static const char *termcmd[]  = { "alacritty", "-t", "normalal", NULL };
 /* first arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL};
-static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-o", "window.opacity=0.9","-e", "vifmrun", NULL};
+static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-e", "vifmrun", NULL};
 static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
