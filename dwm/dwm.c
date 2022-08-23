@@ -2270,7 +2270,7 @@ showhide(Client *c)
 		/* hide clients bottom up */
 		showhide(c->snext);
 		//animate with picom top-down istead of left-right
-		XMoveWindow(dpy, c->win, c->x, WIDTH(c) * -2);
+		XMoveWindow(dpy, c->win, c->x, HEIGHT(c) * -2);
 		//XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 	}
 }
