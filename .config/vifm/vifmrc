@@ -19,7 +19,7 @@ set vicmd=vim
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
 " solution, it's also much slower and doesn't support progress measuring.
 
-" set syscalls
+set syscalls
 
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
@@ -261,6 +261,10 @@ filetype *.o nm %f | less
 " Man page
 filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
+
+filextype *.svg
+        \ {View in firefox}
+        \ firefox-bin,
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
