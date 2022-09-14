@@ -7,6 +7,7 @@ export LC_COLLATE="C"
 
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /home/maksim/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 #source /home/maksim/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # setting up history parameters
@@ -69,3 +70,6 @@ alias emprog='watch -n 1 sudo qlop -r -H'
 alias suspend='loginctl suspend'
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo reboot'
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
