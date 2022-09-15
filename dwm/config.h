@@ -41,14 +41,14 @@ static const Rule rules[] = {
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
 	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,0,1585,400 },
 	{ NULL,       NULL,       "vifm_scratch",       0,            0,           -1,        'v',             5,0,1585,400 }, /*150,200,1300,500*/
-	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,        '\0',            3,0,107,873 },
+	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,        '\0',            259,790,1092,100 },
 };
 
 /* layout(s) */
 static const int dirs[3]      = { DirHor, DirVer, DirVer }; /* tiling dirs */
 static const float facts[3]   = { 1.1,    1.1,    1.1 };    /* tiling facts */
 static const int nmaster     = 1;                           /* number of clients in master area */
-static const int resizehints = 0;                           /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;                           /* 1 means respect size hints in tiled resizals */
 static const int attachdirection = 1;                       /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
 
 /* key definitions */
