@@ -1,11 +1,11 @@
 Firefox;/home/maksim/.local/icons/firefox.png;ffox.sh
+Telegram;/home/maksim/.local/icons/telegram.png;/home/maksim/misc/Telegram/Telegram
 Chrome;/home/maksim/.local/icons/chrome.png;google-chrome-stable
 Virtualbox;/home/maksim/.local/icons/vbox.png;virtualbox
 Windows-vb;/home/maksim/.local/icons/windows.png;virtualboxvm --startvm windows
-Gimp;/home/maksim/.local/icons/gimp.png;gimp
 Lowriter;/home/maksim/.local/icons/writer.png;lowriter
 Localc;/home/maksim/.local/icons/calc.png;localc
-Telegram;/home/maksim/.local/icons/telegram.png;/home/maksim/misc/Telegram/Telegram
+Gimp;/home/maksim/.local/icons/gimp.png;gimp
 Suspend;/home/maksim/.local/icons/suspend.png;loginctl suspend
 Reboot;/home/maksim/.local/icons/reboot.png;sudo reboot
 Shutdown;/home/maksim/.local/icons/shutdown.png;sudo shutdown -h now
