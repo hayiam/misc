@@ -25,10 +25,8 @@ while true; do
 
 COMMAND=$(xset -q | grep LED | awk '{ print $10 }')
 case "$COMMAND" in
- "00000000") LAYOUT="en" ;;
- "00001004") LAYOUT="ru" ;;
- "00000002") LAYOUT="en" ;;
- "00001006") LAYOUT="ru" ;;
+ "00000000" | "00000001" | "00000002" | "00000003" ) LAYOUT="en" ;;
+ "00001004" | "00001005" | "00001006" | "00001007" ) LAYOUT="ru" ;;
 esac
 
 TIME=$(date +%a\ %F\ %R)
