@@ -1,8 +1,8 @@
 Firefox;/home/maksim/.local/icons/firefox.png;ffox.sh
 Telegram;/home/maksim/.local/icons/telegram.png;/home/maksim/misc/Telegram/Telegram
 Chrome;/home/maksim/.local/icons/chrome.png;google-chrome-stable
-Virtualbox;/home/maksim/.local/icons/vbox.png;virtualbox -style adwaita-dark
-Windows-vb;/home/maksim/.local/icons/windows.png;virtualboxvm -style adwaita-dark --startvm windows
+Virtualbox;/home/maksim/.local/icons/vbox.png;virtualbox
+Windows-vb;/home/maksim/.local/icons/windows.png;virtualboxvm --startvm windows
 Lowriter;/home/maksim/.local/icons/writer.png;lowriter
 Localc;/home/maksim/.local/icons/calc.png;localc
 Gimp;/home/maksim/.local/icons/gimp.png;gimp
