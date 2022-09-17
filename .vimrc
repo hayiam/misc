@@ -21,8 +21,8 @@ set nohlsearch "disable highlighting in search mode
 set undofile "enable persistent undo option
 set undodir=$HOME/.vim/undo "set directory to store undo history
 set fileencodings=utf-8,ru "encodings with which file is written
-"colorscheme tasty
-colorscheme dracula
+colorscheme tasty
+"colorscheme dracula
 "set up statusline
 set statusline=
 set statusline+=%#NormalMode#%{(mode()=='n')?'\ \ NORMAL\ ':''}
@@ -71,9 +71,11 @@ noremap <silent> <C-Up> :resize -3<CR>
 "make tags and brackets autoclose
 autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 autocmd FileType html inoremap <buffer> < <
-inoremap { {}<C-[>%li
-inoremap [ []<C-[>%li
-inoremap < <><C-[>i
+autocmd FileType c,cpp,h inoremap ( ()<C-[>%li
+autocmd FileType c,cpp,h inoremap { {<C-o>o}<C-[>%o
+autocmd FileType c,cpp,h inoremap [ []<C-[>%li
+"inoremap { {}<C-[>%li
+"inoremap < <><C-[>i
 
 "functions
 
