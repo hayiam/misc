@@ -7,7 +7,7 @@ set softtabstop=4
 set tabstop=4
 set smarttab "inset tabs on the start of a line acording to shftwidth
 set expandtab "tabulations into spaces
-set autoindent "setting up autoindent mode
+"set autoindent "setting up autoindent mode
 set copyindent "copy the previous indentation on autoindenting
 set smartindent "setting up smart autoindention
 syntax on "inable syntax hilighting
