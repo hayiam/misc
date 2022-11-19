@@ -41,7 +41,6 @@ static const Rule rules[] = {
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
 	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,0,1585,400 },
 	{ NULL,       NULL,       "vifm_scratch",       0,            0,           -1,        'v',             5,0,1585,400 }, /*150,200,1300,500*/
-	{ "xlunch",   NULL,       NULL,                 0,            1,           -1,        '\0',            259,40,1092,100 },
 };
 
 /* layout(s) */
@@ -86,12 +85,10 @@ static const char *ffox[] = { "ffox.sh", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots", NULL };
-static const char *xlunch[] = { "xlunch", "-c", "~/.config/xlunch/xlunch.conf", "-i", ".config/xlunch/entries.dsv", NULL };
 
 static Key keys[] = {
 	/* modifier                     key                function        argument */
 	{ MODKEY,                       XK_a,              spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_e,              spawn,          {.v = xlunch } },
 	{ MODKEY,                       XK_Return,         spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,          togglescratch,  {.v = scratchpadcmd } },
 	{ 0,                            XK_F9,             togglescratch,  {.v = scratchpadvifm } },
@@ -182,10 +179,10 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkButton,	    	0,		        Button1,	    spawn,          SHCMD("xdotool windowactivate --sync $(xdotool getactivewindow) key F11") },
 	{ ClkButton,	    	0,		        Button2,	    killclient,     {0} },
-	{ ClkButton,	    	0,		        Button3,	    spawn,          {.v = xlunch } },
+	{ ClkButton,	    	0,		        Button3,	    reorganizetags, {0} },
     { ClkButton,	    	0,		        Button4,        incnmaster,     {.i = +1 } },
     { ClkButton,	    	0,		        Button5,        incnmaster,     {.i = -1 } },
-	{ ClkLtSymbol,          0,              Button1,        reorganizetags, {0} },
+	{ ClkLtSymbol,          0,              Button1,        togglescratch,  {.v = scratchpadcmd } },
 	{ ClkLtSymbol,          0,              Button2,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setcfact,       {.f = 0.00} },
 	{ ClkLtSymbol,          0,              Button4,        setcfact,       {.f = +0.1} },
