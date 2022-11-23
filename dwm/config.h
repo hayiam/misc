@@ -40,7 +40,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title                 tags mask     isfloating   monitor    scratchkey       float x,y,w,h */
 	{ NULL,       NULL,       "scratchpad",         0,            1,           -1,        's',             5,0,1585,400 },
-	{ NULL,       NULL,       "vifm_scratch",       0,            0,           -1,        'v',             5,0,1585,400 }, /*150,200,1300,500*/
+	{ NULL,       NULL,       "vifm_scratch",       0,            1,           -1,        'v',             5,498,1585,400 }, /*150,200,1300,500*/
 };
 
 /* layout(s) */

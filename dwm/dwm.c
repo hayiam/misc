@@ -2266,6 +2266,12 @@ showhide(Client *c)
 		if (!c->mon->lt[c->mon->sellt]->arrange || c->isfloating)
 			resize(c, c->x, c->y, c->w, c->h, 0);
 		showhide(c->snext);
+	} else if (c->scratchkey == 'v') {
+		/* hide clients bottom up */
+		showhide(c->snext);
+		//animate with picom top-down istead of left-right
+		XMoveWindow(dpy, c->win, c->x, HEIGHT(c) * 3);
+		//XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 	} else {
 		/* hide clients bottom up */
 		showhide(c->snext);
@@ -2273,6 +2279,7 @@ showhide(Client *c)
 		XMoveWindow(dpy, c->win, c->x, HEIGHT(c) * -2);
 		//XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 	}
+
 }
 
 void
