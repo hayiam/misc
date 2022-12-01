@@ -36,6 +36,11 @@ setopt PROMPT_SUBST
 
 PROMPT=$'\ $(if [ -w ${PWD} ]; then echo "%F{yellow}"; else echo "%F{magenta}"; fi) \ %F{yellow}%~$(if [ ${PWD} = "/home/maksim" ]; then echo "/"; fi)\ $(if [[ "${vcs_info_msg_0_}" = " main" || "${vcs_info_msg_0_}" =  " master" ]]; then echo "%F{blue}"; else echo "%F{cyan}"; fi)${vcs_info_msg_0_}$(if [ ! -z "${vcs_info_msg_0_}" ]; then echo "\ "; fi)%F{green}➤\ '
 
+# remove annoing Desktop dir
+if [ $(ls | grep Desktop) ] 
+    then rmdir Desktop
+fi
+
 # enabling color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

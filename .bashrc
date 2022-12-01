@@ -17,10 +17,15 @@ export PATH=/home/maksim/.local/scripts:$PATH
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 # export CCACHE_DIR=/var/cache/ccache
-export MOZ_CRASHREPORTER_DISABLE=1
+# export MOZ_CRASHREPORTER_DISABLE=1
+
+# remove annoing Desktop dir
+if [ $(ls | grep Desktop) ] 
+    then rmdir Desktop
+fi
 
 #aliases for suspend, shutdown and reboot
-alias suspend='loginctl suspend'
+#alias suspend='loginctl suspend'
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo reboot'
 
