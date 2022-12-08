@@ -58,6 +58,9 @@ alias mv='mv -i'
 # alias for radio stations
 alias radio='mpv --no-ytdl --volume=50 --playlist-start=0 ~/misc/stations.m3u'
 
+# for transmission
+alias tremc='transmission-daemon && tremc'
+
 # aliases to search in the zsh and notes history
 alias grephistory='cat ~/.zsh_history | grep'
 alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
