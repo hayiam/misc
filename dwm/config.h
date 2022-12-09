@@ -82,7 +82,7 @@ static const char *termcmd[]  = { "alacritty", "-t", "normalal", NULL };
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL};
 static const char *scratchpadvifm[] = {"v", "alacritty", "-t", "vifm_scratch", "-e", "vifmrun", NULL};
 static const char *ffox[] = { "ffox.sh", NULL };
-static const char *chrome[] = { "google-chrome-stable", "--start-fullscreen", NULL };
+static const char *chromium[] = { "chromium-bin", "--start-fullscreen", NULL };
 /*static const char *chr[] = { "google-chrome-stable", NULL };*/
 static const char *scrot[] = { "scrot", "%Y-%m-%d-%H-%M-%S_$wx$h.png", "-e", "mv $f ~/pictures/screenshots", NULL };
 
@@ -93,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,          togglescratch,  {.v = scratchpadcmd } },
 	{ 0,                            XK_F9,             togglescratch,  {.v = scratchpadvifm } },
 	{ MODKEY|ShiftMask,             XK_f,              spawn,          {.v = ffox } },
-	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = chrome } },
+	{ MODKEY|ShiftMask,             XK_c,              spawn,          {.v = chromium } },
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
