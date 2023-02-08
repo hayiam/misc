@@ -55,9 +55,8 @@ vnoremap <C-y> "+y
 nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
 inoremap <C-l> <C-^>
-"remap c-[ (esc)
 inoremap <C-n> <C-[>
-vnoremap <C-n> <C-[>
+"vnoremap <C-n> <C-[>
 "press enter to insert new line in normal mode
 nnoremap <CR> o<Esc>
 "setup hotkeys for split mode
@@ -69,10 +68,10 @@ noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
 "make tags and brackets autoclose
-autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
+"autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 autocmd FileType html inoremap <buffer> < <
 autocmd FileType c,cpp,h inoremap ( ()<C-[>%li
-autocmd FileType c,cpp,h inoremap { {<C-o>o}<C-[>%o
+autocmd FileType html,c,cpp,h inoremap { {<C-o>o}<C-[>%o
 autocmd FileType c,cpp,h inoremap [ []<C-[>%li
 "inoremap { {}<C-[>%li
 "inoremap < <><C-[>i
