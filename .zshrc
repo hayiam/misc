@@ -5,6 +5,9 @@ export TERM="xterm-256color"
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 
+# exporting java var for android studio
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # exporting autosuggestions script
 source /home/maksim/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/maksim/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -65,16 +68,16 @@ alias tremc='transmission-daemon && tremc'
 alias grephistory='cat ~/.zsh_history | grep'
 alias grepnotes='cat ~/mynotes/notes* ~/mynotes/oldnotes/notes* | grep'
 
-#alias for mount cd-rom
+# alias for mount cd-rom
 alias cdmount='sudo mount -t iso9660'
 
-#alias to show cpu and gpu temperature
+# alias to show cpu and gpu temperature
 alias temp="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'"
 
-#alias to see emerge progress
+# alias to see emerge progress
 alias emprog='watch -n 1 sudo qlop -r -H'
 
-#aliases for suspend, shutdown and reboot
+# aliases for suspend, shutdown and reboot
 alias suspend='loginctl suspend'
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo reboot'
