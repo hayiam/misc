@@ -21,6 +21,7 @@ set nohlsearch "disable highlighting in search mode
 set undofile "enable persistent undo option
 set undodir=$HOME/.vim/undo "set directory to store undo history
 set fileencodings=utf-8,ru "encodings with which file is written
+set completeopt=menuone,noinsert "setup omnicompletion
 colorscheme tasty
 "colorscheme dracula
 "set up statusline
@@ -56,6 +57,12 @@ nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
 inoremap <C-l> <C-^>
 inoremap <C-n> <C-[>
+"omnicompletion shortcuts
+inoremap <C-o> <C-x><C-o>
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 "vnoremap <C-n> <C-[>
 "press enter to insert new line in normal mode
 nnoremap <CR> o<Esc>
@@ -67,13 +74,15 @@ noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
-"remap key for functions
+"remap keys for functions
 nmap <F4> :call FindTrailing()<CR>
 nmap <F3> :call FindTabs()<CR>
 "make tags and brackets autoclose
 "autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
-autocmd FileType html inoremap <buffer> < <
+"autocmd FileType html inoremap <buffer> < <
 autocmd FileType c,cpp,h inoremap ( ()<C-[>%li
+autocmd FileType html inoremap < <><C-[>%li
+autocmd FileType c,cpp,h inoremap >>> ->
 autocmd FileType html,c,cpp,h inoremap { {<C-o>o}<C-[>%o
 autocmd FileType c,cpp,h inoremap [ []<C-[>%li
 "inoremap { {}<C-[>%li
