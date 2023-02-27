@@ -67,6 +67,9 @@ noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
+"remap key for functions
+nmap <F4> :call FindTrailing()<CR>
+nmap <F3> :call FindTabs()<CR>
 "make tags and brackets autoclose
 "autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 autocmd FileType html inoremap <buffer> < <
@@ -133,8 +136,8 @@ function! StatuslineTabWarning()
 
         if tabs && spaces
             let b:statusline_tab_warning =  '[mi] '
-        elseif (spaces && !&et) || (tabs && &et)
-            let b:statusline_tab_warning = '[et] '
+        else
+            let b:statusline_tab_warning = ' '
         endif
     endif
     return b:statusline_tab_warning
