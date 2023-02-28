@@ -97,8 +97,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,          spawn,          {.v = scrot } },
 	{ 0,                            XK_Caps_Lock,      spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
 	{ 0,                            XK_ISO_Next_Group, spawn,          SHCMD("kill $(ps -aux | grep 'sleep 60' | awk 'NR==1{print $2}')") },
+	{ MODKEY|ShiftMask|ControlMask, XK_s,              spawn,          SHCMD("loginctl suspend") },
+	{ MODKEY|ShiftMask|ControlMask, XK_c,              spawn,          SHCMD("sudo shutdown -h now") },
+	{ MODKEY|ShiftMask|ControlMask, XK_r,              spawn,          SHCMD("sudo reboot") },
 /*  { MODKEY|ShiftMask,             XK_p,              spawn,          SHCMD("google-chrome-stable --start-fullscreen --new-window $(xclip -o -selection clipboard)") },*/
-	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("setsid picom --experimental-backends --config .config/picom/picom.conf") },
+	{ MODKEY|ShiftMask,             XK_0,              spawn,          SHCMD("killall picom; setsid picom --experimental-backends --config .config/picom/picom.conf") },
+	{ MODKEY|ShiftMask|ControlMask, XK_0,              spawn,          SHCMD("killall picom; setsid picom --experimental-backends --config .config/picom/picom_noanim.conf") },
 	{ MODKEY|ControlMask,           XK_0,              spawn,          SHCMD("killall picom") },
 	{ MODKEY|ControlMask,           XK_p,              spawn,          SHCMD("firefox-bin --new-window $(xclip -o -selection clipboard)") },
 	{ MODKEY|ShiftMask|ControlMask, XK_1,              spawn,          SHCMD("mpv --demuxer-max-bytes=40MiB --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' $(xclip -o -selection clipboard)") },
