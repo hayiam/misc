@@ -69,7 +69,7 @@ inoremap <C-k> <Up>
 inoremap <C-j> <Down>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-inoremap <C-f> <C-o>b
+inoremap <C-b> <C-o>b
 inoremap <C-w> <C-o>w
 "vnoremap <C-n> <C-[>
 "press enter to insert new line in normal mode
