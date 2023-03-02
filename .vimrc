@@ -22,6 +22,8 @@ set undofile "enable persistent undo option
 set undodir=$HOME/.vim/undo "set directory to store undo history
 set fileencodings=utf-8,ru "encodings with which file is written
 set completeopt=menuone,noinsert "setup omnicompletion
+set shortmess=I "disable start message
+set ww+=[,] "cross line with <- and -> arrows in insert mode 
 colorscheme tasty
 "colorscheme dracula
 "set up statusline
@@ -56,13 +58,19 @@ vnoremap <C-y> "+y
 nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
 inoremap <C-l> <C-^>
-inoremap <C-n> <C-[>
+"inoremap <C-n> <C-[>
 "omnicompletion shortcuts
 inoremap <C-o> <C-x><C-o>
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
+"remap movement keys in insert mode
+inoremap <C-d> <Delete>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-f> <C-o>b
+inoremap <C-w> <C-o>w
 "vnoremap <C-n> <C-[>
 "press enter to insert new line in normal mode
 nnoremap <CR> o<Esc>
@@ -70,10 +78,12 @@ nnoremap <CR> o<Esc>
 "switch between instances
 nnoremap <space> <c-w>w
 "resize instances
-noremap <silent> <C-Right> :vertical resize +3<CR>
-noremap <silent> <C-Left> :vertical resize -3<CR>
-noremap <silent> <C-Down> :resize +3<CR>
-noremap <silent> <C-Up> :resize -3<CR>
+noremap <silent> <C-Right> :vertical resize +1<CR>
+noremap <silent> <C-Left> :vertical resize -1<CR>
+noremap <silent> <C-Down> :resize +1<CR>
+noremap <silent> <C-Up> :resize -1<CR>
+"remap * cgn for better find and replace word
+noremap <C-]> *Ncgn
 "remap keys for functions
 nmap <F4> :call FindTrailing()<CR>
 nmap <F3> :call FindTabs()<CR>
