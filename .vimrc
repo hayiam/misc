@@ -58,7 +58,11 @@ vnoremap <C-y> "+y
 nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
 inoremap <C-l> <C-^>
-"inoremap <C-n> <C-[>
+"ramap esc
+inoremap ii <C-[>
+vnoremap ii <C-[>
+"remap * cgn for better find and replace word
+noremap <C-]> *Ncgn
 "omnicompletion shortcuts
 inoremap <C-o> <C-x><C-o>
 "remap movement keys in insert mode
@@ -71,7 +75,6 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-b> <C-o>b
 inoremap <C-w> <C-o>w
-"vnoremap <C-n> <C-[>
 "press enter to insert new line in normal mode
 nnoremap <CR> o<Esc>
 "setup hotkeys for split mode
@@ -82,8 +85,6 @@ noremap <silent> <C-Right> :vertical resize +1<CR>
 noremap <silent> <C-Left> :vertical resize -1<CR>
 noremap <silent> <C-Down> :resize +1<CR>
 noremap <silent> <C-Up> :resize -1<CR>
-"remap * cgn for better find and replace word
-noremap <C-]> *Ncgn
 "remap keys for functions
 nmap <F4> :call FindTrailing()<CR>
 nmap <F3> :call FindTabs()<CR>
