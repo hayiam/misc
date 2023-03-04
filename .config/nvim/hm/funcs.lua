@@ -1,4 +1,4 @@
---make tags and brackets autoclose adn setup vim functions
+--make tags and brackets autoclose and setup vim functions
 --autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 --autocmd FileType html inoremap <buffer> < <
 vim.cmd([[
