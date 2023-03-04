@@ -1,0 +1,28 @@
+local o = vim.opt
+
+--set up statusline
+vim.o.statusline=""
+o.statusline:append("%#NormalMode#%{(mode()=='n')?'  NORMAL ':''}")
+o.statusline:append("%#InsertMode#%{(mode()=='i')?'  INSERT ':''}")
+o.statusline:append("%#RPlaceMode#%{(mode()=='r')?'  RPLACE ':''}")
+o.statusline:append("%#VisualMode#%{(mode()=='v')?'  VISUAL ':''}")
+o.statusline:append("%#StatusLine#")
+o.statusline:append(" %f")
+o.statusline:append("%r")
+o.statusline:append("%m")
+o.statusline:append("%=")
+o.statusline:append("%#StatusLineNC#")
+o.statusline:append(" %p%%")
+o.statusline:append(" %l:%c") 
+o.statusline:append("%#StatusLineNC#")
+o.statusline:append("%{StatuslineTabWarning()}")
+o.statusline:append("%{StatuslineTrailingSpaceWarning()}")
+o.statusline:append("%#SeparatorLine#")
+o.statusline:append(" ")
+o.statusline:append("%#Encoding#")
+o.statusline:append(" %y")
+o.statusline:append(" %{&fileencoding?&fileencoding:&encoding}")
+o.statusline:append("[%{&fileformat}]")
+o.statusline:append(" ")
+o.statusline:append("%#SeparatorLine#")
+o.statusline:append(" ")
