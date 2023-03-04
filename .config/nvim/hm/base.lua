@@ -26,4 +26,3 @@ o.completeopt="menuone,noinsert" --setup omnicompletion
 o.shortmess="I" --disable start message
 vim.opt.ww:append("[,]") --cross line with <- and -> arrows in insert mode
 vim.cmd([[colorscheme tasty]])
---o.colorscheme="dracula"
