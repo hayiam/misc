@@ -49,6 +49,7 @@ let s:blood_red = { "cterm": 52, "gui": "#5f0000" }
 let s:dark_green = { "cterm": 22, "gui": "#005f00" }
 let s:light_sea_blue = { "cterm": 33, "gui": "#0087ff" }
 let s:sea_blue = { "cterm": 25, "gui": "#005faf" }
+let s:sea_blue_light = { "cterm": 123, "gui": "#87ffff" }
 
 let s:none = { "cterm": "NONE", "gui": "NONE" }
 let s:bold = { "cterm": "bold", "gui": "bold" }
@@ -147,7 +148,7 @@ call Highlight("SpecialKey", s:dark_grey, s:darker_grey, s:none)
 call Highlight("IncSearch", s:black, s:bright_yellow, s:bold)
 call Highlight("Search", s:black, s:bright_yellow, s:bold)
 
-call Highlight("Identifier", s:light_blue, s:none, s:none)
+call Highlight("Identifier", s:sea_blue_light, s:none, s:none)
 call Highlight("Question", s:light_blue, s:none, s:none)
 call Highlight("StorageClass", s:light_blue, s:none, s:italic)
 call Highlight("Structure", s:light_blue, s:none, s:none)
