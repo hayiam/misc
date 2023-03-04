@@ -80,7 +80,7 @@ call Highlight("Normal", s:white, s:charcoal, s:none)
 
 call Highlight("Cursor", s:charcoal, s:light_blue, s:none)
 call Highlight("Special", s:purple, s:none, s:none)
-call Highlight("Title", s:white, s:none, s:bold)
+call Highlight("Title", s:bright_yellow, s:none, s:none)
 
 call Highlight("Error", s:white, s:danger, s:none)
 call Highlight("ErrorMsg", s:white, s:danger, s:none)
@@ -105,14 +105,14 @@ call Highlight("qfSeparator", s:light_grey, s:none, s:none)
 call Highlight("QuickFixLine", s:light_green, s:light_charcoal, s:bold)
 
 call Highlight("Visual", s:none, s:dark_grey, s:none)
-call Highlight("TabLine", s:light_grey, s:dark_grey, s:underline)
+call Highlight("TabLine", s:bright_yellow, s:none, s:none)
 call Highlight("Whitespace", s:dark_grey, s:none, s:none)
 
-call Highlight("TabLineSel", s:none, s:charcoal, s:bold)
+call Highlight("TabLineSel", s:bright_yellow, s:none, s:underline)
 
 call Highlight("SignColumn", s:none, s:none, s:none)
 call Highlight("NonText", s:darker_grey, s:none, s:none)
-call Highlight("TabLineFill", s:none, s:darker_grey, s:none)
+call Highlight("TabLineFill", s:bright_yellow, s:none, s:none)
 call Highlight("LineNr", s:dark_grey, s:none, s:none)
 call Highlight("VertSplit", s:darker_grey, s:charcoal, s:none)
 
