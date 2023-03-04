@@ -36,3 +36,4 @@ map ("n", "<C-Up>", "<CMD>resize -1<CR>")
 --remap keys for functions
 map ("n", "<F4>", "<CMD>call FindTrailing()<CR>")
 map ("n", "<F3>", "<CMD>call FindTabs()<CR>")
+map ("n", "<C-s>", "<CMD>vertical VsplitVifm<CR>")
