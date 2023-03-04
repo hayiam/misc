@@ -24,5 +24,6 @@ o.undodir="~/.config/nvim/undo" --set directory to store undo history
 o.fileencodings="utf-8,ru" --encodings with which file is written
 o.completeopt="menuone,noinsert" --setup omnicompletion
 o.shortmess="I" --disable start message
+o.tabline="%!MyTabLine()"
 vim.opt.ww:append("[,]") --cross line with <- and -> arrows in insert mode
 vim.cmd([[colorscheme tasty]])
