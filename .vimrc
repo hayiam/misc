@@ -33,7 +33,7 @@ set statusline+=%#InsertMode#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#RPlaceMode#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#VisualMode#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 set statusline+=%#StatusLine#
-set statusline+=\ %f
+set statusline+=\ %t
 set statusline+=%r
 set statusline+=%m
 set statusline+=%=
