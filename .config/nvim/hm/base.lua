@@ -17,10 +17,11 @@ o.iminsert=0
 o.imsearch=0
 o.ignorecase=true --ignore case while search with /
 o.smartcase=true --if search contains an upper case letter it becomes case sensetive
-o.timeoutlen=200 o.ttimeoutlen=0 --disable change mode timeout
+o.timeoutlen=200 
+o.ttimeoutlen=0 --disable change mode timeout
 o.nohlsearch=true --disable highlighting in search mode
 o.undofile=true --enable persistent undo option
-o.undodir="$HOME/.vim/undo" --set directory to store undo history
+o.undodir="$HOME/.config/nvim/undo" --set directory to store undo history
 o.fileencodings="utf-8,ru" --encodings with which file is written
 o.completeopt="menuone,noinsert" --setup omnicompletion
 o.shortmess="I" --disable start message
