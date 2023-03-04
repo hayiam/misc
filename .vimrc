@@ -11,7 +11,7 @@ set expandtab "tabulations into spaces
 set copyindent "copy the previous indentation on autoindenting
 set smartindent "setting up smart autoindention
 syntax on "inable syntax hilighting
-set keymap=russian-jcukenwin "setting up ru mode; ctrl+^ to change keyboard layout
+set keymap=russian-jcukenwin "setting up ru mode; ctrl+l in insert mode to change keyboard layout
 set iminsert=0
 set imsearch=0
 set ignorecase "ignore case while search with /
