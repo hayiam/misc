@@ -3,7 +3,7 @@ local o = vim.o
 o.number=true --show line numbers
 o.relativenumber=true --set relative line numbers
 o.laststatus=2
---tabulation parametrs
+--tabulation parameters
 o.shiftwidth=4
 o.softtabstop=4
 o.tabstop=4
