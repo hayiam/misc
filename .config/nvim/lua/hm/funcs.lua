@@ -4,6 +4,7 @@
 vim.cmd([[
 autocmd FileType c,cpp,h,js,py inoremap ( ()<C-[>%li
 autocmd FileType html inoremap < <><C-[>%li
+autocmd FileType html inoremap / </<C-X><C-O><CR><C-[>bblx<C-$>xa
 autocmd FileType c,cpp,h inoremap >>> ->
 autocmd FileType html,c,cpp,h,js,py inoremap { {<C-o>o}<C-[>%o
 autocmd FileType c,cpp,h,html,js,py inoremap [ []<C-[>%li
