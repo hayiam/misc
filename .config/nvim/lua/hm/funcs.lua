@@ -2,11 +2,11 @@
 --autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
 --autocmd FileType html inoremap <buffer> < <
 vim.cmd([[
-autocmd FileType c,cpp,h inoremap ( ()<C-[>%li
+autocmd FileType c,cpp,h,js,py inoremap ( ()<C-[>%li
 autocmd FileType html inoremap < <><C-[>%li
 autocmd FileType c,cpp,h inoremap >>> ->
-autocmd FileType html,c,cpp,h inoremap { {<C-o>o}<C-[>%o
-autocmd FileType c,cpp,h inoremap [ []<C-[>%li
+autocmd FileType html,c,cpp,h,js,py inoremap { {<C-o>o}<C-[>%o
+autocmd FileType c,cpp,h,html,js,py inoremap [ []<C-[>%li
 
 function! FindTrailing()
     execute '/\s\+$'
