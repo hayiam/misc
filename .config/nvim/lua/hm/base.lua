@@ -21,6 +21,7 @@ o.timeoutlen=200
 o.ttimeoutlen=0 --disable change mode timeout
 o.hlsearch=true --disable highlighting in search mode
 o.undofile=true --set undorecording
+o.fillchars='eob: ' --disable ~ in empty lines
 -- o.termguicolors=true --set nvim to use gui colors in terminal, could fix or breake some themes
 o.undodir="/home/maksim/.config/nvim/undo" --set directory to store undo history
 o.fileencodings="utf-8,ru" --file encoding
