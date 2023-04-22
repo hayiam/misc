@@ -5,7 +5,7 @@ end
 map ("v", "<C-y>", '"+y')
 map ("n", "vv", '"+P')
 --remap ctrl+6 (to change keyboard layout) in insert mode
-map ("i", "<C-i>", "<C-^>")
+map ("i", "<C-r>", "<C-^>")
 --ramap esc
 map ("i", "ii", "<C-[>")
 map ("v", "ii", "<C-[>")
