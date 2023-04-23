@@ -6,7 +6,8 @@ autocmd FileType c,cpp,h,javascript,python inoremap ( ()<C-[>%li
 autocmd FileType html inoremap < <><C-[>%li
 autocmd FileType html inoremap / </<C-X><C-O><CR><C-[>x%x$a
 autocmd FileType python,c,cpp,h inoremap >>> ->
-autocmd FileType html,c,cpp,h,javascript,python inoremap { {<C-o>o}<C-[>%o
+autocmd FileType html,c,cpp,h,css,javascript,python inoremap { {}<C-[>%li
+autocmd FileType html,c,cpp,h,css,javascript,python inoremap {{ {<C-o>o}<C-[>%o
 autocmd FileType c,cpp,h,javascript,python inoremap [ []<C-[>%li
 
 function! FindTrailing()
@@ -29,7 +30,7 @@ function! MyTabLine()
     if i + 1 == tabpagenr()
       let s .= '%#TabLineSel#' " WildMenu
     else
-      let s .= '%#Title#'
+      let s .= '%#TabLine#'
     endif
     " set the tab page number (for mouse clicks)
     let s .= '%' . (i + 1) . 'T '

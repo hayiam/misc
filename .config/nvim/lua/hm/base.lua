@@ -9,7 +9,7 @@ o.softtabstop=4
 o.tabstop=4
 o.smarttab=true --inset tabs on the start of a line acording to shftwidth
 o.expandtab=true --tabulations into spaces
-o.copyindent=true --copy the previous indentation on autoindenting
+o.copyindent=false --copy the previous indentation on autoindenting
 o.smartindent=true --setting up smart autoindention
 o.syntax="on" --inable syntax hilighting
 o.keymap="russian-jcukenwin" --setting up ru mode; ctrl+n in insert mode to change keyboard layout
@@ -29,4 +29,4 @@ o.completeopt="menuone,noinsert" --setup omnicompletion
 o.shortmess="I" --disable start message
 o.tabline="%!MyTabLine()"
 vim.opt.ww:append("[,]") --cross line with <- and -> arrows in insert mode
-vim.cmd([[colorscheme tasty]])
+vim.cmd([[colorscheme neardefault]])
