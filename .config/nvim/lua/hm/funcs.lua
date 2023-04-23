@@ -10,14 +10,21 @@ autocmd FileType html,c,cpp,h,css,javascript,python inoremap { {}<C-[>%li
 autocmd FileType html,c,cpp,h,css,javascript,python inoremap {{ {<C-o>o}<C-[>%o
 autocmd FileType c,cpp,h,javascript,python inoremap [ []<C-[>%li
 
-function! FindTrailing()
-    execute '/\s\+$'
-endfunction
+"remove trailing spaces
+function! StripTrailing()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
-function! FindTabs()
-    execute '/\t'
-endfunction
+"replace tabs with 4 spaces
+function! ReplaceTabs()
+    set expandtab
+    retab! 4
+endfun
 
+"setup tabline
 function! MyTabLine()
   let s = ''
   " loop through each tab page

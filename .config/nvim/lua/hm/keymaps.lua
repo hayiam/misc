@@ -1,6 +1,8 @@
 local function map(m, k, v)
-	vim.keymap.set(m, k, v, { silent = true })
+    vim.keymap.set(m, k, v, { silent = true })
 end
+--setup ctrl-w to write file
+map ("n", "<C-w>", '<CMD>write<CR>')
 --setup aliases for ctrl-c and ctrl-v
 map ("v", "<C-y>", '"+y')
 map ("n", "vv", '"+P')
@@ -24,7 +26,7 @@ map ("i", "<C-e>", "<End>")
 map ("i", "<C-b>", "<C-o>b")
 map ("i", "<C-w>", "<C-o>w")
 --press enter to insert new line in normal mode
-map ("n", "<CR>", "o<Esc>")
+map ("n", "<C-space>", "o<Esc>")
 --setup hotkeys for split mode
 --switch between instances
 map ("n", "<space>", "<c-w>w")
@@ -34,7 +36,7 @@ map ("n", "<C-Left>", "<CMD>vertical resize -1<CR>")
 map ("n", "<C-Down>", "<CMD>resize +1<CR>")
 map ("n", "<C-Up>", "<CMD>resize -1<CR>")
 --remap keys for functions
-map ("n", "<F4>", "<CMD>call FindTrailing()<CR>")
-map ("n", "<F3>", "<CMD>call FindTabs()<CR>")
+map ("n", "<F2>", "<CMD>call StripTrailing()<CR>")
+map ("n", "<F3>", "<CMD>call ReplaceTabs()<CR>")
 map ("n", "<C-s>", "<CMD>vertical VsplitVifm<CR>")
 map ("n", "<C-t>", "<CMD>vertical TabVifm<CR>")
