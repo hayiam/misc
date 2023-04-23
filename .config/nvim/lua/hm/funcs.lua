@@ -33,9 +33,9 @@ function! MyTabLine()
       let s .= '%#TabLine#'
     endif
     " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T '
+    let s .= '%' . (i + 1) . 'T ['
     " set page number string
-    let s .= i + 1 . ''
+    let s .= i + 1 . ']'
     " get buffer names and statuses
     let n = ''  " temp str for buf names
     let m = 0   " &modified counter
