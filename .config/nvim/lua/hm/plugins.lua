@@ -4,4 +4,5 @@ return require('packer').startup(function(use)
     use 'vifm/vifm.vim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'ggandor/lightspeed.nvim'
+    use 'nvim-tree/nvim-tree.lua'
 end)

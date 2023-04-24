@@ -30,6 +30,8 @@ map ("n", "<C-space>", "o<Esc>")
 --setup hotkeys for split mode
 --switch between instances
 map ("n", "<space>", "<c-w>w")
+--open nvim-tree
+map ("n", "nn", "<CMD>NvimTreeToggle<CR>")
 --resize instances
 map ("n", "<C-Right>", "<CMD>vertical resize +1<CR>")
 map ("n", "<C-Left>", "<CMD>vertical resize -1<CR>")
