@@ -1,5 +1,13 @@
 local o = vim.o
 
+-- function to set up autocorrections
+local function c(ftype, conv, result)
+    vim.api.nvim_create_autocmd(
+    "FileType",
+    { pattern = ftype, command = "inoremap " .. conv .. " " .. result }
+    )
+end
+
 o.number=true --show line numbers
 o.relativenumber=true --set relative line numbers
 o.laststatus=2
@@ -30,3 +38,12 @@ o.shortmess="I" --disable start message
 o.tabline="%!MyTabLine()"
 vim.opt.ww:append("[,]") --cross line with <- and -> arrows in insert mode
 vim.cmd([[colorscheme neardefault]])
+
+-- autocorrections
+c("c,cpp,h,javascript,python", "(", "()<C-[>%li")
+c("html", "<", "<><C-[>%li")
+c("html", "\\", "</<C-X><C-O><CR><C-[>x%x$a")
+c("python,c,cpp,h", ">>>", "->")
+c("html,c,cpp,h,css,javascript,python", "{", "{}<C-[>%li")
+c("html,c,cpp,h,css,javascript,python", "{{", "{<C-o>o}<C-[>%o")
+c("c,cpp,h,javascript,python", "[", "[]<C-[>%li")

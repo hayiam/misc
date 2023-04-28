@@ -1,15 +1,4 @@
---make tags and brackets autoclose and setup vim functions
---autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
---autocmd FileType html inoremap <buffer> < <
 vim.cmd([[
-autocmd FileType c,cpp,h,javascript,python inoremap ( ()<C-[>%li
-autocmd FileType html inoremap < <><C-[>%li
-autocmd FileType html inoremap \ </<C-X><C-O><CR><C-[>x%x$a
-autocmd FileType python,c,cpp,h inoremap >>> ->
-autocmd FileType html,c,cpp,h,css,javascript,python inoremap { {}<C-[>%li
-autocmd FileType html,c,cpp,h,css,javascript,python inoremap {{ {<C-o>o}<C-[>%o
-autocmd FileType c,cpp,h,javascript,python inoremap [ []<C-[>%li
-
 "remove trailing spaces
 function! StripTrailing()
     let l = line(".")
