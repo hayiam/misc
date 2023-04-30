@@ -11,8 +11,6 @@ map ("i", "<C-r>", "<C-^>")
 --ramap esc
 map ("i", "ii", "<C-[>")
 map ("v", "ii", "<C-[>")
---remap * cgn for better find and replace word
-map ("n", "<C-]>", "*Ncgn")
 --omnicompletion shortcuts
 map ("i", "<C-o>", "<C-x><C-o>")
 --remap movement keys in insert mode
@@ -53,12 +51,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = ev.buf }
     map('n', 'gD', vim.lsp.buf.declaration, opts)
     map('n', 'gd', vim.lsp.buf.definition, opts)
+    map('n', '<space>r', vim.lsp.buf.rename, opts)
     map('n', 'K', vim.lsp.buf.hover, opts)
     map('n', 'gi', vim.lsp.buf.implementation, opts)
     map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     map('n', '<leader>d', vim.lsp.buf.type_definition, opts)
-    map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+    map({ 'n', 'v' }, '<C-c>', vim.lsp.buf.code_action, opts)
     map('n', 'gr', vim.lsp.buf.references, opts)
+    map('n', '<leader>s', vim.lsp.buf.workspace_symbol, opts)
+    map('n', '<leader>a', vim.lsp.buf.add_workspace_folder, opts)
+    map('n', '<leader>r', vim.lsp.buf.remove_workspace_folder, opts)
+    map('n', '<leader>d', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
     map('n', '<leader>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)
