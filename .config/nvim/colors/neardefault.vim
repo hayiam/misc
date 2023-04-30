@@ -20,7 +20,7 @@ else
   let s:italic = { "cterm": "NONE", "gui": "NONE" }
 endif
 
-let s:light_purple = { "cterm": 213, "gui": "#ff87ff" }
+let s:green = { "cterm": 49, "gui": "#00ffaf" }
 let s:yellow = { "cterm": 228, "gui": "#ffff87" }
 let s:purple = { "cterm": 141, "gui": "#af87ff" }
 let s:light_green = { "cterm": 148, "gui": "#A4E400" }
@@ -87,12 +87,16 @@ call Highlight("NvimTreeModifiedFile", s:magenta, s:charcoal, s:none)
 " Lsp diagnostics colors
 call Highlight("DiagnosticLineNrError", s:danger, s:charcoal, s:bold)
 call Highlight("DiagnosticLineNrWarn", s:light_grey, s:charcoal, s:bold)
-call Highlight("DiagnosticLineNrInfo", s:light_grey, s:charcoal, s:none)
-call Highlight("DiagnosticLineNrHint", s:light_grey, s:charcoal, s:none)
+call Highlight("DiagnosticLineNrInfo", s:yellow, s:charcoal, s:none)
+call Highlight("DiagnosticLineNrHint", s:green, s:charcoal, s:none)
 call Highlight("DiagnosticVirtualTextError", s:danger, s:charcoal, s:bold)
 call Highlight("DiagnosticVirtualTextWarn", s:light_grey, s:charcoal, s:none)
+call Highlight("DiagnosticVirtualTextInfo", s:yellow, s:charcoal, s:none)
+call Highlight("DiagnosticVirtualTextHint", s:green, s:charcoal, s:none)
 call Highlight("DiagnosticUnderLineError", s:danger, s:charcoal, s:underline)
 call Highlight("DiagnosticUnderLineWarn", s:light_grey, s:charcoal, s:underline)
+call Highlight("DiagnosticUnderLineInfo", s:yellow, s:charcoal, s:underline)
+call Highlight("DiagnosticUnderLineHint", s:green, s:charcoal, s:underline)
 
 " Highlight line number instead of having icons sign column in lsp diagnostics
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
