@@ -83,6 +83,10 @@ call Highlight("NvimTreeRootFolder", s:purple, s:charcoal, s:none)
 call Highlight("NvimTreeFolderIcon", s:light_green, s:charcoal, s:none)
 call Highlight("NvimTreeIndentMarker", s:light_grey, s:charcoal, s:none)
 call Highlight("NvimTreeModifiedFile", s:magenta, s:charcoal, s:none)
+call Highlight("NvimTreeLspDiagnosticsError", s:danger, s:charcoal, s:bold)
+call Highlight("NvimTreeLspDiagnosticsWarning", s:light_grey, s:charcoal, s:none)
+call Highlight("NvimTreeLspDiagnosticsInformation", s:yellow, s:charcoal, s:none)
+call Highlight("NvimTreeLspDiagnosticsHint", s:green, s:charcoal, s:none)
 
 " Lsp diagnostics colors
 call Highlight("DiagnosticLineNrError", s:danger, s:charcoal, s:bold)
