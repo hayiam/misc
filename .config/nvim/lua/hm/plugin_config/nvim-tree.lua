@@ -38,9 +38,9 @@ require("nvim-tree").setup({
           },
           glyphs = {
               default = "",
-              symlink = "",
+              symlink = "◆",
               bookmark = "☑",
-              modified = "●",
+              modified = "⮜",
               folder = {
                   arrow_closed = "→",
                   arrow_open = "↓",
@@ -53,5 +53,15 @@ require("nvim-tree").setup({
             },
         },
     },
+},
+    diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+        icons = {
+            hint = "▎",
+            info = "▎",
+            warning = "▎",
+            error = "▎",
+        },
     },
 })

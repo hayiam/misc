@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd(
 )
 -- configure diagnostics view
 vim.diagnostic.config({
-    underline = false,
+    underline = true,
     update_in_insert = false,
     virtual_text = {
         prefix = '✔', -- Could be '●', '▎', 'x', '■'
