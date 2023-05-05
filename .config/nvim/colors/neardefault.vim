@@ -106,6 +106,8 @@ call Highlight("DiagnosticUnderLineWarn", s:light_grey, s:charcoal, s:underline)
 call Highlight("DiagnosticUnderLineInfo", s:yellow, s:charcoal, s:underline)
 call Highlight("DiagnosticUnderLineHint", s:green, s:charcoal, s:underline)
 
+call Highlight("IndentBlankLineContextChar", s:light_grey, s:none, s:none)
+
 " Highlight line number instead of having icons sign column in lsp diagnostics
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
 sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
