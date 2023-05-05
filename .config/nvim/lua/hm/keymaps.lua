@@ -50,8 +50,8 @@ map ("n", "<space>n", "<CMD>NvimTreeToggle<CR>")
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map("n", "<space>q", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
+map("n", "<", vim.diagnostic.goto_prev)
+map("n", ">", vim.diagnostic.goto_next)
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
