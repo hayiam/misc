@@ -47,12 +47,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     map("n", "gD", vim.lsp.buf.declaration, opts)
-    map("n", "gd", vim.lsp.buf.definition, opts)
-    map("n", "<space>r", vim.lsp.buf.rename, opts)
+    map("n", "<leader>r", vim.lsp.buf.rename, opts)
     map("n", "K", vim.lsp.buf.hover, opts)
-    map("n", "gi", vim.lsp.buf.implementation, opts)
     map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    map({ "n", "v" }, "<C-c>", vim.lsp.buf.code_action, opts)
+    map({ "n", "v" }, "<C-c>", "<CMD>CodeActionMenu<CR>", opts)
     map("n", "gr", vim.lsp.buf.references, opts)
   end,
 })
@@ -68,6 +66,9 @@ map("n", "<space>g", builtin.live_grep)
 map("n", "<space>b", builtin.buffers)
 map("n", "<space>h", builtin.help_tags)
 map("n", "<space>d", builtin.diagnostics)
+map("n", "<space>r", builtin.lsp_references)
+map("n", "gd", builtin.lsp_definitions)
+map("n", "gi", builtin.lsp_implementations)
 map("n", "<space>m", "<CMD>Telescope menu<CR>")
 
 --setup hotkeys for split mode
