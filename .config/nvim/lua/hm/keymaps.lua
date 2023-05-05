@@ -1,8 +1,26 @@
 local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
+
+-- snippet to make diagnostic hints togglable
+-- create a flag to toggle and reset it after every action to force consistant behavior
+diagnostics_active = true
+vim.api.nvim_create_autocmd(
+"CursorMoved, CursorMovedl",
+{ pattern = "*", command = "lua diagnostics_active = false" }
+)
+-- create a function to toggle hints
+local toggle_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.enable()
+  else
+    vim.diagnostic.disable()
+  end
+end
+
 --setup ctrl-w to write file
-map ("n", "<C-w>", '<CMD>write<CR>')
+map ("n", "<C-w>", "<CMD>write<CR>")
 --setup aliases for ctrl-c and ctrl-v
 map ("v", "<C-y>", '"+y')
 map ("n", "vv", '"+P')
@@ -25,19 +43,15 @@ map ("i", "<C-b>", "<C-o>b")
 map ("i", "<C-w>", "<C-o>w")
 --press enter to insert new line in normal mode
 map ("n", "<C-space>", "o<Esc>")
---setup hotkeys for split mode
---switch between instances
-map ("n", "<space>", "<c-w>w")
 --open nvim-tree
 map ("n", "<space>n", "<CMD>NvimTreeToggle<CR>")
+
 --lsp
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-map('n', '<space>f', vim.diagnostic.open_float)
-map('n', '[d', vim.diagnostic.goto_prev)
-map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<space>q', vim.diagnostic.setloclist)
-
+map("n", "<space>q", vim.diagnostic.open_float)
+map("n", "[d", vim.diagnostic.goto_prev)
+map("n", "]d", vim.diagnostic.goto_next)
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -49,36 +63,37 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    map('n', 'gD', vim.lsp.buf.declaration, opts)
-    map('n', 'gd', vim.lsp.buf.definition, opts)
-    map('n', '<space>r', vim.lsp.buf.rename, opts)
-    map('n', 'K', vim.lsp.buf.hover, opts)
-    map('n', 'gi', vim.lsp.buf.implementation, opts)
-    map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    map('n', '<leader>d', vim.lsp.buf.type_definition, opts)
-    map({ 'n', 'v' }, '<C-c>', vim.lsp.buf.code_action, opts)
-    map('n', 'gr', vim.lsp.buf.references, opts)
-    map('n', '<leader>s', vim.lsp.buf.workspace_symbol, opts)
-    map('n', '<leader>a', vim.lsp.buf.add_workspace_folder, opts)
-    map('n', '<leader>r', vim.lsp.buf.remove_workspace_folder, opts)
-    map('n', '<leader>d', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    map('n', '<leader>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
+    map("n", "gD", vim.lsp.buf.declaration, opts)
+    map("n", "gd", vim.lsp.buf.definition, opts)
+    map("n", "<space>r", vim.lsp.buf.rename, opts)
+    map("n", "K", vim.lsp.buf.hover, opts)
+    map("n", "gi", vim.lsp.buf.implementation, opts)
+    map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+    map({ "n", "v" }, "<C-c>", vim.lsp.buf.code_action, opts)
+    map("n", "gr", vim.lsp.buf.references, opts)
   end,
 })
---enable and disable lsp diagnostics
-map('n', "<space>e", "<CMD>lua vim.diagnostic.enable()<CR>")
-map('n', "<space>d", "<CMD>lua vim.diagnostic.disable()<CR>")
+
+--toggle lsp diagnostics
+map("n", "<space>e", toggle_diagnostics)
+
+-- Find files using Telescope command-line sugar.
+local builtin = require('telescope.builtin')
+map("n", "<space>f", builtin.find_files)
+map("n", "<space>g", builtin.live_grep)
+map("n", "<space>b", builtin.buffers)
+map("n", "<space>h", builtin.help_tags)
+map("n", "<space>d", builtin.diagnostics)
+map("n", "<space>m", "<CMD>Telescope menu<CR>")
+
+--setup hotkeys for split mode
+--switch between instances
+map ("n", "<space>", "<c-w>w")
 --resize instances
 map ("n", "<C-Right>", "<CMD>vertical resize +1<CR>")
 map ("n", "<C-Left>", "<CMD>vertical resize -1<CR>")
 map ("n", "<C-Down>", "<CMD>resize +1<CR>")
 map ("n", "<C-Up>", "<CMD>resize -1<CR>")
 --remap keys for functions
-map ("n", "<F2>", "<CMD>call StripTrailing()<CR>")
-map ("n", "<F3>", "<CMD>call ReplaceTabs()<CR>")
 map ("n", "<C-s>", "<CMD>vertical VsplitVifm<CR>")
 map ("n", "<C-t>", "<CMD>vertical TabVifm<CR>")
