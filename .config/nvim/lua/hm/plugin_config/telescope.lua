@@ -7,6 +7,8 @@ function my_picker(results, title)
   }):find()
 end
 
+local context = false
+
 require("telescope").setup {
   extensions = {
     menu = {
@@ -17,8 +19,10 @@ require("telescope").setup {
           { "Change colorscheme", "Telescope colorscheme" },
           { "Change all tabs to spaces", "call ReplaceTabs()" },
           { "Remove trailing spaces", "call StripTrailing()" },
-          { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
+          { "Toggle indent lines", "IndentBlanklineToggle" },
+          { "Current context enable/disable", "lua context = not context if context then require('indent_blankline').setup {show_current_context = true} else require('indent_blankline').setup {show_current_context = false} end" },
           { "Add workspace folder", "lua vim.lsp.buf.add_workspace_folder()" },
+          { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
           { "List workspace folders", "lua my_picker(vim.lsp.buf.list_workspace_folders(), 'Workspace folders')" },
           { "Document symbols", "Telescope lsp_document_symbols" },
           { "Workspace symbols", "Telescope lsp_workspace_symbols" },
