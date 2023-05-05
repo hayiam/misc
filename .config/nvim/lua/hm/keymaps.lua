@@ -29,12 +29,13 @@ map ("n", "<C-space>", "o<Esc>")
 --open nvim-tree
 map ("n", "<space>n", "<CMD>NvimTreeToggle<CR>")
 
---lsp
+--Lsp
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map("n", "<space>q", vim.diagnostic.open_float)
 map("n", "<", vim.diagnostic.goto_prev)
 map("n", ">", vim.diagnostic.goto_next)
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -44,14 +45,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     map("n", "gD", vim.lsp.buf.declaration, opts)
     map("n", "<leader>r", vim.lsp.buf.rename, opts)
     map("n", "K", vim.lsp.buf.hover, opts)
     map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    map({ "n", "v" }, "<C-c>", "<CMD>CodeActionMenu<CR>", opts)
     map("n", "gr", vim.lsp.buf.references, opts)
+    map({ "n", "v" }, "<C-c>", "<CMD>CodeActionMenu<CR>", opts)
   end,
 })
 
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 map("n", "<leader>e", vim.diagnostic.enable)
 map("n", "<leader>d", vim.diagnostic.disable)
 
--- Find files using Telescope command-line sugar.
+-- Telescope
 local builtin = require('telescope.builtin')
 map("n", "<space>f", builtin.find_files)
 map("n", "<space>g", builtin.live_grep)
@@ -79,6 +79,6 @@ map ("n", "<C-Right>", "<CMD>vertical resize +1<CR>")
 map ("n", "<C-Left>", "<CMD>vertical resize -1<CR>")
 map ("n", "<C-Down>", "<CMD>resize +1<CR>")
 map ("n", "<C-Up>", "<CMD>resize -1<CR>")
---remap keys for functions
+--keymaps for Vifm
 map ("n", "<C-s>", "<CMD>vertical VsplitVifm<CR>")
 map ("n", "<C-t>", "<CMD>vertical TabVifm<CR>")
