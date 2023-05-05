@@ -2,23 +2,6 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
--- snippet to make diagnostic hints togglable
--- create a flag to toggle and reset it after every action to force consistant behavior
-diagnostics_active = true
-vim.api.nvim_create_autocmd(
-"CursorMoved, CursorMovedl",
-{ pattern = "*", command = "lua diagnostics_active = false" }
-)
--- create a function to toggle hints
-local toggle_diagnostics = function()
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
-    vim.diagnostic.enable()
-  else
-    vim.diagnostic.disable()
-  end
-end
-
 --setup ctrl-w to write file
 map ("n", "<C-w>", "<CMD>write<CR>")
 --setup aliases for ctrl-c and ctrl-v
@@ -75,7 +58,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 --toggle lsp diagnostics
-map("n", "<space>e", toggle_diagnostics)
+map("n", "<leader>e", vim.diagnostic.enable)
+map("n", "<leader>d", vim.diagnostic.disable)
 
 -- Find files using Telescope command-line sugar.
 local builtin = require('telescope.builtin')
