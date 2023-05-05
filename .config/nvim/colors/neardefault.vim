@@ -101,10 +101,10 @@ call Highlight("DiagnosticFloatingError", s:magenta, s:none, s:bold)
 call Highlight("DiagnosticFloatingWarn", s:light_grey, s:none, s:bold)
 call Highlight("DiagnosticFloatingInfo", s:yellow, s:none, s:bold)
 call Highlight("DiagnosticFloatingHint", s:green, s:none, s:bold)
-call Highlight("DiagnosticUnderLineError", s:danger, s:charcoal, s:underline)
-call Highlight("DiagnosticUnderLineWarn", s:light_grey, s:charcoal, s:underline)
-call Highlight("DiagnosticUnderLineInfo", s:yellow, s:charcoal, s:underline)
-call Highlight("DiagnosticUnderLineHint", s:green, s:charcoal, s:underline)
+call Highlight("DiagnosticUnderLineError", s:danger, s:none, s:bold)
+call Highlight("DiagnosticUnderLineWarn", s:light_grey, s:none, s:none)
+call Highlight("DiagnosticUnderLineInfo", s:yellow, s:none, s:none)
+call Highlight("DiagnosticUnderLineHint", s:green, s:none, s:none)
 
 call Highlight("IndentBlankLineContextChar", s:light_grey, s:none, s:none)
 
@@ -114,7 +114,7 @@ sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=Dia
 sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
 sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
 
-call Highlight("Normal", s:white, s:charcoal, s:none)
+call Highlight("Normal", s:white, s:none, s:none)
 
 call Highlight("Cursor", s:charcoal, s:light_blue, s:none)
 call Highlight("Special", s:purple, s:none, s:none)
@@ -134,13 +134,13 @@ call Highlight("CursorColumn", s:none, s:darker_grey, s:none)
 call Highlight("ColorColumn", s:none, s:light_charcoal, s:none)
 call Highlight("Conceal", s:none, s:none, s:none)
 call Highlight("CursorLine", s:none, s:darker_grey, s:none)
-call Highlight("Type", s:none, s:none, s:none)
+call Highlight("Type", s:light_blue, s:none, s:none)
 
 " quickfix window
 call Highlight("qfFileName", s:purple, s:none, s:none)
 call Highlight("qfLineNr", s:light_blue, s:none, s:none)
 call Highlight("qfSeparator", s:light_grey, s:none, s:none)
-call Highlight("QuickFixLine", s:light_green, s:light_charcoal, s:bold)
+call Highlight("QuickFixLine", s:light_green, s:darker_grey, s:bold)
 
 call Highlight("Visual", s:none, s:dark_grey, s:none)
 call Highlight("TabLine", s:bright_yellow, s:none, s:none)
@@ -212,7 +212,7 @@ call Highlight("String", s:yellow, s:none, s:none)
 call Highlight("Todo", s:yellow, s:dark_grey, s:bold)
 call Highlight("Underlined", s:none, s:none, s:underline)
 
-call Highlight("Pmenu", s:light_blue, s:darker_grey, s:none)
+call Highlight("Pmenu", s:light_blue, s:charcoal, s:none)
 call Highlight("PmenuSel", s:yellow, s:dark_grey, s:none)
 call Highlight("PmenuSbar", s:none, s:grey, s:none)
 call Highlight("PmenuThumb", s:dark_grey, s:white, s:none)
