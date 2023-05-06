@@ -30,8 +30,8 @@ require("lspconfig").html.setup{
 
 -- start with lsp diagnostics disabled
 vim.api.nvim_create_autocmd(
-    "BufEnter",
-    { pattern = "*", command = "lua vim.diagnostic.disable()" }
+    "BufReadPost",
+    { pattern = "*", command = "lua vim.diagnostic.disable() diagnostics_active = false" }
 )
 -- configure diagnostics view
 vim.diagnostic.config({
