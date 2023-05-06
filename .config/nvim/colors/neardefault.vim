@@ -73,7 +73,7 @@ call Highlight("InsertMode", s:charcoal, s:light_green, s:bold)
 call Highlight("RPlaceMode", s:white, s:magenta, s:bold)
 call Highlight("VisualMode", s:charcoal, s:purple, s:bold)
 call Highlight("Encoding", s:bright_yellow, s:darker_grey, s:none)
-call Highlight("StatusLine", s:bright_yellow, s:charcoal, s:none)
+call Highlight("StatusLine", s:bright_yellow, s:none, s:none)
 call Highlight("StatusLineNC", s:bright_yellow, s:darker_grey, s:none)
 call Highlight("SeparatorLine", s:none, s:charcoal, s:none)
 
