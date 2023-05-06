@@ -2,6 +2,19 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
+-- snippet to make diagnostic hints togglable
+diagnostics_active = false
+-- create a function to toggle hints
+local toggle_diagnostics = function()
+  if not diagnostics_active then
+    vim.diagnostic.enable()
+  else
+    vim.diagnostic.disable()
+  end
+  diagnostics_active = not diagnostics_active
+end
+
+
 --setup ctrl-w to write file
 map ("n", "<C-w>", "<CMD>write<CR>")
 --setup aliases for ctrl-c and ctrl-v
@@ -51,13 +64,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map("n", "K", vim.lsp.buf.hover, opts)
     map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
     map("n", "gr", vim.lsp.buf.references, opts)
-    map({ "n", "v" }, "<C-c>", "<CMD>CodeActionMenu<CR>", opts)
+    map({ "n", "v" }, "<C-a>", require("actions-preview").code_actions, opts)
   end,
 })
 
 --toggle lsp diagnostics
-map("n", "<leader>e", vim.diagnostic.enable)
-map("n", "<leader>d", vim.diagnostic.disable)
+map("n", "<leader>e", toggle_diagnostics)
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -69,7 +81,7 @@ map("n", "<space>d", builtin.diagnostics)
 map("n", "<space>r", builtin.lsp_references)
 map("n", "gd", builtin.lsp_definitions)
 map("n", "gi", builtin.lsp_implementations)
-map("n", "<space>m", "<CMD>Telescope menu<CR>")
+map("n", "<space>m", "<CMD>Telescope menu theme=dropdown<CR>")
 
 --setup hotkeys for split mode
 --switch between instances
