@@ -5,10 +5,6 @@ return require('packer').startup(function(use)
     use "lukas-reineke/indent-blankline.nvim"
     use "nvim-tree/nvim-tree.lua"
     use "ggandor/lightspeed.nvim"  
-    use {
-        "weilbith/nvim-code-action-menu",
-        cmd = 'CodeActionMenu',
-    }
 
     -- Lsp
     use {
