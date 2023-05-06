@@ -6,6 +6,7 @@ return require('packer').startup(function(use)
     use "nvim-tree/nvim-tree.lua"
     use "ggandor/lightspeed.nvim"  
     use "aznhe21/actions-preview.nvim"
+    
     -- Lsp
     use {
         "williamboman/mason.nvim",
