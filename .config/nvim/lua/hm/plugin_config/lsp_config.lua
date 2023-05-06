@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd(
     "BufReadPost",
     { pattern = "*", command = "lua vim.diagnostic.disable() diagnostics_active = false" }
 )
+
 -- configure diagnostics view
 vim.diagnostic.config({
     underline = true,
@@ -41,6 +42,7 @@ vim.diagnostic.config({
         prefix = '✔', -- Could be '●', '▎', 'x', '■'
   }
 })
+
 -- configure floating lsp popups
 local _border = "single"
 
