@@ -39,11 +39,11 @@ function! MyTabLine()
     " loop through each buffer in a tab
     for b in buflist
       if getbufvar(b, "&buftype") == 'help'
-        " let n .= '[H]' . fnamemodify(bufname(b), ':t:s/.txt$//')
+        let n .= '[H] ' . fnamemodify(bufname(b), ':t:s/.txt$//')
       elseif getbufvar(b, "&buftype") == 'quickfix'
-        " let n .= '[Q]'
+        let n .= '[Q] '
       elseif getbufvar(b, "&modifiable")
-        let n .= fnamemodify(bufname(b), ':t') . ', ' " pathshorten(bufname(b))
+        let n .= fnamemodify(bufname(b), ':t') " pathshorten(bufname(b))
       endif
       if getbufvar(b, "&modified")
         let m += 1
