@@ -81,7 +81,7 @@ map("n", "<space>d", builtin.diagnostics)
 map("n", "<space>r", builtin.lsp_references)
 map("n", "gd", builtin.lsp_definitions)
 map("n", "gi", builtin.lsp_implementations)
-map("n", "<space>m", "<CMD>Telescope menu theme=dropdown<CR>")
+map("n", "<space>m", "<CMD>Telescope menu prompt_title=Menu theme=dropdown<CR>")
 
 --setup hotkeys for split mode
 --switch between instances
