@@ -10,7 +10,7 @@ end
 
 o.number=true --show line numbers
 o.relativenumber=true --set relative line numbers
-o.laststatus=2
+o.laststatus=3
 --tabulation parameters
 o.shiftwidth=4
 o.softtabstop=4
