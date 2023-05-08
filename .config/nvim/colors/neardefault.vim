@@ -76,6 +76,7 @@ call Highlight("Encoding", s:bright_yellow, s:darker_grey, s:none)
 call Highlight("StatusLine", s:bright_yellow, s:none, s:none)
 call Highlight("StatusLineNC", s:bright_yellow, s:darker_grey, s:none)
 call Highlight("SeparatorLine", s:none, s:charcoal, s:none)
+call Highlight("WinSeparator", s:grey, s:none, s:none)
 
 " NvimTree colors
 call Highlight("NvimTreeFileIcon", s:light_blue, s:charcoal, s:none)
