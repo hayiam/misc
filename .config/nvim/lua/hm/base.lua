@@ -4,7 +4,8 @@ local o = vim.o
 local function c(ftype, conv, result)
     vim.api.nvim_create_autocmd(
     "FileType",
-    { pattern = ftype, command = "inoremap " .. conv .. " " .. result }
+    { pattern = ftype, 
+      command = "inoremap " .. conv .. " " .. result }
     )
 end
 
