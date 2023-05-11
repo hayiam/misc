@@ -23,7 +23,6 @@ end
 
 -- function to toggle indent line context highlight
 local context = false
-
 function toggle_context()
   context = not context 
   if context then 
