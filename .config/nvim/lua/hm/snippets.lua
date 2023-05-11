@@ -1,5 +1,5 @@
 -- function to set up snippets
-local function a(ftype, snippet, cmdforconv, aftercmd)
+local function s(ftype, snippet, cmdforconv, aftercmd)
     vim.api.nvim_create_autocmd(
     "FileType",
     { pattern = ftype, 
@@ -63,7 +63,7 @@ let snippet .= "return 0;" . "\n"
 let snippet .= "}" . "\n"
 ]]
 
-a("html", html, "html!!", "gg6j3w")
-a("python", python, "python!!", "0<c-v>2k3lxgg")
-a("cpp", cpp, "cpp!!", "gg3j")
-a("c", c, "c!!", "gg1j")
+s("html", html, "html!!", "gg6j3w")
+s("python", python, "python!!", "0<c-v>2k3lxgg")
+s("cpp", cpp, "cpp!!", "gg3j")
+s("c", c, "c!!", "gg1j")
