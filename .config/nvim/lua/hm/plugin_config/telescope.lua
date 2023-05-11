@@ -10,6 +10,17 @@ function my_picker(results, rtitle, ptitle, opts)
   }):find()
 end
 
+-- function to toggle indent lines
+local indent_toggled = false
+function toggle_indent_lines()
+    toggled = not toggled
+    if not require('indent_blankline').enabled and toggled == true then 
+        vim.cmd('IndentBlanklineEnable') 
+    else 
+        vim.cmd('IndentBlanklineDisable') 
+    end
+end
+
 -- function to toggle indent line context highlight
 local context = false
 
@@ -39,7 +50,7 @@ require("telescope").setup {
           { "List workspace folders", "lua my_picker(vim.lsp.buf.list_workspace_folders(), 'Folders', 'Workspace folders', require('telescope.themes').get_dropdown{})" },
           { "Remove trailing spaces", "call StripTrailing()" },
           { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
-          { "Toggle indent lines", "IndentBlanklineToggle" },
+          { "Toggle indent lines", "packadd indent-blankline.nvim | lua toggle_indent_lines()" },
           { "Workspace symbols", "Telescope lsp_workspace_symbols" },
         },
       },

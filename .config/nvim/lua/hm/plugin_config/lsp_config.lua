@@ -1,14 +1,15 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-ensure_installled = { "clangd", "quick_lint_js", "pylsp", "tsserver", "html" },
+ensure_installled = { "clangd", "pylsp", "jedi_language_server", "tsserver", "cssls", "html" },
 automatic_installation = true,
 })
 
 require("lspconfig").clangd.setup{}
-require("lspconfig").quick_lint_js.setup{}
 require("lspconfig").pylsp.setup{}
+require("lspconfig").jedi_language_server.setup{}
 require("lspconfig").tsserver.setup{}
+require("lspconfig").cssls.setup{}
 require("lspconfig").html.setup{
     on_attach = function ()
                     -- reset omnicompletion function for html
