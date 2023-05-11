@@ -45,7 +45,7 @@ map ("n", "<space>n", "<CMD>NvimTreeToggle<CR>")
 --Lsp
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-map("n", "<space>q", vim.diagnostic.open_float)
+map("n", "<leader>d", vim.diagnostic.open_float)
 map("n", "<", vim.diagnostic.goto_prev)
 map("n", ">", vim.diagnostic.goto_next)
 
@@ -68,6 +68,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+--Codeium forced ramappings (due to the lazy loading bug)
+vim.cmd("imap <script><silent><nowait><expr> <C-g> codeium#Accept()")
+map("i", "<c-x>", "<CMD>call codeium#Clear()<CR>")
+
 --toggle lsp diagnostics
 map("n", "<leader>e", toggle_diagnostics)
 
@@ -78,7 +82,6 @@ map("n", "<space>g", builtin.live_grep)
 map("n", "<space>b", builtin.buffers)
 map("n", "<space>h", builtin.help_tags)
 map("n", "<space>d", builtin.diagnostics)
-map("n", "<space>r", builtin.lsp_references)
 map("n", "gd", builtin.lsp_definitions)
 map("n", "gi", builtin.lsp_implementations)
 map("n", "<space>m", "<CMD>Telescope menu prompt_title=Menu theme=dropdown<CR>")
