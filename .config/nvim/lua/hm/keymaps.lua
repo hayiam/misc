@@ -6,12 +6,13 @@ end
 diagnostics_active = false
 -- create a function to toggle hints
 local toggle_diagnostics = function()
-  if not diagnostics_active then
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
     vim.diagnostic.enable()
   else
     vim.diagnostic.disable()
   end
-  diagnostics_active = not diagnostics_active
+  
 end
 
 
