@@ -39,7 +39,7 @@ require("telescope").setup {
           { "List workspace folders", "lua my_picker(vim.lsp.buf.list_workspace_folders(), 'Folders', 'Workspace folders', require('telescope.themes').get_dropdown{})" },
           { "Remove trailing spaces", "call StripTrailing()" },
           { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
-          { "Toggle indent lines", "packadd indent-blankline.nvim | IndentBlanklineToggle" },
+          { "Toggle indent lines", "IndentBlanklineToggle" },
           { "Workspace symbols", "Telescope lsp_workspace_symbols" },
         },
       },
