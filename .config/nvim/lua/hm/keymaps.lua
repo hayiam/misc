@@ -12,7 +12,6 @@ local toggle_diagnostics = function()
   else
     vim.diagnostic.disable()
   end
-  
 end
 
 

@@ -2,7 +2,10 @@ return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"
     use "nvim-treesitter/nvim-treesitter"
     use "vifm/vifm.vim"
-    use "lukas-reineke/indent-blankline.nvim"
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        opt = true
+    }
     use "nvim-tree/nvim-tree.lua"
     use "ggandor/lightspeed.nvim"  
     use "aznhe21/actions-preview.nvim"
