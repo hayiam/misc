@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 --Codeium forced ramappings (due to the lazy loading bug)
-vim.cmd("imap <script><silent><nowait><expr> <C-g> codeium#Accept()")
+vim.keymap.set("i", "<C-g>", function () return vim.fn["codeium#Accept"]() end, { expr = true })
 map("i", "<c-x>", "<CMD>call codeium#Clear()<CR>")
 
 --toggle lsp diagnostics
