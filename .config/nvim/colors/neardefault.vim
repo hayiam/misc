@@ -203,7 +203,7 @@ call Highlight("Float", s:purple, s:none, s:none)
 call Highlight("Number", s:purple, s:none, s:none)
 call Highlight("jsFutureKeys", s:purple, s:none, s:none)
 
-call Highlight("Folded", s:magenta, s:none, s:none)
+call Highlight("Folded", s:white, s:none, s:none)
 call Highlight("FoldColumn", s:light_grey, s:none, s:none)
 call Highlight("Comment", s:grey, s:none, s:italic)
 
