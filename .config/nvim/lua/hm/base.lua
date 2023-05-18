@@ -33,6 +33,7 @@ o.undofile=true --set undorecording
 o.fillchars="eob: ,fold: " --disable ~ in empty lines, and --- in foldings
 -- o.termguicolors=true --set nvim to use gui colors in terminal, could fix or breake some themes
 o.undodir="/home/maksim/.config/nvim/undo" --set directory to store undo history
+o.undolevels=1000
 o.fileencodings="utf-8,ru" --file encoding
 o.completeopt="menuone,noinsert" --setup omnicompletion
 o.shortmess="I" --disable start message
