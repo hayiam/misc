@@ -183,7 +183,7 @@ call Highlight("gitcommitSelectedFile", s:orange, s:none, s:none)
 call Highlight("gitcommitSummary", s:white, s:none, s:none)
 call Highlight("gitcommitOverflow", s:magenta, s:none, s:none)
 
-call Highlight("SpecialKey", s:dark_grey, s:darker_grey, s:none)
+call Highlight("SpecialKey", s:light_green, s:none, s:none)
 call Highlight("IncSearch", s:black, s:bright_yellow, s:bold)
 call Highlight("Search", s:black, s:bright_yellow, s:bold)
 
