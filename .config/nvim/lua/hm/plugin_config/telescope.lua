@@ -32,6 +32,20 @@ function toggle_context()
   end
 end
 
+-- function to toggle highlight of comments
+hightlight_changed = false
+local comments_color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Comment")), "fg#") -- requires Treesitter
+
+toggle_comments_highlight = function()
+  hightlight_changed = not hightlight_changed
+  if hightlight_changed then
+    vim.cmd('highlight Comment ctermfg=green')
+  else
+    vim.cmd('highlight Comment ctermfg=' .. comments_color)
+  end
+end
+
+
 require("telescope").setup {
   extensions = {
     menu = {
@@ -47,8 +61,10 @@ require("telescope").setup {
           { "Dynamic workspace symbols", "Telescope lsp_dynamic_workspace_symbols" },
           { "Enable Codeium", "packadd codeium.vim" },
           { "List workspace folders", "lua my_picker(vim.lsp.buf.list_workspace_folders(), 'Folders', 'Workspace folders', require('telescope.themes').get_dropdown{})" },
+          { "References", "Telescope lsp_references" },
           { "Remove trailing spaces", "call StripTrailing()" },
           { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
+          { "Toggle comments visability", "lua toggle_comments_highlight()" },
           { "Toggle indent lines", "packadd indent-blankline.nvim | lua toggle_indent_lines()" },
           { "Workspace symbols", "Telescope lsp_workspace_symbols" },
         },
