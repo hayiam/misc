@@ -87,8 +87,9 @@ map("n", "gi", builtin.lsp_implementations)
 map("n", "<space>m", "<CMD>Telescope menu prompt_title=Menu theme=dropdown<CR>")
 
 --setup hotkeys for split mode
+map ("n", "<leader>w", "<C-w>")
 --switch between instances
-map ("n", "<space>", "<c-w>w")
+map ("n", "<space>", "<C-w>w")
 --resize instances
 map ("n", "<C-Right>", "<CMD>vertical resize +1<CR>")
 map ("n", "<C-Left>", "<CMD>vertical resize -1<CR>")
