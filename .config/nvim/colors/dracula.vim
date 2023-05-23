@@ -12,10 +12,6 @@
 " Initialisation
 " --------------
 
-if ! has("gui_running") && &t_Co < 256
-  finish
-endif
-
 if ! exists("g:dracula_italic")
     let g:dracula_italic = 0
 endif
@@ -32,57 +28,30 @@ let colors_name = "dracula"
 " Palettes
 " --------
 
-if has("gui_running")
-  let s:vmode      = "gui"
-  let s:background = "#323342"
-  let s:foreground = "#F2F2EC"
-  let s:window     = "#7272A5"
-  let s:linenr     = "#898A8D"
-  let s:line       = "#3C3E54"
-  let s:darkcolumn = "#2D2F3B"
-  let s:selection  = "#54576A"
-  let s:comment    = "#7283BF"
-  let s:error      = "#F0000"
-  
-  let s:pink       = "#FF79C6"
-  let s:green      = "#50FA7B"
-  let s:aqua       = "#8BE9FD"
-  let s:yellow     = "#F1FA8C"
-  let s:orange     = "#FFB86C"
-  let s:purple     = "#BD93F9"
-  let s:red        = "#FF5555"
+let s:vmode      = "cterm"
+let s:background = "235"
+let s:foreground = "231"
+let s:window     = "60"
+let s:linenr     = "240"
+let s:line       = "236"
+let s:darkcolumn = "234"
+let s:selection  = "238"
+let s:comment    = "245"
+let s:error      = "52"
 
-  let s:addfg      = "#F8F8F2"
-  let s:addbg      = "#468410"
-  let s:delfg      = "#8B080B"
-  let s:changefg   = "#F8F8F2"
-  let s:changebg   = "#243A5F"
-else
-  let s:vmode      = "cterm"
-  let s:background = "235"
-  let s:foreground = "231"
-  let s:window     = "60"
-  let s:linenr     = "240"
-  let s:line       = "236"
-  let s:darkcolumn = "234"
-  let s:selection  = "238"
-  let s:comment    = "245"
-  let s:error      = "52"
-  
-  let s:pink       = "212"
-  let s:green      = "84"
-  let s:aqua       = "117"
-  let s:yellow     = "228"
-  let s:orange     = "215"
-  let s:purple     = "141"
-  let s:red        = "203"
+let s:pink       = "225"
+let s:green      = "84"
+let s:aqua       = "123"
+let s:yellow     = "228"
+let s:orange     = "215"
+let s:purple     = "141"
+let s:red        = "203"
 
-  let s:addfg      = "231"
-  let s:addbg      = "64"
-  let s:delfg      = "88"
-  let s:changefg   = "231"
-  let s:changebg   = "23"
-endif
+let s:addfg      = "231"
+let s:addbg      = "64"
+let s:delfg      = "88"
+let s:changefg   = "231"
+let s:changebg   = "23"
 
 " Formatting Options
 " ------------------
@@ -264,9 +233,9 @@ exe "hi! Boolean"         .s:fg_purple      .s:bg_none        .s:fmt_none
 exe "hi! Character"       .s:fg_yellow      .s:bg_none        .s:fmt_none
 exe "hi! String"          .s:fg_yellow      .s:bg_none        .s:fmt_none
 
-exe "hi! Type"            .s:fg_green        .s:bg_none        .s:fmt_none
-exe "hi! Identifier"      .s:fg_yellow        .s:bg_none        .s:fmt_none
-exe "hi! Function"        .s:fg_aqua       .s:bg_none        .s:fmt_none
+exe "hi! Type"            .s:fg_green       .s:bg_none        .s:fmt_none
+exe "hi! Identifier"      .s:fg_aqua        .s:bg_none        .s:fmt_none
+exe "hi! Function"        .s:fg_yellow      .s:bg_none        .s:fmt_none
 
 exe "hi! Statement"       .s:fg_pink        .s:bg_none        .s:fmt_none
 exe "hi! Operator"        .s:fg_pink        .s:bg_none        .s:fmt_none
@@ -282,7 +251,7 @@ exe "hi! PreProc"         .s:fg_green       .s:bg_none        .s:fmt_none
 "        Macro"
 "        PreCondit"
 
-exe "hi! Special"         .s:fg_aqua        .s:bg_none        .s:fmt_none
+exe "hi! Special"         .s:fg_orange        .s:bg_none        .s:fmt_none
 "        SpecialKey
 "        SpecialChar"
 "        Tag"
