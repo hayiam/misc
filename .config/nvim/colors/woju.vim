@@ -18,8 +18,6 @@ else
   let s:italic = { "cterm": "NONE", "gui": "NONE" }
 endif
 
-
-
 let s:none = { "cterm": "NONE", "gui": "NONE" }
 let s:bold = { "cterm": "bold", "gui": "bold" }
 let s:reverse = { "cterm": "reverse", "gui": "bold" }
