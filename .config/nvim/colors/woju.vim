@@ -12,7 +12,7 @@ if !exists("g:vim_woju_italic")
     let g:vim_woju_italic = 0
 endif
 
-if g:vim_monokai_tasty_italic
+if g:vim_woju_italic
   let s:italic = { "cterm": "italic", "gui": "italic" }
 else
   let s:italic = { "cterm": "NONE", "gui": "NONE" }
