@@ -64,6 +64,6 @@ let snippet .= "}" . "\n"
 ]]
 
 s("html", html, "html!!", "gg6j3w")
-s("python", python, "python!!", "0<c-v>2k3lxgg")
+s("python", python, "python!!", "0V2k<gg")
 s("cpp", cpp, "cpp!!", "gg3j")
 s("c", c, "c!!", "gg1j")
