@@ -1,13 +1,11 @@
 " Vim color file
-"
-" Author: Patrick Stockwell <mail@deciphr.net>
 
 hi clear
 if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "vim-monokai-tasty"
+let g:colors_name = "vim-neardefault"
 
 " User Options
 if !exists("g:vim_monokai_tasty_italic")
@@ -31,7 +29,7 @@ let s:orange = { "cterm": 208, "gui": "#FF9700" }
 " Search colours. Specifically not in the monokai palette so that they will
 " stand out.
 let s:black = { "cterm": 0, "gui": "#000000" }
-let s:bright_yellow = { "cterm": 11, "gui": "yellow" }
+let s:bright_yellow = { "cterm": 11, "gui": "#ffff00" }
 
 " Monochrome in order light -> dark
 let s:white = { "cterm": 231, "gui": "#ffffff" }
@@ -72,9 +70,9 @@ call Highlight("NormalMode", s:charcoal, s:light_blue, s:bold)
 call Highlight("InsertMode", s:charcoal, s:light_green, s:bold)
 call Highlight("RPlaceMode", s:white, s:magenta, s:bold)
 call Highlight("VisualMode", s:charcoal, s:purple, s:bold)
-call Highlight("Encoding", s:bright_yellow, s:darker_grey, s:none)
-call Highlight("StatusLine", s:bright_yellow, s:none, s:none)
-call Highlight("StatusLineNC", s:bright_yellow, s:darker_grey, s:none)
+call Highlight("Encoding", s:yellow, s:darker_grey, s:none)
+call Highlight("StatusLine", s:yellow, s:none, s:none)
+call Highlight("StatusLineNC", s:yellow, s:darker_grey, s:none)
 call Highlight("SeparatorLine", s:none, s:charcoal, s:none)
 call Highlight("WinSeparator", s:grey, s:none, s:none)
 
@@ -195,7 +193,7 @@ call Highlight("Structure", s:light_blue, s:none, s:none)
 call Highlight("Function", s:light_green, s:none, s:none)
 
 call Highlight("Constant", s:purple, s:none, s:none)
-call Highlight("Directory", s:bright_yellow, s:none, s:none)
+call Highlight("Directory", s:yellow, s:none, s:none)
 call Highlight("Tag", s:purple, s:none, s:none)
 call Highlight("Boolean", s:purple, s:none, s:none)
 call Highlight("Character", s:purple, s:none, s:none)
