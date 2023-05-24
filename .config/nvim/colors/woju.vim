@@ -148,5 +148,4 @@ call Highlight("DiffDelete", s:pink, s:pink, s:none)
 call Highlight("DiffChange", s:none, s:charcoal, s:none)
 call Highlight("DiffText", s:none, s:charcoal, s:none)
 
-
 set background=dark
