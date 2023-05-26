@@ -43,7 +43,7 @@ function! MyTabLine()
             elseif getbufvar(b, "&buftype") == 'quickfix'
                 let n .= '[Q] '
             elseif getbufvar(b, "&modifiable")
-                let n .= fnamemodify(bufname(b), ':t') " pathshorten(bufname(b))
+                let n .= ' ' . fnamemodify(bufname(b), ':t')" pathshorten(bufname(b))
             endif
             if getbufvar(b, "&modified")
                 let m += 1
@@ -68,7 +68,7 @@ function! MyTabLine()
             let s .= n
         endif
         " switch to no underlining and add final space
-        let s .= ' '
+        let s .= '  '
     endfor
     let s .= '%#TabLineFill#%T'
     " right-aligned close button
