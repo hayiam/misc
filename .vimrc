@@ -26,6 +26,9 @@ set shortmess=I "disable start message
 set ww+=[,] "cross line with <- and -> arrows in insert mode 
 colorscheme tasty
 "colorscheme dracula
+"set up netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 "set up statusline
 set statusline=
 set statusline+=%#NormalMode#%{(mode()=='n')?'\ \ NORMAL\ ':''}
@@ -57,7 +60,7 @@ set statusline+=\
 vnoremap <C-y> "+y
 nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
-inoremap <C-l> <C-^>
+inoremap <C-r> <C-^>
 "ramap esc
 inoremap ii <C-[>
 vnoremap ii <C-[>
@@ -89,13 +92,13 @@ noremap <silent> <C-Up> :resize -1<CR>
 nmap <F4> :call FindTrailing()<CR>
 nmap <F3> :call FindTabs()<CR>
 "make tags and brackets autoclose
-"autocmd FileType html inoremap <buffer> > ></<C-x><C-o><C-[>0f>a
-"autocmd FileType html inoremap <buffer> < <
-autocmd FileType c,cpp,h inoremap ( ()<C-[>%li
+autocmd FileType c,cpp,h,javascript,python inoremap ( ()<C-[>%li
 autocmd FileType html inoremap < <><C-[>%li
-autocmd FileType c,cpp,h inoremap >>> ->
-autocmd FileType html,c,cpp,h inoremap { {<C-o>o}<C-[>%o
-autocmd FileType c,cpp,h inoremap [ []<C-[>%li
+autocmd FileType html inoremap \ </<C-X><C-O><CR><C-[>x%x$a
+autocmd FileType python,c,cpp,h inoremap >>> ->
+autocmd FileType html,c,cpp,h,css,javascript,python inoremap { {}<C-[>%li
+autocmd FileType html,c,cpp,h,css,javascript,python inoremap {{ {<C-o>o}<C-[>%o
+autocmd FileType c,cpp,h,javascript,python inoremap [ []<C-[>%li
 "inoremap { {}<C-[>%li
 "inoremap < <><C-[>i
 
@@ -111,6 +114,72 @@ endfunction
 function! FindTabs()
     execute '/\t'
 endfunction
+
+"setup tabline
+function! MyTabLine()
+    let s = ''
+    " loop through each tab page
+    for i in range(tabpagenr('$'))
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#' " WildMenu
+        else
+            let s .= '%#TabLine#'
+        endif
+        " set the tab page number (for mouse clicks)
+        let s .= '%' . (i + 1) . 'T ['
+        " set page number string
+        let s .= i + 1 . ']'
+        " get buffer names and statuses
+        let n = ''  " temp str for buf names
+        let m = 0   " &modified counter
+        let buflist = tabpagebuflist(i + 1)
+        " loop through each buffer in a tab
+        for b in buflist
+            if getbufvar(b, "&buftype") == 'help'
+                let n .= '[H] ' . fnamemodify(bufname(b), ':t:s/.txt$//')
+            elseif getbufvar(b, "&buftype") == 'quickfix'
+                let n .= '[Q] '
+            elseif getbufvar(b, "&modifiable")
+                let n .= ' ' . fnamemodify(bufname(b), ':t')" pathshorten(bufname(b))
+            endif
+            if getbufvar(b, "&modified")
+                let m += 1
+            endif
+        endfor
+        " let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
+        let n = substitute(n, ', $', '', '')
+        " add modified label
+        if m > 0
+            let s .= '+'
+          " let s .= '[' . m . '+]'
+        endif
+        if i + 1 == tabpagenr()
+            let s .= ' %#TabLineSel#'
+        else
+            let s .= ' %#TabLine#'
+        endif
+        " add buffer names
+        if n == ''
+            let s.= '[New]'
+        else
+            let s .= n
+        endif
+        " switch to no underlining and add final space
+        let s .= '  '
+    endfor
+    let s .= '%#TabLineFill#%T'
+    " right-aligned close button
+        if tabpagenr('$') > 1
+            let s .= '%=%#TabLineFill#%999X[x] '
+        endif
+    return s
+endfunction
+
 
 "functions for status line
 "recalculate the trailing whitespace warning when idle, and after saving
