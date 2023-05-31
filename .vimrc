@@ -78,8 +78,8 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-b> <C-o>b
 inoremap <C-w> <C-o>w
-"press enter to insert new line in normal mode
-nnoremap <CR> o<Esc>
+"press Ctrl-space to insert new line in normal mode
+nnoremap <C-@> o<Esc>
 "setup hotkeys for split mode
 "switch between instances
 nnoremap <space> <c-w>w
