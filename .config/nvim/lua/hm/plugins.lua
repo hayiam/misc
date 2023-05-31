@@ -10,6 +10,10 @@ return require('packer').startup(function(use)
     use "ggandor/lightspeed.nvim"  
     use "aznhe21/actions-preview.nvim"
     use {
+        "NvChad/nvim-colorizer.lua",
+        opt = true
+    }
+    use {
         "Exafunction/codeium.vim",
         opt = true
     }
