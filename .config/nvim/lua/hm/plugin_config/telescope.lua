@@ -45,6 +45,26 @@ toggle_comments_highlight = function()
   end
 end
 
+-- function to toggle colorrizer and termguicolors
+colors_enabled = false
+local was_called = 0
+toggle_colors = function ()
+  colors_enabled = not colors_enabled
+  if was_called == 0 then
+    vim.cmd('packadd nvim-colorizer.lua')
+    vim.o.termguicolors=true
+    require ('colorizer').setup()
+    require("colorizer").attach_to_buffer()
+  elseif colors_enabled then
+    vim.o.termguicolors=true
+    require("colorizer").attach_to_buffer()
+  else
+    require("colorizer").detach_from_buffer()
+    vim.o.termguicolors=false
+  end
+  was_called = was_called+1
+end
+
 
 require("telescope").setup {
   extensions = {
@@ -64,6 +84,7 @@ require("telescope").setup {
           { "References", "Telescope lsp_references" },
           { "Remove trailing spaces", "call StripTrailing()" },
           { "Remove workspace folder", "lua vim.lsp.buf.remove_workspace_folder()" },
+          { "Show colors (toggle)", "lua toggle_colors()" },
           { "Toggle comments visability", "lua toggle_comments_highlight()" },
           { "Toggle indent lines", "packadd indent-blankline.nvim | lua toggle_indent_lines()" },
           { "Workspace symbols", "Telescope lsp_workspace_symbols" },
