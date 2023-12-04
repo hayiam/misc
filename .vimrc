@@ -57,8 +57,8 @@ set statusline+=\
 set statusline+=%#SeparatorLine#
 set statusline+=\ 
 "setup aliases for ctrl-c and ctrl-v
-vnoremap <C-y> "+y
-nnoremap vv "+P
+"vnoremap <C-y> "+y
+"nnoremap vv "+P
 "remap ctrl+6 (to change keyboard layout) in insert mode
 inoremap <C-r> <C-^>
 "ramap esc
@@ -83,14 +83,26 @@ nnoremap <C-@> o<Esc>
 "setup hotkeys for split mode
 "switch between instances
 nnoremap <space> <c-w>w
+"save with Ctrl+w
+nnoremap <C-w> <CMD>write<CR>
+"remap movement keys in insert mode
+inoremap <C-d> <Delete>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-b> <C-o>b
+inoremap <C-w> <C-o>w
 "resize instances
 noremap <silent> <C-Right> :vertical resize +1<CR>
 noremap <silent> <C-Left> :vertical resize -1<CR>
 noremap <silent> <C-Down> :resize +1<CR>
 noremap <silent> <C-Up> :resize -1<CR>
 "remap keys for functions
-nmap <F4> :call FindTrailing()<CR>
-nmap <F3> :call FindTabs()<CR>
+nmap <F4> :call StripTrailing()<CR>
+nmap <F3> :call ReplaceTabs()<CR>
 "make tags and brackets autoclose
 autocmd FileType c,cpp,h,javascript,python inoremap ( ()<C-[>%li
 autocmd FileType html inoremap < <><C-[>%li
@@ -105,15 +117,19 @@ autocmd FileType c,cpp,h,javascript,python inoremap [ []<C-[>%li
 "functions
 
 "regex functions
-"find trailing whitespaces
-function! FindTrailing()
-    execute '/\s\+$'
-endfunction
+"remove trailing spaces
+function! StripTrailing()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
-"find all tabs
-function! FindTabs()
-    execute '/\t'
-endfunction
+"replace tabs with 4 spaces
+function! ReplaceTabs()
+    set expandtab
+    retab! 4
+endfun
 
 "setup tabline
 function! MyTabLine()
@@ -180,13 +196,8 @@ function! MyTabLine()
     return s
 endfunction
 
-
-"functions for status line
-"recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
-"return '[tr]' if trailing white space is detected
-"return '' otherwise
 function! StatuslineTrailingSpaceWarning()
     if !exists("b:statusline_trailing_space_warning")
 
@@ -204,12 +215,8 @@ function! StatuslineTrailingSpaceWarning()
     return b:statusline_trailing_space_warning
 endfunction
 
-"recalculate the tab warning flag when idle and after writing
 autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
 
-"return '[et]' if &et is set wrong
-"return '[mi]' if spaces and tabs are used to indent
-"return an empty string if everything is fine
 function! StatuslineTabWarning()
     if !exists("b:statusline_tab_warning")
         let b:statusline_tab_warning = ''
@@ -220,7 +227,6 @@ function! StatuslineTabWarning()
 
         let tabs = search('^\t', 'nw') != 0
 
-        "find spaces that arent used as alignment in the first indent column
         let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
 
         if tabs && spaces
